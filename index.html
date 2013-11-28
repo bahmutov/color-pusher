@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <title>color-pusher</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <script src="bower_components/jquery/jquery.min.js"></script>
+  <script src="libs/jquery.xcolor.js"></script>
+  <script src="libs/check-types.min.js"></script>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="src/app.js"></script>
+  <script src="src/controllers.js"></script>
+</head>
+<body ng-app="color-pusher">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="well well-sm page-header">
+          <h2>color-pusher</h2>
+          <p class="lead">
+            This is example bootstrap page. The bootstrap itself does not matter, just
+            having some selectors does.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="alert alert-info">
+          <strong>Info</strong> box. Selector .alert-info
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="alert alert-warning">
+          <strong>Warning</strong> box using .alert-warning
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-info">
+          <h4>Another info box</h4>
+          <p>This is default Bootstrap color theme</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="alert alert-success">
+          <h4>success box using .alert-success</h4>
+          <p>This is default Bootstrap color theme</p>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="alert alert-danger">
+          <h4>Snap! .alert-danger</h4>
+          <p>This is bad, this is very very bad</p>
+        </div>
+      </div>
+    </div>
+
+
+    <hr>
+    <div class="row" ng-controller="colorCtrl">
+      <div class="col-md-8 col-md-offset-2">
+
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label for="baseColor" class="col-sm-2 control-label">Base color</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <input type="text" class="form-control" id="baseColor"
+                  placeholder="#ff00ff" required
+                  ng-model="baseColor">
+                <span id="baseColorSample" class="input-group-addon"></span>
+              </div>
+            </div>
+
+            <label for="baseSelector" class="col-sm-2 control-label">Base selector</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="baseSelector"
+                placeholder=".alert-info" required
+                ng-model="baseSelector">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="triadOne" class="col-sm-2 control-label">Triad one</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <input type="text" class="form-control" id="triadOne"
+                  ng-model="triadOne" readonly>
+                <span id="triadOneSample" class="input-group-addon"></span>
+              </div>
+            </div>
+
+            <label for="triadOneSelector" class="col-sm-2 control-label">Selector</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="triadOneSelector"
+              placeholder=".alert-success" required ng-model="triadOneSelector">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="triadTwo" class="col-sm-2 control-label">Triad two</label>
+            <div class="col-sm-4">
+              <div class="input-group">
+                <input type="text" class="form-control" id="triadTwo"
+                  ng-model="triadTwo" readonly>
+                <span id="triadTwoSample" class="input-group-addon"> </span>
+              </div>
+            </div>
+
+            <label for="triadTwoSelector" class="col-sm-2 control-label">Selector</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="triadTwoSelector"
+              placeholder=".alert-warning" required ng-model="triadTwoSelector">
+            </div>
+          </div>
+
+          <button ng-click="applyColors()">Apply colors</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
