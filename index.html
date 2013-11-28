@@ -7,12 +7,16 @@
   <title>color-pusher</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" href="bower_components/jquery-minicolors/jquery.minicolors.css">
+
   <script src="bower_components/jquery/jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="libs/jquery.xcolor.js"></script>
   <script src="libs/check-types.min.js"></script>
-
+  <script src="bower_components/jquery-minicolors/jquery.minicolors.js"></script>
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-minicolors/angular-minicolors.js"></script>
   <script src="src/app.js"></script>
   <script src="src/controllers.js"></script>
 </head>
@@ -85,10 +89,12 @@
             <label for="baseColor" class="col-sm-2 control-label">Base color</label>
             <div class="col-sm-4">
               <div class="input-group">
-                <input type="text" class="form-control" id="baseColor"
-                  placeholder="#ff00ff" required
-                  ng-model="baseColor">
-                <span id="baseColorSample" class="input-group-addon"></span>
+                <input
+                  id="baseColor"
+                  class="form-control"
+                  type="text"
+                  minicolors="hueSettings"
+                  ng-model="colors.baseColor">
               </div>
             </div>
 
@@ -105,8 +111,8 @@
             <div class="col-sm-4">
               <div class="input-group">
                 <input type="text" class="form-control" id="triadOne"
-                  ng-model="triadOne" readonly>
-                <span id="triadOneSample" class="input-group-addon"></span>
+                  ng-model="colors.triadOne"
+                  minicolors="hueSettings">
               </div>
             </div>
 
@@ -122,8 +128,8 @@
             <div class="col-sm-4">
               <div class="input-group">
                 <input type="text" class="form-control" id="triadTwo"
-                  ng-model="triadTwo" readonly>
-                <span id="triadTwoSample" class="input-group-addon"> </span>
+                  ng-model="colors.triadTwo"
+                  minicolors="hueSettings">
               </div>
             </div>
 

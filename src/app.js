@@ -1,3 +1,3 @@
 (function (angular) {
-  angular.module('color-pusher', []);
+  angular.module('color-pusher', ['minicolors']);
 }(angular));

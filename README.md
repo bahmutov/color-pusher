@@ -1,4 +1,4 @@
-# color-pusher v0.0.1
+# color-pusher v0.0.2
 
 > Dynamic color swatch manipulation for changing multiple elements CSS
 
@@ -22,6 +22,11 @@ to manipulate colors.
 
 ## History
 
+
+0.0.2 / 2013-11-28
+==================
+
+  * every color allows color picker or edit
 
 0.0.1 / 2013-11-28
 ==================
