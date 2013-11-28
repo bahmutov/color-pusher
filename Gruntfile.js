@@ -45,6 +45,7 @@ module.exports = function (grunt) {
         'bower_components/jquery/jquery.min.map',
         'bower_components/jquery-minicolors/jquery.minicolors.css',
         'bower_components/jquery-minicolors/jquery.minicolors.js',
+        'bower_components/jquery-minicolors/jquery.minicolors.png',
         'bower_components/angular-minicolors/angular-minicolors.js',
         'libs/jquery.xcolor.js',
         'libs/check-types.min.js',
