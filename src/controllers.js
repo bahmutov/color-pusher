@@ -14,7 +14,9 @@
     };
 
     $scope.colors = {
-      baseColor: '#ff00ff'
+      baseColor: '#ff00ff',
+      triadOne: '',
+      triadTwo: ''
     };
 
     $scope.hueSettings = angular.copy($scope.defaultSettings);
@@ -27,8 +29,8 @@
       var triad = $.xcolor.triad($scope.colors.baseColor);
       check.verify.array(triad,
         'could not get triad array from base color ' + $scope.colors.baseColor);
-      $scope.triadOne = triad[1].getHex();
-      $scope.triadTwo = triad[2].getHex();
+      $scope.colors.triadOne = triad[1].getHex();
+      $scope.colors.triadTwo = triad[2].getHex();
     }
 
     computeColors();
@@ -39,17 +41,11 @@
       });
 
       $($scope.triadOneSelector).css({
-        backgroundColor: $scope.triadOne
-      });
-      $('#triadOneSample').css({
-        backgroundColor: $scope.triadOne
+        backgroundColor: $scope.colors.triadOne
       });
 
       $($scope.triadTwoSelector).css({
-        backgroundColor: $scope.triadTwo
-      });
-      $('#triadTwoSample').css({
-        backgroundColor: $scope.triadTwo
+        backgroundColor: $scope.colors.triadTwo
       });
     };
 
