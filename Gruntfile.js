@@ -39,7 +39,7 @@ module.exports = function (grunt) {
         'index.html',
         'README.md',
         'bower_components/angular/angular.js',
-        'bower_components/bootstrap/dist/bootstrap.min.css',
+        'bower_components/bootstrap/dist/css/bootstrap.min.css',
         'bower_components/jquery/jquery.min.js',
         'bower_components/jquery/jquery.min.map',
         'libs/jquery.xcolor.js',
