@@ -34,6 +34,7 @@
     $scope.$watch('baseColor', function () {
       if ($scope.baseColor.length === 7) {
         computeColors();
+        $scope.applyColors();
       }
     });
   });
