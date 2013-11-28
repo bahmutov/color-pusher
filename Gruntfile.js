@@ -3,11 +3,6 @@ module.exports = function (grunt) {
   var plugins = require('matchdep').filterDev('grunt-*');
   plugins.forEach(grunt.loadNpmTasks);
 
-  grunt.registerTask('test', 'testing', function () {
-    require('./index');
-    grunt.task.run('clean-console');
-  });
-
   grunt.initConfig({
     jshint: {
       all: [
@@ -36,23 +31,9 @@ module.exports = function (grunt) {
           sync: ['author', 'description', 'name', 'version', 'private']
         }
       }
-    },
-
-    develop: {
-      server: {
-        file: 'index.js',
-        cmd: 'node'
-      }
-    },
-
-    'clean-console': {
-      all: {
-        options: {
-          url: 'http://localhost:3000'
-        }
-      }
     }
+
   });
 
-  grunt.registerTask('default', ['sync', 'jshint', 'complexity', 'readme', 'test']);
+  grunt.registerTask('default', ['sync', 'jshint', 'complexity', 'readme']);
 };

@@ -1,9 +1,7 @@
 ## installation
 
-Requires [nodejs](http://nodejs.org/)
+Requires [nodejs](http://nodejs.org/) and [bower](http://bower.io/)
 
 ```sh
-git clone https://gitlab.com/utest/block-blog.git
-cd block-blog
-npm install
+bower install color-pusher
 ```
