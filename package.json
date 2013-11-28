@@ -1,0 +1,29 @@
+{
+  "name": "color-pusher",
+  "version": "0.0.0",
+  "description": "Dynamic color swatch manipulation for changing multiple elements CSS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bahmutov/color-pusher.git"
+  },
+  "keywords": [
+    "color",
+    "change",
+    "css",
+    "theme"
+  ],
+  "author": "Gleb Bahmutov gleb.bahmutov@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahmutov/color-pusher/issues"
+  },
+  "devDependencies": {
+    "grunt-npm2bower-sync": "0.0.2",
+    "matchdep": "~0.3.0",
+    "grunt": "~0.4.2"
+  }
+}

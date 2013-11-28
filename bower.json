@@ -1,0 +1,22 @@
+{
+  "name": "color-pusher",
+  "version": "0.0.0",
+  "homepage": "https://github.com/bahmutov/color-pusher",
+  "authors": [
+    "Gleb Bahmutov <gleb.bahmutov@gmail.com>"
+  ],
+  "description": "g",
+  "main": "index.js",
+  "keywords": [
+    "color",
+    "change"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
