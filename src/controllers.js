@@ -21,12 +21,21 @@
       $($scope.baseSelector).css({
         backgroundColor: $scope.baseColor
       });
+      $('#baseColorSample').css({
+        backgroundColor: $scope.baseColor
+      });
 
       $($scope.triadOneSelector).css({
         backgroundColor: $scope.triadOne
       });
+      $('#triadOneSample').css({
+        backgroundColor: $scope.triadOne
+      });
 
       $($scope.triadTwoSelector).css({
+        backgroundColor: $scope.triadTwo
+      });
+      $('#triadTwoSample').css({
         backgroundColor: $scope.triadTwo
       });
     };

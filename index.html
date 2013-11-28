@@ -79,14 +79,17 @@
           <div class="form-group">
             <label for="baseColor" class="col-sm-2 control-label">Base color</label>
             <div class="col-sm-4">
-              <input type="string" class="form-control" id="baseColor"
-                placeholder="#ff00ff" required
-                ng-model="baseColor">
+              <div class="input-group">
+                <input type="text" class="form-control" id="baseColor"
+                  placeholder="#ff00ff" required
+                  ng-model="baseColor">
+                <span id="baseColorSample" class="input-group-addon"></span>
+              </div>
             </div>
 
             <label for="baseSelector" class="col-sm-2 control-label">Base selector</label>
             <div class="col-sm-4">
-              <input type="string" class="form-control" id="baseSelector"
+              <input type="text" class="form-control" id="baseSelector"
                 placeholder=".alert-info" required
                 ng-model="baseSelector">
             </div>
@@ -95,13 +98,16 @@
           <div class="form-group">
             <label for="triadOne" class="col-sm-2 control-label">Triad one</label>
             <div class="col-sm-4">
-              <input type="string" class="form-control" id="triadOne"
-                ng-model="triadOne" readonly>
+              <div class="input-group">
+                <input type="text" class="form-control" id="triadOne"
+                  ng-model="triadOne" readonly>
+                <span id="triadOneSample" class="input-group-addon"></span>
+              </div>
             </div>
 
             <label for="triadOneSelector" class="col-sm-2 control-label">Selector</label>
             <div class="col-sm-4">
-              <input type="string" class="form-control" id="triadOneSelector"
+              <input type="text" class="form-control" id="triadOneSelector"
               placeholder=".alert-success" required ng-model="triadOneSelector">
             </div>
           </div>
@@ -109,13 +115,16 @@
           <div class="form-group">
             <label for="triadTwo" class="col-sm-2 control-label">Triad two</label>
             <div class="col-sm-4">
-              <input type="string" class="form-control" id="triadTwo"
-              ng-model="triadTwo" readonly>
+              <div class="input-group">
+                <input type="text" class="form-control" id="triadTwo"
+                  ng-model="triadTwo" readonly>
+                <span id="triadTwoSample" class="input-group-addon"> </span>
+              </div>
             </div>
 
             <label for="triadTwoSelector" class="col-sm-2 control-label">Selector</label>
             <div class="col-sm-4">
-              <input type="string" class="form-control" id="triadTwoSelector"
+              <input type="text" class="form-control" id="triadTwoSelector"
               placeholder=".alert-warning" required ng-model="triadTwoSelector">
             </div>
           </div>
