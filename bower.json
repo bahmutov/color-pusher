@@ -19,5 +19,10 @@
     "test",
     "tests"
   ],
-  "author": "Gleb Bahmutov gleb.bahmutov@gmail.com"
+  "author": "Gleb Bahmutov gleb.bahmutov@gmail.com",
+  "dependencies": {
+    "angular": "~1.2.3",
+    "jquery": "~2.0.3",
+    "bootstrap": "~3.0.2"
+  }
 }
