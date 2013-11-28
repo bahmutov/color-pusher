@@ -1,10 +1,7 @@
 {
   "name": "color-pusher",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/bahmutov/color-pusher",
-  "authors": [
-    "Gleb Bahmutov <gleb.bahmutov@gmail.com>"
-  ],
   "description": "Dynamic color swatch manipulation for changing multiple elements CSS",
   "main": "index.js",
   "keywords": [
