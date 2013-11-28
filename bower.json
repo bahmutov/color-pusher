@@ -20,6 +20,7 @@
   "dependencies": {
     "angular": "~1.2.3",
     "jquery": "~2.0.3",
-    "bootstrap": "~3.0.2"
+    "bootstrap": "~3.0.2",
+    "angular-minicolors": "git@github.com:bahmutov/angular-minicolors.git"
   }
 }
