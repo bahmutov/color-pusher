@@ -31,6 +31,21 @@ module.exports = function (grunt) {
           sync: ['author', 'description', 'name', 'version', 'private']
         }
       }
+    },
+
+    'gh-pages': {
+      options: {},
+      src: [
+        'index.html',
+        'README.md',
+        'bower_components/angular/angular.js',
+        'bower_components/bootstrap/dist/bootstrap.min.css',
+        'bower_components/jquery/jquery.min.js',
+        'bower_components/jquery/jquery.min.map',
+        'libs/jquery.xcolor.js',
+        'libs/check-types.min.js',
+        'src/*.js'
+      ]
     }
 
   });
