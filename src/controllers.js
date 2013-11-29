@@ -5,12 +5,7 @@
     $scope.defaultSettings = {
       control: 'hue',
       position: 'bottom left',
-      theme: 'bootstrap',
-      change: function (hue) {
-        if (hue.length !== 7) {
-          return false;
-        }
-      }
+      theme: 'bootstrap'
     };
 
     $scope.colors = {
