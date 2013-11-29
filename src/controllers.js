@@ -7,27 +7,21 @@
       position: 'bottom left',
       theme: 'bootstrap'
     };
+    $scope.hueSettings = angular.copy($scope.defaultSettings);
 
     $scope.colors = ['#ff00ff'];
     $scope.lastGeneration = 'triad';
-
-    $scope.hueSettings = angular.copy($scope.defaultSettings);
-
-    $scope.baseSelector = '.alert-info';
-    $scope.triadOneSelector = '.alert-success';
-    $scope.triadTwoSelector = '.alert-warning';
+    $scope.selectors = ['.alert-info', '.alert-success', '.alert-warning'];
 
     $scope.applyColors = function () {
-      $($scope.baseSelector).css({
-        backgroundColor: $scope.colors[0]
-      });
+      $scope.colors.forEach(function (color, k) {
+        var selector = $scope.selectors[k];
+        if (color && check.unemptyString(selector)) {
 
-      $($scope.triadOneSelector).css({
-        backgroundColor: $scope.colors[1]
-      });
-
-      $($scope.triadTwoSelector).css({
-        backgroundColor: $scope.colors[2]
+          $(selector).css({
+            backgroundColor: color
+          });
+        }
       });
     };
 
