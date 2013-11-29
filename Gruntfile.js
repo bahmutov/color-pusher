@@ -6,7 +6,7 @@ module.exports = function (grunt) {
   grunt.initConfig({
     jshint: {
       all: [
-        'Gruntfile.js', 'index.js', 'src/*.js'
+        'Gruntfile.js', 'index.js', 'src/*.js', 'libs/check-types.color.js'
       ],
       options: {
         jshintrc: '.jshintrc',
