@@ -50,6 +50,7 @@ module.exports = function (grunt) {
         'libs/jquery.xcolor.js',
         'libs/check-types.min.js',
         'libs/check-types.color.js',
+        'libs/ui-bootstrap-tpls-0.7.0.min.js',
         'src/*.js'
       ]
     }
