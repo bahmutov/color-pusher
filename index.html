@@ -14,11 +14,18 @@
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="libs/jquery.xcolor.js"></script>
   <script src="libs/check-types.min.js"></script>
+  <script src="libs/check-types.color.js"></script>
+
   <script src="bower_components/jquery-minicolors/jquery.minicolors.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-minicolors/angular-minicolors.js"></script>
   <script src="src/app.js"></script>
   <script src="src/controllers.js"></script>
+  <style>
+    button {
+      margin-left: 5px;
+    }
+  </style>
 </head>
 <body ng-app="color-pusher">
   <div class="container">
@@ -85,62 +92,54 @@
       </center>
 
         <form class="form-horizontal" role="form">
-          <div class="form-group">
-            <label for="baseColor" class="col-sm-2 control-label">Base color</label>
+
+          <div class="form-group" ng-repeat="color in colors track by $index">
+            <label for="colorPicker{{$index}}"
+              class="col-sm-2 control-label">color {{$index}}</label>
             <div class="col-sm-4">
               <div class="input-group">
                 <input
-                  id="baseColor"
+                  id="colorPicker{{$index}}"
                   class="form-control"
                   type="text"
                   minicolors="hueSettings"
-                  ng-model="colors.baseColor">
+                  ng-model="colors[$index]">
               </div>
             </div>
 
-            <label for="baseSelector" class="col-sm-2 control-label">Base selector</label>
+            <label for="selector{{$index}}"
+              class="col-sm-2 control-label">selector {{$index}}</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="baseSelector"
+              <input type="text" class="form-control"
+                id="selector{{$index}}"
                 placeholder=".alert-info" required
-                ng-model="baseSelector">
+                ng-model="selectors[$index]">
             </div>
           </div>
 
           <div class="form-group">
-            <label for="triadOne" class="col-sm-2 control-label">Triad one</label>
-            <div class="col-sm-4">
-              <div class="input-group">
-                <input type="text" class="form-control" id="triadOne"
-                  ng-model="colors.triadOne"
-                  minicolors="hueSettings">
-              </div>
-            </div>
+            <div class="col-md-12">
 
-            <label for="triadOneSelector" class="col-sm-2 control-label">Selector</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" id="triadOneSelector"
-              placeholder=".alert-success" required ng-model="triadOneSelector">
-            </div>
-          </div>
+              <button type="button" class="pull-right btn btn-primary" ng-click="applyColors()"
+                title="apply current colors to selectors">Apply colors</button>
 
-          <div class="form-group">
-            <label for="triadTwo" class="col-sm-2 control-label">Triad two</label>
-            <div class="col-sm-4">
-              <div class="input-group">
-                <input type="text" class="form-control" id="triadTwo"
-                  ng-model="colors.triadTwo"
-                  minicolors="hueSettings">
-              </div>
-            </div>
+              <button type="button" class="pull-right btn btn-default" ng-click="splitcomplement()"
+                title="generate the splitcomplement complements of a base color">splitcomplement</button>
 
-            <label for="triadTwoSelector" class="col-sm-2 control-label">Selector</label>
-            <div class="col-sm-4">
-              <input type="text" class="form-control" id="triadTwoSelector"
-              placeholder=".alert-warning" required ng-model="triadTwoSelector">
+              <button type="button" class="pull-right btn btn-default" ng-click="monochromatic()"
+                title="generate monochromatic colors from base color">monochromatic</button>
+
+              <button type="button" class="pull-right btn btn-default" ng-click="analogous()"
+                title="generate analogous colors from base color">Analogous</button>
+
+              <button type="button" class="pull-right btn btn-default" ng-click="tetrad()"
+                title="generate +3 colors from base color">Tetrad</button>
+
+              <button type="button" class="pull-right btn btn-default" ng-click="triad()"
+                title="generate +2 colors from base color">Triad</button>
+
             </div>
           </div>
-
-          <button class="pull-right" ng-click="applyColors()">Apply colors</button>
         </form>
 
       </div>
