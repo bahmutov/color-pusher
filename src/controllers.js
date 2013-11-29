@@ -13,10 +13,14 @@
 
     $scope.colors = ['#ff00ff'];
     $scope.textColors = ['#ffffff'];
+    $scope.textColorStrategy = ['white'];
+
     $scope.lastGeneration = 'triad';
     $scope.selectors = ['.alert-info', '.alert-success', '.alert-warning'];
 
     $scope.applyColors = function () {
+      this.generateForegroundColors();
+
       $scope.colors.forEach(function (color, k) {
         var selector = $scope.selectors[k];
         if (color && check.unemptyString(selector)) {
@@ -42,6 +46,18 @@
       return xcolor.distance(color, 'black') > xcolor.distance(color, 'white');
     }
 
+    function textColor(backgroundColor, strategy) {
+      if (strategy === 'white') { return '#ffffff'; }
+      if (strategy === 'black') { return '#000000'; }
+
+      check.verify.color(backgroundColor, 'expected background color ' + backgroundColor);
+      var complement = xcolor.complementary(backgroundColor);
+      if (xcolor.readable(complement, backgroundColor)) {
+        return complement.getHex();
+      }
+      return isCloserToWhiteThanBlack(backgroundColor) ? '#000000' : '#ffffff';
+    }
+
     $scope.generateColors = function (operation) {
       check.verify.unemptyString(operation, 'missing generation operation');
       $scope.lastGeneration = operation;
@@ -57,12 +73,21 @@
         return c.getHex();
       });
 
-      $scope.textColors = $scope.colors.map(function (backgroundColor) {
-        var complement = xcolor.complementary(backgroundColor);
-        if (xcolor.readable(complement, backgroundColor)) {
-          return complement.getHex();
+      this.generateForegroundColors();
+    };
+
+    $scope.generateForegroundColors = function () {
+      $scope.textColorStrategy = $scope.colors.map(function (color, k) {
+        var strategy = $scope.textColorStrategy[k];
+        if (check.unemptyString(strategy)) {
+          return strategy;
         }
-        return isCloserToWhiteThanBlack(backgroundColor) ? '#000000' : '#ffffff';
+        return 'white';
+      });
+
+      $scope.textColors = $scope.colors.map(function (backgroundColor, k) {
+        var strategy = $scope.textColorStrategy[k];
+        return textColor(backgroundColor, strategy);
       });
     };
 
