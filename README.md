@@ -2,6 +2,8 @@
 
 > Dynamic color swatch manipulation for changing multiple elements CSS
 
+[demo](http://glebbahmutov.com/color-pusher/)
+
 ### installation
 
 Requires [nodejs](http://nodejs.org/) and [bower](http://bower.io/)

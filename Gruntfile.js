@@ -49,6 +49,7 @@ module.exports = function (grunt) {
         'bower_components/angular-minicolors/angular-minicolors.js',
         'libs/jquery.xcolor.js',
         'libs/check-types.min.js',
+        'libs/check-types.color.js',
         'src/*.js'
       ]
     }

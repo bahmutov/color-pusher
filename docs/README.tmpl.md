@@ -2,6 +2,8 @@
 
 > {%= description %}
 
+[demo](http://glebbahmutov.com/color-pusher/)
+
 {%= _.doc("./docs/install.md") %}
 
 {%= _.doc("./docs/use.md") %}
