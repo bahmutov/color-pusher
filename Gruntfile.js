@@ -33,6 +33,12 @@ module.exports = function (grunt) {
       }
     },
 
+    jsonlint: {
+      all: {
+        src: [ 'package.json', 'bower.json' ]
+      }
+    },
+
     'gh-pages': {
       options: {},
       src: [
@@ -57,5 +63,5 @@ module.exports = function (grunt) {
 
   });
 
-  grunt.registerTask('default', ['sync', 'jshint', 'complexity', 'readme']);
+  grunt.registerTask('default', ['sync', 'jsonlint', 'jshint', 'complexity', 'readme']);
 };
