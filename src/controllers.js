@@ -10,6 +10,7 @@
     $scope.hueSettings = angular.copy($scope.defaultSettings);
 
     $scope.colors = ['#ff00ff'];
+    $scope.textColors = ['#ffffff'];
     $scope.lastGeneration = 'triad';
     $scope.selectors = ['.alert-info', '.alert-success', '.alert-warning'];
 
@@ -17,9 +18,11 @@
       $scope.colors.forEach(function (color, k) {
         var selector = $scope.selectors[k];
         if (color && check.unemptyString(selector)) {
-
+          var textColor = $scope.textColors[k];
+          check.verify.color(textColor, 'missing text color for index ' + k);
           $(selector).css({
-            backgroundColor: color
+            backgroundColor: color,
+            color: textColor
           });
         }
       });
@@ -31,6 +34,11 @@
         $scope.applyColors();
       }
     });
+
+    function isCloserToWhiteThanBlack(color) {
+      check.verify.color(color, 'expected color, got ' + color);
+      return $.xcolor.distance(color, 'black') > $.xcolor.distance(color, 'white');
+    }
 
     $scope.generateColors = function (operation) {
       check.verify.unemptyString(operation, 'missing generation operation');
@@ -45,6 +53,14 @@
         'could not get triad array from base color ' + baseColor);
       $scope.colors = generated.map(function (c) {
         return c.getHex();
+      });
+
+      $scope.textColors = $scope.colors.map(function (backgroundColor) {
+        var complement = $.xcolor.complementary(backgroundColor);
+        if ($.xcolor.readable(complement, backgroundColor)) {
+          return complement.getHex();
+        }
+        return isCloserToWhiteThanBlack(backgroundColor) ? '#000000' : '#ffffff';
       });
     };
 
