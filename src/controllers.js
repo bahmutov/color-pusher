@@ -1,6 +1,8 @@
 (function (angular) {
   var app = angular.module('color-pusher');
   app.controller('colorCtrl', function ($scope) {
+    console.assert($.xcolor, 'missing jquery.xcolor plugin');
+    var xcolor = $.xcolor;
 
     $scope.defaultSettings = {
       control: 'hue',
@@ -37,7 +39,7 @@
 
     function isCloserToWhiteThanBlack(color) {
       check.verify.color(color, 'expected color, got ' + color);
-      return $.xcolor.distance(color, 'black') > $.xcolor.distance(color, 'white');
+      return xcolor.distance(color, 'black') > xcolor.distance(color, 'white');
     }
 
     $scope.generateColors = function (operation) {
@@ -48,7 +50,7 @@
       check.verify.color(baseColor,
         'expected base color, have ' + baseColor);
 
-      var generated = $.xcolor[operation](baseColor);
+      var generated = xcolor[operation](baseColor);
       check.verify.array(generated,
         'could not get triad array from base color ' + baseColor);
       $scope.colors = generated.map(function (c) {
@@ -56,8 +58,8 @@
       });
 
       $scope.textColors = $scope.colors.map(function (backgroundColor) {
-        var complement = $.xcolor.complementary(backgroundColor);
-        if ($.xcolor.readable(complement, backgroundColor)) {
+        var complement = xcolor.complementary(backgroundColor);
+        if (xcolor.readable(complement, backgroundColor)) {
           return complement.getHex();
         }
         return isCloserToWhiteThanBlack(backgroundColor) ? '#000000' : '#ffffff';
