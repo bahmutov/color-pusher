@@ -8,11 +8,8 @@
       theme: 'bootstrap'
     };
 
-    $scope.colors = {
-      baseColor: '#ff00ff',
-      triadOne: '',
-      triadTwo: ''
-    };
+    $scope.colors = ['#ff00ff'];
+    $scope.lastGeneration = 'triad';
 
     $scope.hueSettings = angular.copy($scope.defaultSettings);
 
@@ -22,34 +19,45 @@
 
     $scope.applyColors = function () {
       $($scope.baseSelector).css({
-        backgroundColor: $scope.colors.baseColor
+        backgroundColor: $scope.colors[0]
       });
 
       $($scope.triadOneSelector).css({
-        backgroundColor: $scope.colors.triadOne
+        backgroundColor: $scope.colors[1]
       });
 
       $($scope.triadTwoSelector).css({
-        backgroundColor: $scope.colors.triadTwo
+        backgroundColor: $scope.colors[2]
       });
     };
 
-    $scope.$watch('colors.baseColor', function () {
-      if ($scope.colors.baseColor.length === 7) {
-        $scope.triad();
+    $scope.$watch('colors[0]', function () {
+      if (check.color($scope.colors[0])) {
+        $scope[$scope.lastGeneration]();
         $scope.applyColors();
       }
     });
 
-    $scope.triad = function () {
-      check.verify.color($scope.colors.baseColor,
-        'expected base color, have ' + $scope.colors.baseColor);
-      var triad = $.xcolor.triad($scope.colors.baseColor);
-      check.verify.array(triad,
-        'could not get triad array from base color ' + $scope.colors.baseColor);
-      $scope.colors.triadOne = triad[1].getHex();
-      $scope.colors.triadTwo = triad[2].getHex();
+    $scope.generateColors = function (operation) {
+      check.verify.unemptyString(operation, 'missing generation operation');
+      $scope.lastGeneration = operation;
+
+      var baseColor = $scope.colors[0];
+      check.verify.color(baseColor,
+        'expected base color, have ' + baseColor);
+
+      var generated = $.xcolor[operation](baseColor);
+      check.verify.array(generated,
+        'could not get triad array from base color ' + baseColor);
+      $scope.colors = generated.map(function (c) {
+        return c.getHex();
+      });
     };
+
+    ['triad', 'tetrad', 'analogous',
+      'monochromatic', 'splitcomplement'].forEach(function (op) {
+      $scope[op] = $scope.generateColors.bind($scope, op);
+    });
 
     $scope.triad();
   });
