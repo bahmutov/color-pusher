@@ -1,4 +1,4 @@
-# color-pusher v0.0.2
+# color-pusher v0.0.3
 
 > Dynamic color swatch manipulation for changing multiple elements CSS
 
@@ -24,6 +24,13 @@ to manipulate colors.
 
 ## History
 
+
+0.0.3 / 2013-11-29
+==================
+
+  * you can set strategy for generating text color, fixes #9
+  * colors and selectors adjust dynamically to generated colors
+  * added different color generation strategies
 
 0.0.2 / 2013-11-28
 ==================
