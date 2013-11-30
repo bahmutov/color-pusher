@@ -1,5 +1,41 @@
 (function (angular) {
   var app = angular.module('color-pusher');
+
+  function verifyColors(list) {
+    check.verify.array(list, 'expected array of colors, got ' + list);
+    list.forEach(check.verify.color);
+  }
+
+  app.controller('ColourLoversCtrl', function ($scope, $http) {
+    $scope.paletteId = '';
+    $scope.placeholder = '3148032 or http://www.colourlovers.com/palette/3148032/The_Sky_Opens_Up';
+
+    $scope.fetchPalette = function (target) {
+      if (check.webUrl($scope.paletteId)) {
+        $scope.paletteId = /palette\/\d+\//.exec($scope.paletteId)[0];
+        $scope.paletteId = /\d+/.exec($scope.paletteId)[0];
+      }
+      console.log('fetching pallette', $scope.paletteId);
+
+      var url = 'http://www.colourlovers.com/api/palette/' + $scope.paletteId;
+      var options = {
+        url: url,
+        params: {
+          format: 'json',
+          jsonCallback: 'JSON_CALLBACK'
+        }
+      };
+      $http.jsonp(url, options)
+      .success(function (data) {
+        console.log('pallete', data[0]);
+
+        verifyColors(data[0].colors);
+        target.setColors(data[0].colors);
+      })
+      .error(console.error);
+    };
+  });
+
   app.controller('colorCtrl', function ($scope) {
     console.assert($.xcolor, 'missing jquery.xcolor plugin');
     var xcolor = $.xcolor;
@@ -13,10 +49,17 @@
 
     $scope.colors = ['#ff00ff'];
     $scope.textColors = ['#ffffff'];
-    $scope.textColorStrategy = ['white'];
+    $scope.textColorStrategy = ['auto'];
 
     $scope.lastGeneration = 'triad';
-    $scope.selectors = ['.alert-info', '.alert-success', '.alert-warning'];
+    $scope.selectors = ['.alert-info', '.alert-success', '.alert-warning', 'body', '.well'];
+
+    $scope.setColors = function (list) {
+      verifyColors(list);
+      $scope.lastGeneration = null;
+      $scope.colors = list;
+      $scope.applyColors();
+    };
 
     $scope.applyColors = function () {
       this.generateForegroundColors();
@@ -36,7 +79,9 @@
 
     $scope.$watch('colors[0]', function () {
       if (check.color($scope.colors[0])) {
-        $scope[$scope.lastGeneration]();
+        if ($scope.lastGeneration) {
+          $scope[$scope.lastGeneration]();
+        }
         $scope.applyColors();
       }
     });
@@ -82,7 +127,7 @@
         if (check.unemptyString(strategy)) {
           return strategy;
         }
-        return 'white';
+        return 'auto';
       });
 
       $scope.textColors = $scope.colors.map(function (backgroundColor, k) {

@@ -1,5 +1,8 @@
 check.color = function (val) {
   if (!check.string(val)) { return false; }
+  if (val.length === 6) {
+    val = '#' + val;
+  }
   if (val.length !== 7) {
     return false;
   }
