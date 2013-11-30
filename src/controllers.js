@@ -71,6 +71,7 @@
           check.verify.color(textColor, 'missing text color for index ' + k);
           $(selector).css({
             backgroundColor: color,
+            borderColor: color,
             color: textColor
           });
         }
