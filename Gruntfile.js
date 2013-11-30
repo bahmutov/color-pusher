@@ -39,6 +39,16 @@ module.exports = function (grunt) {
       }
     },
 
+    'nice-package': {
+      all: {
+        options: {
+          license: function (value) {
+            return value === 'MIT';
+          }
+        }
+      }
+    },
+
     'gh-pages': {
       options: {},
       src: [
@@ -63,5 +73,6 @@ module.exports = function (grunt) {
 
   });
 
-  grunt.registerTask('default', ['sync', 'jsonlint', 'jshint', 'complexity', 'readme']);
+  grunt.registerTask('default', ['sync', 'jsonlint', 'nice-package', 'jshint',
+    'complexity', 'readme']);
 };
