@@ -49,7 +49,7 @@
 
     $scope.colors = ['#ff00ff'];
     $scope.textColors = ['#ffffff'];
-    $scope.textColorStrategy = ['white'];
+    $scope.textColorStrategy = ['auto'];
 
     $scope.lastGeneration = 'triad';
     $scope.selectors = ['.alert-info', '.alert-success', '.alert-warning'];
@@ -127,7 +127,7 @@
         if (check.unemptyString(strategy)) {
           return strategy;
         }
-        return 'white';
+        return 'auto';
       });
 
       $scope.textColors = $scope.colors.map(function (backgroundColor, k) {
