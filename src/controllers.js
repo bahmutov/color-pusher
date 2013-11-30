@@ -52,7 +52,7 @@
     $scope.textColorStrategy = ['auto'];
 
     $scope.lastGeneration = 'triad';
-    $scope.selectors = ['.alert-info', '.alert-success', '.alert-warning'];
+    $scope.selectors = ['.alert-info', '.alert-success', '.alert-warning', 'body', '.well'];
 
     $scope.setColors = function (list) {
       verifyColors(list);
@@ -71,6 +71,7 @@
           check.verify.color(textColor, 'missing text color for index ' + k);
           $(selector).css({
             backgroundColor: color,
+            borderColor: color,
             color: textColor
           });
         }
