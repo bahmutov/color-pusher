@@ -1,4 +1,12 @@
 
+0.0.4 / 2013-11-30
+==================
+
+  * switched default text color strategy to auto
+  * fetching colourlover palette using API, fixes #5
+  * you can set strategy for generating text color, fixes #9
+  * colors and selectors adjust dynamically to generated colors
+
 0.0.3 / 2013-11-29
 ==================
 
