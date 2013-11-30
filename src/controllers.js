@@ -1,11 +1,16 @@
 (function (angular) {
   var app = angular.module('color-pusher');
 
+  function verifyColors(list) {
+    check.verify.array(list, 'expected array of colors, got ' + list);
+    list.forEach(check.verify.color);
+  }
+
   app.controller('ColourLoversCtrl', function ($scope, $http) {
     $scope.paletteId = '';
     $scope.placeholder = '3148032 or http://www.colourlovers.com/palette/3148032/The_Sky_Opens_Up';
 
-    $scope.fetchPalette = function () {
+    $scope.fetchPalette = function (target) {
       if (check.webUrl($scope.paletteId)) {
         $scope.paletteId = /palette\/\d+\//.exec($scope.paletteId)[0];
         $scope.paletteId = /\d+/.exec($scope.paletteId)[0];
@@ -23,12 +28,9 @@
       $http.jsonp(url, options)
       .success(function (data) {
         console.log('pallete', data[0]);
-        check.verify.array(data[0].colors, 'expected pallete to return array of colors');
-        data[0].colors.forEach(check.verify.color);
 
-        $scope.$parent.lastGeneration = null;
-        $scope.$parent.colors = data[0].colors;
-        $scope.$parent.applyColors();
+        verifyColors(data[0].colors);
+        target.setColors(data[0].colors);
       })
       .error(console.error);
     };
@@ -51,6 +53,13 @@
 
     $scope.lastGeneration = 'triad';
     $scope.selectors = ['.alert-info', '.alert-success', '.alert-warning'];
+
+    $scope.setColors = function (list) {
+      verifyColors(list);
+      $scope.lastGeneration = null;
+      $scope.colors = list;
+      $scope.applyColors();
+    };
 
     $scope.applyColors = function () {
       this.generateForegroundColors();

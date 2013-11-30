@@ -39,6 +39,7 @@ title="Fork color-pusher on GitHub"></a>
         <div class="well well-sm page-header">
           <h2>color-pusher</h2>
           <p class="lead">
+            <strong>.well</strong>
             This is example bootstrap page. The bootstrap itself does not matter, just
             having some selectors does.
           </p>
@@ -114,7 +115,7 @@ title="Fork color-pusher on GitHub"></a>
             </div>
 
             <div class="col-sm-1">
-            <button type="button" class="btn btn-primary" ng-click="fetchPalette()"
+            <button type="button" class="btn btn-primary" ng-click="fetchPalette(this.$parent)"
               title="Pull palette colors">Fetch palette</button>
             </div>
           </div>
