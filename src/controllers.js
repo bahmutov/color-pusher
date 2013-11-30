@@ -1,5 +1,39 @@
 (function (angular) {
   var app = angular.module('color-pusher');
+
+  app.controller('ColourLoversCtrl', function ($scope, $http) {
+    $scope.paletteId = '';
+    $scope.placeholder = '3148032 or http://www.colourlovers.com/palette/3148032/The_Sky_Opens_Up';
+
+    $scope.fetchPalette = function () {
+      if (check.webUrl($scope.paletteId)) {
+        $scope.paletteId = /palette\/\d+\//.exec($scope.paletteId)[0];
+        $scope.paletteId = /\d+/.exec($scope.paletteId)[0];
+      }
+      console.log('fetching pallette', $scope.paletteId);
+
+      var url = 'http://www.colourlovers.com/api/palette/' + $scope.paletteId;
+      var options = {
+        url: url,
+        params: {
+          format: 'json',
+          jsonCallback: 'JSON_CALLBACK'
+        }
+      };
+      $http.jsonp(url, options)
+      .success(function (data) {
+        console.log('pallete', data[0]);
+        check.verify.array(data[0].colors, 'expected pallete to return array of colors');
+        data[0].colors.forEach(check.verify.color);
+
+        $scope.$parent.lastGeneration = null;
+        $scope.$parent.colors = data[0].colors;
+        $scope.$parent.applyColors();
+      })
+      .error(console.error);
+    };
+  });
+
   app.controller('colorCtrl', function ($scope) {
     console.assert($.xcolor, 'missing jquery.xcolor plugin');
     var xcolor = $.xcolor;
@@ -36,7 +70,9 @@
 
     $scope.$watch('colors[0]', function () {
       if (check.color($scope.colors[0])) {
-        $scope[$scope.lastGeneration]();
+        if ($scope.lastGeneration) {
+          $scope[$scope.lastGeneration]();
+        }
         $scope.applyColors();
       }
     });
