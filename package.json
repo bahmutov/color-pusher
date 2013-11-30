@@ -33,6 +33,9 @@
     "pre-git": "0.0.14",
     "grunt-gh-pages": "~0.9.0",
     "grunt-jsonlint": "~1.0.4",
-    "grunt-nice-package": "~0.1.5"
+    "grunt-nice-package": "~0.1.5",
+    "grunt-contrib-concat": "~0.3.0",
+    "time-grunt": "~0.2.3",
+    "grunt-contrib-copy": "~0.4.1"
   }
 }
