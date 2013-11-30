@@ -13,7 +13,7 @@ module.exports = function (grunt) {
 
     jshint: {
       all: [
-        'Gruntfile.js', 'index.js', 'src/*.js', 'libs/check-types.color.js'
+        '*.js', 'src/*.js', 'libs/check-types.color.js'
       ],
       options: {
         jshintrc: '.jshintrc',
