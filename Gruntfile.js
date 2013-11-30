@@ -1,12 +1,19 @@
 module.exports = function (grunt) {
+  require('time-grunt')(grunt);
+
+  var pkg = grunt.file.readJSON('package.json');
 
   var plugins = require('matchdep').filterDev('grunt-*');
   plugins.forEach(grunt.loadNpmTasks);
 
-  grunt.initConfig({
+  var userConfig = require('./build.config.js');
+
+  var taskConfig = {
+    pkg: pkg,
+
     jshint: {
       all: [
-        'Gruntfile.js', 'index.js', 'src/*.js', 'libs/check-types.color.js'
+        '*.js', 'src/*.js', 'libs/check-types.color.js'
       ],
       options: {
         jshintrc: '.jshintrc',
@@ -69,10 +76,57 @@ module.exports = function (grunt) {
         'libs/ui-bootstrap-tpls-0.7.0.min.js',
         'src/*.js'
       ]
+    },
+
+    concat: {
+      js: {
+        options: {},
+        src: [
+          '<%= vendor_files.js %>',
+          '<%= app_files.js %>'
+        ],
+        dest: '<%= destination_dir %>/<%= pkg.name %>.js'
+      },
+
+      css: {
+        options: {},
+        src: [
+          '<%= vendor_files.css %>',
+          '<%= app_files.css %>'
+        ],
+        dest: '<%= destination_dir %>/<%= pkg.name %>.css'
+      }
+    },
+
+    // make sure index.html example works inside destination folder
+    copy: {
+      '3rd-party': {
+        files: [
+          {
+            expand: true,
+            src: [
+              'bower_components/bootstrap/dist/css/bootstrap.min.css',
+              'bower_components/jquery/jquery.min.js',
+              'bower_components/jquery/jquery.min.map',
+              'bower_components/bootstrap/dist/js/bootstrap.min.js',
+              'bower_components/angular/angular.js',
+              'index.html'
+            ],
+            dest: '<%= destination_dir %>'
+          },
+          {
+            src: 'bower_components/jquery-minicolors/jquery.minicolors.png',
+            dest: '<%= destination_dir %>/jquery.minicolors.png'
+          }
+        ]
+      }
     }
 
-  });
+  };
 
+  grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
+
+  grunt.registerTask('build', ['concat', 'copy']);
   grunt.registerTask('default', ['sync', 'jsonlint', 'nice-package', 'jshint',
-    'complexity', 'readme']);
+    'complexity', 'readme', 'build']);
 };
