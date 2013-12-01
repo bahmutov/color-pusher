@@ -59,7 +59,9 @@ module.exports = function (grunt) {
     },
 
     'gh-pages': {
-      options: {},
+      options: {
+        base: '<%= destination_dir %>'
+      },
       src: [
         'index.html',
         'README.md',
@@ -111,7 +113,8 @@ module.exports = function (grunt) {
               'bower_components/jquery/jquery.min.js',
               'bower_components/jquery/jquery.min.map',
               'bower_components/angular/angular.js',
-              'index.html'
+              'index.html',
+              'README.md'
             ],
             dest: '<%= destination_dir %>'
           },
