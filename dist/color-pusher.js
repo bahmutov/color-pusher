@@ -2335,7 +2335,8 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "  <div ng-hide=\"showColorPusher\">\n" +
     "    <center>\n" +
     "      <button type=\"button\" class=\"show-color-pusher-button btn btn-default\"\n" +
-    "        ng-click=\"showColorPusher=true;\">\n" +
+    "        ng-click=\"showColorPusher=true;\"\n" +
+    "        title=\"Show color-pusher widget\">\n" +
     "        <span class=\"glyphicon glyphicon-chevron-up\"></span>\n" +
     "        color-pusher</button>\n" +
     "    </center>\n" +
@@ -2346,7 +2347,8 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "      <div class=\"col-md-12\">\n" +
     "\n" +
     "      <button type=\"button\" class=\"pull-right btn btn-default\" aria-hidden=\"true\"\n" +
-    "        ng-click=\"showColorPusher=false;\">\n" +
+    "        ng-click=\"showColorPusher=false;\"\n" +
+    "        title=\"Hide color-pusher widget\">\n" +
     "        <span class=\"glyphicon glyphicon-chevron-down\"></span>\n" +
     "      </button>\n" +
     "\n" +
