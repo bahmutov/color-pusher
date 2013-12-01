@@ -6,37 +6,20 @@
     list.forEach(check.verify.color);
   }
 
-  app.controller('ColourLoversCtrl', function ($scope, $http) {
-    $scope.paletteId = '';
-    $scope.placeholder = '3148032 or http://www.colourlovers.com/palette/3148032/The_Sky_Opens_Up';
-
-    $scope.fetchPalette = function (target) {
-      if (check.webUrl($scope.paletteId)) {
-        $scope.paletteId = /palette\/\d+\//.exec($scope.paletteId)[0];
-        $scope.paletteId = /\d+/.exec($scope.paletteId)[0];
-      }
-      console.log('fetching pallette', $scope.paletteId);
-
-      var url = 'http://www.colourlovers.com/api/palette/' + $scope.paletteId;
-      var options = {
-        url: url,
-        params: {
-          format: 'json',
-          jsonCallback: 'JSON_CALLBACK'
-        }
-      };
-      $http.jsonp(url, options)
-      .success(function (data) {
-        console.log('pallete', data[0]);
-
-        verifyColors(data[0].colors);
-        target.setColors(data[0].colors);
-      })
-      .error(console.error);
+  function colorPusherDirective() {
+    return {
+      restrict: 'E',
+      templateUrl: 'color-pusher.tpl.html',
+      replace: true,
+      link: function () {
+      },
+      controller: ['$scope', colorCtrl]
     };
-  });
+  }
 
-  app.controller('colorCtrl', function ($scope) {
+  app.directive('colorPusher', colorPusherDirective);
+
+  function colorCtrl($scope) {
     console.assert($.xcolor, 'missing jquery.xcolor plugin');
     var xcolor = $.xcolor;
 
@@ -143,5 +126,35 @@
     });
 
     $scope.triad();
+  }
+
+  app.controller('ColourLoversCtrl', function ColourLoversCtrl($scope, $http) {
+    $scope.paletteId = '';
+    $scope.placeholder = '3148032 or http://www.colourlovers.com/palette/3148032/The_Sky_Opens_Up';
+
+    $scope.fetchPalette = function (target) {
+      if (check.webUrl($scope.paletteId)) {
+        $scope.paletteId = /palette\/\d+\//.exec($scope.paletteId)[0];
+        $scope.paletteId = /\d+/.exec($scope.paletteId)[0];
+      }
+      console.log('fetching pallette', $scope.paletteId);
+
+      var url = 'http://www.colourlovers.com/api/palette/' + $scope.paletteId;
+      var options = {
+        url: url,
+        params: {
+          format: 'json',
+          jsonCallback: 'JSON_CALLBACK'
+        }
+      };
+      $http.jsonp(url, options)
+      .success(function (data) {
+        console.log('pallete', data[0]);
+
+        verifyColors(data[0].colors);
+        target.setColors(data[0].colors);
+      })
+      .error(console.error);
+    };
   });
 }(angular));

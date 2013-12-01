@@ -11,7 +11,7 @@ module.exports = function (grunt) {
   var taskConfig = {
     pkg: pkg,
 
-    clean: ['<%= destination_dir %>/bower_components'],
+    clean: ['<%= destination_dir %>/bower_components', 'tmp'],
 
     jshint: {
       all: [
@@ -75,11 +75,24 @@ module.exports = function (grunt) {
       ]
     },
 
+    /* convert AngularJs html templates to cached JavaScript */
+    html2js: {
+      main: {
+        options: {
+          base: 'src',
+          module: '<%= pkg.name %>.templates'
+        },
+        src: [ 'src/color-pusher.tpl.html' ],
+        dest: 'tmp/<%= pkg.name %>.templates.js'
+      }
+    },
+
     concat: {
       js: {
         options: {},
         src: [
           '<%= vendor_files.js %>',
+          'tmp/*.js',
           '<%= app_files.js %>'
         ],
         dest: '<%= destination_dir %>/<%= pkg.name %>.js'
@@ -123,7 +136,7 @@ module.exports = function (grunt) {
 
   grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
 
-  grunt.registerTask('build', ['clean', 'concat', 'copy']);
+  grunt.registerTask('build', ['clean', 'html2js', 'concat', 'copy']);
   grunt.registerTask('default', ['sync', 'jsonlint', 'nice-package', 'jshint',
     'complexity', 'readme', 'build']);
 };
