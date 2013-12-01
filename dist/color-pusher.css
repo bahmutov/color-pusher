@@ -516,8 +516,19 @@
 		background: #DFF0D8;
 		border: 1px solid #D6E9C6;
 	}
+button.show-color-pusher-button {
+  position: fixed;
+  bottom: 0;
+  width: 140px;
+  margin-left: -70px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 0;
+  font-weight: bold;
+}
+
 div.color-pusher {
-  min-width: 730px;
+  min-width: 720px;
   max-height: 360px;
   overflow: auto;
   background-color: #efefef;

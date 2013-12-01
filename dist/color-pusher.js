@@ -2331,106 +2331,122 @@ angular.module('color-pusher.templates', ['color-pusher.tpl.html']);
 
 angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("color-pusher.tpl.html",
-    "<div class=\"color-pusher\">\n" +
-    "  <div class=\"row\">\n" +
-    "    <div class=\"col-md-12\">\n" +
-    "\n" +
+    "<div>\n" +
+    "  <div ng-hide=\"showColorPusher\">\n" +
     "    <center>\n" +
-    "      <p>Change base color and watch triad colors update.\n" +
-    "      Change target CSS selectors.</p>\n" +
+    "      <button type=\"button\" class=\"show-color-pusher-button btn btn-default\"\n" +
+    "        ng-click=\"showColorPusher=true;\">\n" +
+    "        <span class=\"glyphicon glyphicon-chevron-up\"></span>\n" +
+    "        color-pusher</button>\n" +
     "    </center>\n" +
+    "  </div>\n" +
     "\n" +
-    "      <form class=\"form-horizontal\" role=\"form\">\n" +
+    "  <div ng-show=\"showColorPusher\" class=\"color-pusher\">\n" +
+    "    <div class=\"row\">\n" +
+    "      <div class=\"col-md-12\">\n" +
     "\n" +
-    "        <div class=\"form-group\" ng-controller=\"ColourLoversCtrl\">\n" +
-    "          <label for=\"colourLoverPalette\"\n" +
-    "              class=\"control-label col-sm-2\">\n" +
-    "              <a href=\"http://www.colourlovers.com/palettes\" target=\"_blank\">ColourLover Palette</a></label>\n" +
-    "          <div class=\"col-sm-6\">\n" +
-    "            <div class=\"input-group\">\n" +
-    "              <input\n" +
-    "                id=\"colourLoverPalette\"\n" +
-    "                class=\"form-control\"\n" +
-    "                type=\"text\" size=\"80\"\n" +
-    "                placeholder=\"{{placeholder}}\"\n" +
-    "                ng-model=\"paletteId\">\n" +
+    "      <button type=\"button\" class=\"pull-right btn btn-default\" aria-hidden=\"true\"\n" +
+    "        ng-click=\"showColorPusher=false;\">\n" +
+    "        <span class=\"glyphicon glyphicon-chevron-down\"></span>\n" +
+    "      </button>\n" +
+    "\n" +
+    "      <center>\n" +
+    "        <p>Change base color and watch triad colors update.\n" +
+    "        Change target CSS selectors.</p>\n" +
+    "      </center>\n" +
+    "\n" +
+    "        <form class=\"form-horizontal\" role=\"form\">\n" +
+    "\n" +
+    "          <div class=\"form-group\" ng-controller=\"ColourLoversCtrl\">\n" +
+    "            <label for=\"colourLoverPalette\"\n" +
+    "                class=\"control-label col-sm-2\">\n" +
+    "                <a href=\"http://www.colourlovers.com/palettes\" target=\"_blank\">ColourLover Palette</a></label>\n" +
+    "            <div class=\"col-sm-6\">\n" +
+    "              <div class=\"input-group\">\n" +
+    "                <input\n" +
+    "                  id=\"colourLoverPalette\"\n" +
+    "                  class=\"form-control\"\n" +
+    "                  type=\"text\" size=\"80\"\n" +
+    "                  placeholder=\"{{placeholder}}\"\n" +
+    "                  ng-model=\"paletteId\">\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"col-sm-1\">\n" +
+    "            <button type=\"button\" class=\"btn btn-primary\"\n" +
+    "              ng-click=\"fetchPalette(this.$parent)\"\n" +
+    "              ng-disabled=\"!isEnabled()\"\n" +
+    "              title=\"Pull palette colors\">Fetch palette</button>\n" +
     "            </div>\n" +
     "          </div>\n" +
     "\n" +
-    "          <div class=\"col-sm-1\">\n" +
-    "          <button type=\"button\" class=\"btn btn-primary\"\n" +
-    "            ng-click=\"fetchPalette(this.$parent)\"\n" +
-    "            ng-disabled=\"!isEnabled()\"\n" +
-    "            title=\"Pull palette colors\">Fetch palette</button>\n" +
-    "          </div>\n" +
-    "        </div>\n" +
+    "          <div class=\"form-group\" ng-repeat=\"color in colors track by $index + color\">\n" +
+    "            <label for=\"colorPicker{{$index}}\"\n" +
+    "              class=\"col-sm-1 control-label\">color {{$index}}</label>\n" +
+    "            <div class=\"col-sm-2\">\n" +
+    "              <div class=\"input-group\">\n" +
+    "                <input\n" +
+    "                  id=\"colorPicker{{$index}}\"\n" +
+    "                  class=\"form-control\"\n" +
+    "                  type=\"text\"\n" +
+    "                  minicolors=\"hueSettings\"\n" +
+    "                  ng-model=\"colors[$index]\">\n" +
+    "              </div>\n" +
+    "            </div>\n" +
     "\n" +
-    "        <div class=\"form-group\" ng-repeat=\"color in colors track by $index + color\">\n" +
-    "          <label for=\"colorPicker{{$index}}\"\n" +
-    "            class=\"col-sm-1 control-label\">color {{$index}}</label>\n" +
-    "          <div class=\"col-sm-2\">\n" +
-    "            <div class=\"input-group\">\n" +
-    "              <input\n" +
-    "                id=\"colorPicker{{$index}}\"\n" +
-    "                class=\"form-control\"\n" +
-    "                type=\"text\"\n" +
-    "                minicolors=\"hueSettings\"\n" +
-    "                ng-model=\"colors[$index]\">\n" +
+    "            <label for=\"selector{{$index}}\"\n" +
+    "              class=\"col-sm-2 control-label\">selector {{$index}}</label>\n" +
+    "            <div class=\"col-sm-2\">\n" +
+    "              <input type=\"text\" class=\"form-control\"\n" +
+    "                id=\"selector{{$index}}\"\n" +
+    "                placeholder=\".alert-info\" required\n" +
+    "                ng-model=\"selectors[$index]\">\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <label for=\"textColor{{$index}}\"\n" +
+    "              class=\"col-sm-1 control-label\">text {{$index}}</label>\n" +
+    "            <div class=\"btn-group\" id=\"textColor{{$index}}\">\n" +
+    "              <button type=\"button\" class=\"btn btn-default\"\n" +
+    "                ng-model=\"textColorStrategy[$index]\" btn-radio=\"'white'\">white</button>\n" +
+    "              <button type=\"button\" class=\"btn btn-default\"\n" +
+    "                ng-model=\"textColorStrategy[$index]\" btn-radio=\"'black'\">black</button>\n" +
+    "              <button type=\"button\" class=\"btn btn-default\"\n" +
+    "                ng-model=\"textColorStrategy[$index]\" btn-radio=\"'auto'\">auto</button>\n" +
+    "          </div>\n" +
+    "          </div>\n" +
+    "\n" +
+    "          <div class=\"form-group\">\n" +
+    "            <div class=\"col-md-8 col-md-offset-2\">\n" +
+    "\n" +
+    "              <button type=\"button\" class=\"pull-right btn btn-primary color-pusher\"\n" +
+    "                ng-click=\"applyColors()\"\n" +
+    "                title=\"apply current colors to selectors\">Apply colors</button>\n" +
+    "\n" +
+    "              <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
+    "                ng-click=\"splitcomplement()\"\n" +
+    "                title=\"generate the splitcomplement complements of a base color\">splitcomplement</button>\n" +
+    "\n" +
+    "              <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
+    "                ng-click=\"monochromatic()\"\n" +
+    "                title=\"generate monochromatic colors from base color\">monochromatic</button>\n" +
+    "\n" +
+    "              <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
+    "                ng-click=\"analogous()\"\n" +
+    "                title=\"generate analogous colors from base color\">Analogous</button>\n" +
+    "\n" +
+    "              <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
+    "                ng-click=\"tetrad()\"\n" +
+    "                title=\"generate +3 colors from base color\">Tetrad</button>\n" +
+    "\n" +
+    "              <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
+    "                ng-click=\"triad()\"\n" +
+    "                title=\"generate +2 colors from base color\">Triad</button>\n" +
+    "\n" +
     "            </div>\n" +
     "          </div>\n" +
+    "        </form>\n" +
     "\n" +
-    "          <label for=\"selector{{$index}}\"\n" +
-    "            class=\"col-sm-2 control-label\">selector {{$index}}</label>\n" +
-    "          <div class=\"col-sm-2\">\n" +
-    "            <input type=\"text\" class=\"form-control\"\n" +
-    "              id=\"selector{{$index}}\"\n" +
-    "              placeholder=\".alert-info\" required\n" +
-    "              ng-model=\"selectors[$index]\">\n" +
-    "          </div>\n" +
-    "\n" +
-    "          <label for=\"textColor{{$index}}\"\n" +
-    "            class=\"col-sm-1 control-label\">text {{$index}}</label>\n" +
-    "          <div class=\"btn-group\" id=\"textColor{{$index}}\">\n" +
-    "            <button type=\"button\" class=\"btn btn-default\"\n" +
-    "              ng-model=\"textColorStrategy[$index]\" btn-radio=\"'white'\">white</button>\n" +
-    "            <button type=\"button\" class=\"btn btn-default\"\n" +
-    "              ng-model=\"textColorStrategy[$index]\" btn-radio=\"'black'\">black</button>\n" +
-    "            <button type=\"button\" class=\"btn btn-default\"\n" +
-    "              ng-model=\"textColorStrategy[$index]\" btn-radio=\"'auto'\">auto</button>\n" +
-    "        </div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <div class=\"form-group\">\n" +
-    "          <div class=\"col-md-8 col-md-offset-2\">\n" +
-    "\n" +
-    "            <button type=\"button\" class=\"pull-right btn btn-primary color-pusher\"\n" +
-    "              ng-click=\"applyColors()\"\n" +
-    "              title=\"apply current colors to selectors\">Apply colors</button>\n" +
-    "\n" +
-    "            <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
-    "              ng-click=\"splitcomplement()\"\n" +
-    "              title=\"generate the splitcomplement complements of a base color\">splitcomplement</button>\n" +
-    "\n" +
-    "            <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
-    "              ng-click=\"monochromatic()\"\n" +
-    "              title=\"generate monochromatic colors from base color\">monochromatic</button>\n" +
-    "\n" +
-    "            <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
-    "              ng-click=\"analogous()\"\n" +
-    "              title=\"generate analogous colors from base color\">Analogous</button>\n" +
-    "\n" +
-    "            <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
-    "              ng-click=\"tetrad()\"\n" +
-    "              title=\"generate +3 colors from base color\">Tetrad</button>\n" +
-    "\n" +
-    "            <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
-    "              ng-click=\"triad()\"\n" +
-    "              title=\"generate +2 colors from base color\">Triad</button>\n" +
-    "\n" +
-    "          </div>\n" +
-    "        </div>\n" +
-    "      </form>\n" +
-    "\n" +
+    "      </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
@@ -2508,6 +2524,8 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
   function colorCtrl($scope) {
     console.assert($.xcolor, 'missing jquery.xcolor plugin');
     var xcolor = $.xcolor;
+
+    $scope.showColorPusher = false;
 
     $scope.defaultSettings = {
       control: 'hue',

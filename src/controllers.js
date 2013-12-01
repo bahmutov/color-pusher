@@ -18,6 +18,8 @@
     console.assert($.xcolor, 'missing jquery.xcolor plugin');
     var xcolor = $.xcolor;
 
+    $scope.showColorPusher = false;
+
     $scope.defaultSettings = {
       control: 'hue',
       position: 'bottom left',

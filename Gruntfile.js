@@ -116,6 +116,7 @@ module.exports = function (grunt) {
             expand: true,
             src: [
               'bower_components/bootstrap/dist/css/bootstrap.min.css',
+              'bower_components/bootstrap/dist/fonts/*',
               'bower_components/jquery/jquery.min.js',
               'bower_components/jquery/jquery.min.map',
               'bower_components/angular/angular.js',
