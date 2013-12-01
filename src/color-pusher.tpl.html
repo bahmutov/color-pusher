@@ -49,6 +49,33 @@
             </div>
           </div>
 
+            <div class="form-group">
+              <label for="generateButtons"
+                class="col-md-2 control-label">Generate colors based on first color 0</label>
+
+              <div class="col-md-8 input-group" id="generateButtons">
+              <button type="button" class="btn btn-default color-pusher"
+                ng-click="splitcomplement()"
+                title="generate the splitcomplement complements of a base color">splitcomplement</button>
+
+              <button type="button" class="btn btn-default color-pusher"
+                ng-click="monochromatic()"
+                title="generate monochromatic colors from base color">monochromatic</button>
+
+              <button type="button" class="btn btn-default color-pusher"
+                ng-click="analogous()"
+                title="generate analogous colors from base color">Analogous</button>
+
+              <button type="button" class="btn btn-default color-pusher"
+                ng-click="tetrad()"
+                title="generate +3 colors from base color">Tetrad</button>
+
+              <button type="button" class="btn btn-default color-pusher"
+                ng-click="triad()"
+                title="generate +2 colors from base color">Triad</button>
+              </div>
+            </div>
+
           <div class="form-group" ng-repeat="color in colors track by $index + color">
             <label for="colorPicker{{$index}}"
               class="col-sm-1 control-label">color {{$index}}</label>
@@ -85,33 +112,13 @@
           </div>
 
           <div class="form-group">
-            <div class="col-md-8 col-md-offset-2">
+            <center>
 
-              <button type="button" class="pull-right btn btn-primary color-pusher"
+              <button type="button" class="btn btn-primary color-pusher"
                 ng-click="applyColors()"
                 title="apply current colors to selectors">Apply colors</button>
 
-              <button type="button" class="pull-right btn btn-default color-pusher"
-                ng-click="splitcomplement()"
-                title="generate the splitcomplement complements of a base color">splitcomplement</button>
-
-              <button type="button" class="pull-right btn btn-default color-pusher"
-                ng-click="monochromatic()"
-                title="generate monochromatic colors from base color">monochromatic</button>
-
-              <button type="button" class="pull-right btn btn-default color-pusher"
-                ng-click="analogous()"
-                title="generate analogous colors from base color">Analogous</button>
-
-              <button type="button" class="pull-right btn btn-default color-pusher"
-                ng-click="tetrad()"
-                title="generate +3 colors from base color">Tetrad</button>
-
-              <button type="button" class="pull-right btn btn-default color-pusher"
-                ng-click="triad()"
-                title="generate +2 colors from base color">Triad</button>
-
-            </div>
+            </center>
           </div>
         </form>
 

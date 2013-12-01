@@ -2382,6 +2382,33 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "            </div>\n" +
     "          </div>\n" +
     "\n" +
+    "            <div class=\"form-group\">\n" +
+    "              <label for=\"generateButtons\"\n" +
+    "                class=\"col-md-2 control-label\">Generate colors based on first color 0</label>\n" +
+    "\n" +
+    "              <div class=\"col-md-8 input-group\" id=\"generateButtons\">\n" +
+    "              <button type=\"button\" class=\"btn btn-default color-pusher\"\n" +
+    "                ng-click=\"splitcomplement()\"\n" +
+    "                title=\"generate the splitcomplement complements of a base color\">splitcomplement</button>\n" +
+    "\n" +
+    "              <button type=\"button\" class=\"btn btn-default color-pusher\"\n" +
+    "                ng-click=\"monochromatic()\"\n" +
+    "                title=\"generate monochromatic colors from base color\">monochromatic</button>\n" +
+    "\n" +
+    "              <button type=\"button\" class=\"btn btn-default color-pusher\"\n" +
+    "                ng-click=\"analogous()\"\n" +
+    "                title=\"generate analogous colors from base color\">Analogous</button>\n" +
+    "\n" +
+    "              <button type=\"button\" class=\"btn btn-default color-pusher\"\n" +
+    "                ng-click=\"tetrad()\"\n" +
+    "                title=\"generate +3 colors from base color\">Tetrad</button>\n" +
+    "\n" +
+    "              <button type=\"button\" class=\"btn btn-default color-pusher\"\n" +
+    "                ng-click=\"triad()\"\n" +
+    "                title=\"generate +2 colors from base color\">Triad</button>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "\n" +
     "          <div class=\"form-group\" ng-repeat=\"color in colors track by $index + color\">\n" +
     "            <label for=\"colorPicker{{$index}}\"\n" +
     "              class=\"col-sm-1 control-label\">color {{$index}}</label>\n" +
@@ -2418,33 +2445,13 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "          </div>\n" +
     "\n" +
     "          <div class=\"form-group\">\n" +
-    "            <div class=\"col-md-8 col-md-offset-2\">\n" +
+    "            <center>\n" +
     "\n" +
-    "              <button type=\"button\" class=\"pull-right btn btn-primary color-pusher\"\n" +
+    "              <button type=\"button\" class=\"btn btn-primary color-pusher\"\n" +
     "                ng-click=\"applyColors()\"\n" +
     "                title=\"apply current colors to selectors\">Apply colors</button>\n" +
     "\n" +
-    "              <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
-    "                ng-click=\"splitcomplement()\"\n" +
-    "                title=\"generate the splitcomplement complements of a base color\">splitcomplement</button>\n" +
-    "\n" +
-    "              <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
-    "                ng-click=\"monochromatic()\"\n" +
-    "                title=\"generate monochromatic colors from base color\">monochromatic</button>\n" +
-    "\n" +
-    "              <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
-    "                ng-click=\"analogous()\"\n" +
-    "                title=\"generate analogous colors from base color\">Analogous</button>\n" +
-    "\n" +
-    "              <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
-    "                ng-click=\"tetrad()\"\n" +
-    "                title=\"generate +3 colors from base color\">Tetrad</button>\n" +
-    "\n" +
-    "              <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
-    "                ng-click=\"triad()\"\n" +
-    "                title=\"generate +2 colors from base color\">Triad</button>\n" +
-    "\n" +
-    "            </div>\n" +
+    "            </center>\n" +
     "          </div>\n" +
     "        </form>\n" +
     "\n" +
