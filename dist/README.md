@@ -12,15 +12,34 @@ Requires [nodejs](http://nodejs.org/) and [bower](http://bower.io/)
 bower install color-pusher
 ```
 
+To use: requires bootstrap, jquery and angularjs.
+
+
 
 
 ### use
+
+```html
+<!-- include css and js in document's head -->
+<link rel="stylesheet" href="color-pusher.css">
+<script src="color-pusher.js"></script>
+
+<!--
+    include widget as stand alone Angular module
+    at the end of the body for example
+-->
+<div ng-app="color-pusher">
+    <color-pusher></color-pusher>
+</div>
+```
 
 
 
 
 Uses [jQuery xcolor](http://www.xarg.org/project/jquery-color-plugin-xcolor/) plugin
 to manipulate colors.
+Uses [jquery-minicolors](http://labs.abeautifulsite.net/jquery-minicolors/) color picker
+via [angular-minicolors](http://kaihenzler.github.io/angular-minicolors/).
 
 ## History
 
