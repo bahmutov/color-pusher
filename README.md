@@ -1,8 +1,15 @@
-# color-pusher v0.0.4
+# color-pusher v0.0.5
 
 > Dynamic color swatch manipulation for changing multiple elements CSS
 
 [demo](http://glebbahmutov.com/color-pusher/)
+
+![color-pusher screenshot](docs/color-pusher.jpg)
+
+The color-pusher widget allows anyone to quickly tweak colors on the page,
+including by theme / similarity / complementary.
+Now you can give the website to the graphic designer and let them
+explore and push colors.
 
 ### installation
 
@@ -12,18 +19,45 @@ Requires [nodejs](http://nodejs.org/) and [bower](http://bower.io/)
 bower install color-pusher
 ```
 
+To use: requires bootstrap, jquery and angularjs.
+
+
 
 
 ### use
+
+```html
+<!-- include css and js in document's head -->
+<link rel="stylesheet" href="bower_components/color-pusher/dist/color-pusher.css">
+<script src="bower_components/color-pusher/dist/color-pusher.js"></script>
+
+<!--
+    include widget as stand alone Angular module
+    at the end of the body for example
+-->
+<div ng-app="color-pusher">
+    <color-pusher></color-pusher>
+</div>
+```
 
 
 
 
 Uses [jQuery xcolor](http://www.xarg.org/project/jquery-color-plugin-xcolor/) plugin
 to manipulate colors.
+Uses [jquery-minicolors](http://labs.abeautifulsite.net/jquery-minicolors/) color picker
+via [angular-minicolors](http://kaihenzler.github.io/angular-minicolors/).
 
 ## History
 
+
+0.0.5 / 2013-12-01
+==================
+
+  * created nicer angular directive
+  * removed bootstrap js min
+  * compiling into widget
+  * setting border color same as background
 
 0.0.4 / 2013-11-30
 ==================
