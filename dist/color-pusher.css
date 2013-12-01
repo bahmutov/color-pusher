@@ -528,7 +528,10 @@ button.show-color-pusher-button {
 }
 
 div.color-pusher {
-  min-width: 720px;
+  position: fixed;
+  bottom: 0;
+
+  min-width: 920px;
   max-height: 360px;
   overflow: auto;
   background-color: #efefef;

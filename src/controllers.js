@@ -29,7 +29,7 @@
     };
     $scope.hueSettings = angular.copy($scope.defaultSettings);
 
-    $scope.colors = ['#f5e384', '#9c846e', '#9c846e', '#6e889c', '#9c846e', '#9c4242'];
+    $scope.colors = ['#f5e384', '#9c846e', '#9c046e', '#6e889c', '#9c846e', '#9c4242'];
     $scope.textColors = ['#ffffff'];
     $scope.textColorStrategy = ['auto'];
 
