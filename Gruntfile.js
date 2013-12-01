@@ -65,6 +65,7 @@ module.exports = function (grunt) {
       src: [
         'index.html',
         'README.md',
+        'favicon.png',
         'bower_components/angular/angular.js',
         'bower_components/bootstrap/dist/css/bootstrap.min.css',
         'bower_components/bootstrap/dist/fonts/*',
@@ -111,7 +112,7 @@ module.exports = function (grunt) {
 
     // make sure index.html example works inside destination folder
     copy: {
-      '3rd-party': {
+      all: {
         files: [
           {
             expand: true,
@@ -122,6 +123,7 @@ module.exports = function (grunt) {
               'bower_components/jquery/jquery.min.map',
               'bower_components/angular/angular.js',
               'index.html',
+              'favicon.png',
               'README.md'
             ],
             dest: '<%= destination_dir %>'
