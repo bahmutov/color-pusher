@@ -2569,7 +2569,9 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
           scope.selectors = attrs.selectors.split(',');
         }
         if (check.unemptyString(attrs.colors)) {
-          scope.colors = attrs.colors.split(',');
+          scope.colors = attrs.colors.split(',').map(function (str) {
+            return str.trim();
+          });
           check.verify.colors(scope.colors);
         }
       },
