@@ -15,7 +15,11 @@
     "color",
     "change",
     "css",
-    "theme"
+    "theme",
+    "angular",
+    "widget",
+    "swatch",
+    "colourlovers"
   ],
   "author": "Gleb Bahmutov gleb.bahmutov@gmail.com",
   "license": "MIT",

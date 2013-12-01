@@ -19,7 +19,11 @@
     "src",
     "docs",
     "libs",
-    "build.config.js"
+    "build.config.js",
+    "complexity.json",
+    "dist/index.html",
+    "index.html",
+    "package.json"
   ],
   "author": "Gleb Bahmutov gleb.bahmutov@gmail.com",
   "dependencies": {
