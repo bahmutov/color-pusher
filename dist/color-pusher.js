@@ -2582,12 +2582,13 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     };
     $scope.hueSettings = angular.copy($scope.defaultSettings);
 
-    $scope.colors = ['#ff00ff'];
+    $scope.colors = ['#f5e384', '#9c846e', '#9c846e', '#6e889c', '#9c846e', '#9c4242'];
     $scope.textColors = ['#ffffff'];
     $scope.textColorStrategy = ['auto'];
 
-    $scope.lastGeneration = 'triad';
-    $scope.selectors = ['.alert-info', '.alert-success', '.alert-warning', 'body', '.well'];
+    $scope.lastGeneration = null;
+    $scope.selectors = ['body', '.well',
+      '.alert-info', '.alert-success', '.alert-warning', '.alert-danger'];
 
     $scope.setColors = function (list) {
       check.verify.colors(list);
@@ -2676,8 +2677,6 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
       'monochromatic', 'splitcomplement'].forEach(function (op) {
       $scope[op] = $scope.generateColors.bind($scope, op);
     });
-
-    $scope.triad();
 
     function isValidHSVProperty(property) {
       var properties = {
