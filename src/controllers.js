@@ -61,15 +61,6 @@
       });
     };
 
-    $scope.$watch('colors[0]', function () {
-      if (check.color($scope.colors[0])) {
-        if ($scope.lastGeneration) {
-          $scope[$scope.lastGeneration]();
-        }
-        $scope.applyColors();
-      }
-    });
-
     function isCloserToWhiteThanBlack(color) {
       check.verify.color(color, 'expected color, got ' + color);
       return xcolor.distance(color, 'black') > xcolor.distance(color, 'white');
