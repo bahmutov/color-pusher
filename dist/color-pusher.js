@@ -2393,22 +2393,28 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "      <div class=\"form-group\">\n" +
     "        <div class=\"col-md-8 col-md-offset-2\">\n" +
     "\n" +
-    "          <button type=\"button\" class=\"pull-right btn btn-primary\" ng-click=\"applyColors()\"\n" +
+    "          <button type=\"button\" class=\"pull-right btn btn-primary color-pusher\"\n" +
+    "            ng-click=\"applyColors()\"\n" +
     "            title=\"apply current colors to selectors\">Apply colors</button>\n" +
     "\n" +
-    "          <button type=\"button\" class=\"pull-right btn btn-default\" ng-click=\"splitcomplement()\"\n" +
+    "          <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
+    "            ng-click=\"splitcomplement()\"\n" +
     "            title=\"generate the splitcomplement complements of a base color\">splitcomplement</button>\n" +
     "\n" +
-    "          <button type=\"button\" class=\"pull-right btn btn-default\" ng-click=\"monochromatic()\"\n" +
+    "          <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
+    "            ng-click=\"monochromatic()\"\n" +
     "            title=\"generate monochromatic colors from base color\">monochromatic</button>\n" +
     "\n" +
-    "          <button type=\"button\" class=\"pull-right btn btn-default\" ng-click=\"analogous()\"\n" +
+    "          <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
+    "            ng-click=\"analogous()\"\n" +
     "            title=\"generate analogous colors from base color\">Analogous</button>\n" +
     "\n" +
-    "          <button type=\"button\" class=\"pull-right btn btn-default\" ng-click=\"tetrad()\"\n" +
+    "          <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
+    "            ng-click=\"tetrad()\"\n" +
     "            title=\"generate +3 colors from base color\">Tetrad</button>\n" +
     "\n" +
-    "          <button type=\"button\" class=\"pull-right btn btn-default\" ng-click=\"triad()\"\n" +
+    "          <button type=\"button\" class=\"pull-right btn btn-default color-pusher\"\n" +
+    "            ng-click=\"triad()\"\n" +
     "            title=\"generate +2 colors from base color\">Triad</button>\n" +
     "\n" +
     "        </div>\n" +
