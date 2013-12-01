@@ -1,4 +1,10 @@
 
+0.0.6 / 2013-12-01
+==================
+
+  * added glyphs, hide and show widget
+  * added alertify, fixes #12, fixes #16
+
 0.0.5 / 2013-12-01
 ==================
 
