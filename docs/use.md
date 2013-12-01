@@ -2,8 +2,8 @@
 
 ```html
 <!-- include css and js in document's head -->
-<link rel="stylesheet" href="color-pusher.css">
-<script src="color-pusher.js"></script>
+<link rel="stylesheet" href="bower_components/color-pusher/dist/color-pusher.css">
+<script src="bower_components/color-pusher/dist/color-pusher.js"></script>
 
 <!--
     include widget as stand alone Angular module
