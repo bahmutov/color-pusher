@@ -108,7 +108,6 @@ module.exports = function (grunt) {
               'bower_components/bootstrap/dist/css/bootstrap.min.css',
               'bower_components/jquery/jquery.min.js',
               'bower_components/jquery/jquery.min.map',
-              'bower_components/bootstrap/dist/js/bootstrap.min.js',
               'bower_components/angular/angular.js',
               'index.html'
             ],
