@@ -14,3 +14,8 @@ check.verify.color = function (val, msg) {
     throw new Error(msg);
   }
 };
+
+check.verify.colors = function (list) {
+  check.verify.array(list, 'expected array of colors, got ' + list);
+  list.forEach(check.verify.color);
+};

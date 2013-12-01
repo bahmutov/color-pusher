@@ -1400,6 +1400,11 @@ check.verify.color = function (val, msg) {
   }
 };
 
+check.verify.colors = function (list) {
+  check.verify.array(list, 'expected array of colors, got ' + list);
+  list.forEach(check.verify.color);
+};
+
 /*
  * jQuery MiniColors: A tiny color picker built on jQuery
  *
@@ -2437,10 +2442,53 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
 (function (angular) {
   var app = angular.module('color-pusher');
 
-  function verifyColors(list) {
-    check.verify.array(list, 'expected array of colors, got ' + list);
-    list.forEach(check.verify.color);
-  }
+  app.controller('ColourLoversCtrl', function ColourLoversCtrl($scope, $http) {
+    $scope.paletteId = '';
+    $scope.placeholder = '3148032 or http://www.colourlovers.com/palette/3148032/The_Sky_Opens_Up';
+
+    $scope.isEnabled = function () {
+      return check.webUrl($scope.paletteId) || check.positiveNumber(+$scope.paletteId);
+    };
+
+    $scope.fetchPalette = function (target) {
+      try {
+        if (check.webUrl($scope.paletteId)) {
+          $scope.paletteId = /palette\/\d+\//.exec($scope.paletteId)[0];
+          $scope.paletteId = /\d+/.exec($scope.paletteId)[0];
+        }
+      } catch (err) {
+        alertify.error('Could not parse palette ' + $scope.paletteId);
+        return;
+      }
+      console.log('fetching pallette', $scope.paletteId);
+
+      var url = 'http://www.colourlovers.com/api/palette/' + $scope.paletteId;
+      var options = {
+        url: url,
+        params: {
+          format: 'json',
+          jsonCallback: 'JSON_CALLBACK'
+        }
+      };
+      $http.jsonp(url, options)
+      .success(function (data) {
+        if (!data[0]) {
+          alertify.error('Undefined palette returned for id ' + $scope.paletteId);
+          return;
+        }
+        console.log('pallete', data[0]);
+        check.verify.colors(data[0].colors);
+        target.setColors(data[0].colors);
+      })
+      .error(function () {
+        alertify.error('Could not fetch palette ' + $scope.paletteId);
+      });
+    };
+  });
+}(angular));
+
+(function (angular) {
+  var app = angular.module('color-pusher');
 
   function colorPusherDirective() {
     return {
@@ -2474,7 +2522,7 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     $scope.selectors = ['.alert-info', '.alert-success', '.alert-warning', 'body', '.well'];
 
     $scope.setColors = function (list) {
-      verifyColors(list);
+      check.verify.colors(list);
       $scope.lastGeneration = null;
       $scope.colors = list;
       $scope.applyColors();
@@ -2564,47 +2612,4 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     $scope.triad();
   }
 
-  app.controller('ColourLoversCtrl', function ColourLoversCtrl($scope, $http) {
-    $scope.paletteId = '';
-    $scope.placeholder = '3148032 or http://www.colourlovers.com/palette/3148032/The_Sky_Opens_Up';
-
-    $scope.isEnabled = function () {
-      return check.webUrl($scope.paletteId) || check.positiveNumber(+$scope.paletteId);
-    };
-
-    $scope.fetchPalette = function (target) {
-      try {
-        if (check.webUrl($scope.paletteId)) {
-          $scope.paletteId = /palette\/\d+\//.exec($scope.paletteId)[0];
-          $scope.paletteId = /\d+/.exec($scope.paletteId)[0];
-        }
-      } catch (err) {
-        alertify.error('Could not parse palette ' + $scope.paletteId);
-        return;
-      }
-      console.log('fetching pallette', $scope.paletteId);
-
-      var url = 'http://www.colourlovers.com/api/palette/' + $scope.paletteId;
-      var options = {
-        url: url,
-        params: {
-          format: 'json',
-          jsonCallback: 'JSON_CALLBACK'
-        }
-      };
-      $http.jsonp(url, options)
-      .success(function (data) {
-        if (!data[0]) {
-          alertify.error('Undefined palette returned for id ' + $scope.paletteId);
-          return;
-        }
-        console.log('pallete', data[0]);
-        verifyColors(data[0].colors);
-        target.setColors(data[0].colors);
-      })
-      .error(function () {
-        alertify.error('Could not fetch palette ' + $scope.paletteId);
-      });
-    };
-  });
 }(angular));
