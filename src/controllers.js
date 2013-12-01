@@ -132,6 +132,10 @@
     $scope.paletteId = '';
     $scope.placeholder = '3148032 or http://www.colourlovers.com/palette/3148032/The_Sky_Opens_Up';
 
+    $scope.isEnabled = function () {
+      return check.webUrl($scope.paletteId) || check.positiveNumber(+$scope.paletteId);
+    };
+
     $scope.fetchPalette = function (target) {
       if (check.webUrl($scope.paletteId)) {
         $scope.paletteId = /palette\/\d+\//.exec($scope.paletteId)[0];

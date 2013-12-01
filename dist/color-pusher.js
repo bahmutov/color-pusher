@@ -2350,7 +2350,9 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "        </div>\n" +
     "\n" +
     "        <div class=\"col-sm-1\">\n" +
-    "        <button type=\"button\" class=\"btn btn-primary\" ng-click=\"fetchPalette(this.$parent)\"\n" +
+    "        <button type=\"button\" class=\"btn btn-primary\"\n" +
+    "          ng-click=\"fetchPalette(this.$parent)\"\n" +
+    "          ng-disabled=\"!isEnabled()\"\n" +
     "          title=\"Pull palette colors\">Fetch palette</button>\n" +
     "        </div>\n" +
     "      </div>\n" +
@@ -2563,6 +2565,10 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
   app.controller('ColourLoversCtrl', function ColourLoversCtrl($scope, $http) {
     $scope.paletteId = '';
     $scope.placeholder = '3148032 or http://www.colourlovers.com/palette/3148032/The_Sky_Opens_Up';
+
+    $scope.isEnabled = function () {
+      return check.webUrl($scope.paletteId) || check.positiveNumber(+$scope.paletteId);
+    };
 
     $scope.fetchPalette = function (target) {
       if (check.webUrl($scope.paletteId)) {
