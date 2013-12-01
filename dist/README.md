@@ -43,7 +43,10 @@ To use: requires bootstrap, jquery and angularjs.
 
 
 
-Uses [jQuery xcolor](http://www.xarg.org/project/jquery-color-plugin-xcolor/) plugin
+## Related
+
+Uses [jQuery xcolor](http://www.xarg.org/project/jquery-color-plugin-xcolor/)
+and [pusher.color.js](http://tech.pusherhq.com/libraries/color) plugins
 to manipulate colors.
 Uses [jquery-minicolors](http://labs.abeautifulsite.net/jquery-minicolors/) color picker
 via [angular-minicolors](http://kaihenzler.github.io/angular-minicolors/).

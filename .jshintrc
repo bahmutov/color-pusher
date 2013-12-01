@@ -69,5 +69,5 @@
     "passfail"      : false,
     "white"         : true,
 
-    "predef"        : ["angular", "check", "alertify"]
+    "predef"        : ["angular", "check", "alertify", "pusher"]
 }

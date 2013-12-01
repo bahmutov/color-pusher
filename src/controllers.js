@@ -1,4 +1,6 @@
 (function (angular) {
+  console.assert(pusher, 'missing pusher.color plugin');
+
   var app = angular.module('color-pusher');
 
   function colorPusherDirective() {
@@ -123,6 +125,36 @@
     });
 
     $scope.triad();
+
+    function isValidHSVProperty(property) {
+      var properties = {
+        'hue': true,
+        'saturation': true,
+        'value': true
+      };
+      return properties[property];
+    }
+
+    $scope.changeColor = function (index, property, delta) {
+      console.assert(index >= 0 && index < $scope.colors.length, 'invalid color index ' + index);
+      console.assert(isValidHSVProperty(property), 'invalid property ' + property);
+      check.verify.unemptyString(delta, 'delta should be a string, not ' + delta);
+      // todo: check if delta starts with + or -
+
+      var hex6 = $scope.colors[index];
+      check.verify.unemptyString(hex6, 'missing color for index ' + index + ' have ' + hex6);
+      if (!/^#/.test(hex6)) {
+        hex6 = '#' + hex6;
+      }
+      var c = pusher.color(hex6);
+
+      // todo: allow wrapping around 0 / 360 for hue, saturation
+      c = c[property](delta);
+      hex6 = c.hex6().toLowerCase();
+      $scope.colors[index] = hex6;
+
+      $scope.applyColors();
+    };
   }
 
 }(angular));

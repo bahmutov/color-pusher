@@ -19,11 +19,6 @@
         <span class="glyphicon glyphicon-chevron-down"></span>
       </button>
 
-      <center>
-        <p>Change base color and watch triad colors update.
-        Change target CSS selectors.</p>
-      </center>
-
         <form class="form-horizontal" role="form">
 
           <div class="form-group" ng-controller="ColourLoversCtrl">
@@ -88,10 +83,38 @@
                   minicolors="hueSettings"
                   ng-model="colors[$index]">
               </div>
+
             </div>
 
-            <label for="selector{{$index}}"
-              class="col-sm-2 control-label">selector {{$index}}</label>
+            <div class="col-sm-3">
+              <button type="button" class="btn btn-default btn-xs"
+                title="Decrease hue" ng-click="changeColor($index, 'hue', '-2');">
+                <span class="glyphicon glyphicon-arrow-left"></span>
+              </button>
+              <button type="button" class="btn btn-default btn-xs"
+                title="Increase hue" ng-click="changeColor($index, 'hue', '+2');">
+                <span class="glyphicon glyphicon-arrow-right"></span>
+              </button>
+
+              <button type="button" class="btn btn-default btn-xs"
+                title="Decrease saturation" ng-click="changeColor($index, 'saturation', '-1');">
+                <span class="glyphicon glyphicon-chevron-down"></span>
+              </button>
+              <button type="button" class="btn btn-default btn-xs"
+                title="Increase saturation" ng-click="changeColor($index, 'saturation', '+1');">
+                <span class="glyphicon glyphicon-chevron-up"></span>
+              </button>
+
+              <button type="button" class="btn btn-default btn-xs"
+                title="Decrease value" ng-click="changeColor($index, 'value', '-1');">
+                <span class="glyphicon glyphicon-circle-arrow-down"></span>
+              </button>
+              <button type="button" class="btn btn-default btn-xs"
+                title="Increase value" ng-click="changeColor($index, 'value', '+1');">
+                <span class="glyphicon glyphicon-circle-arrow-up"></span>
+              </button>
+            </div>
+
             <div class="col-sm-2">
               <input type="text" class="form-control"
                 id="selector{{$index}}"
@@ -121,6 +144,13 @@
             </center>
           </div>
         </form>
+
+      <center>
+        <a href="https://github.com/bahmutov/color-pusher">
+          <strong>color-pusher</strong>
+        </a> &copy; 2013 Gleb Bahmutov
+        <a href="https://twitter.com/bahmutov">@bahmutov</a>
+      </center>
 
       </div>
     </div>

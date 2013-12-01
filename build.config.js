@@ -44,6 +44,7 @@ module.exports = {
       'libs/jquery.xcolor.js',
       'libs/check-types.min.js',
       'libs/check-types.color.js',
+      'libs/pusher.color.min.js',
       'bower_components/jquery-minicolors/jquery.minicolors.js',
       'bower_components/angular-minicolors/angular-minicolors.js',
       'libs/ui-bootstrap-tpls-0.7.0.min.js',
