@@ -67,6 +67,7 @@ module.exports = function (grunt) {
         'README.md',
         'bower_components/angular/angular.js',
         'bower_components/bootstrap/dist/css/bootstrap.min.css',
+        'bower_components/bootstrap/dist/fonts/*',
         'bower_components/jquery/jquery.min.js',
         'bower_components/jquery/jquery.min.map',
         'color-pusher.js',
