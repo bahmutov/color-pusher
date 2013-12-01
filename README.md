@@ -1,4 +1,4 @@
-# color-pusher v0.0.7
+# color-pusher v0.0.8
 
 > Dynamic color swatch manipulation for changing multiple elements CSS
 
@@ -32,12 +32,29 @@ To use: requires bootstrap, jquery and angularjs.
 <script src="bower_components/color-pusher/dist/color-pusher.js"></script>
 
 <!--
+    Simple:
+
     include widget as stand alone Angular module
     at the end of the body for example
 -->
 <div ng-app="color-pusher">
     <color-pusher></color-pusher>
 </div>
+```
+
+If you already have an Angular application, add *color-pusher* as a dependency
+
+```js
+var app = angular.module('my-app', ['color-pusher']);
+```
+
+You can pass initial list of selectors and colors to the widget
+
+```html
+<color-pusher
+    selectors="body, .well, .info"
+    colors="#f5e384, #9c846e, #9c046e">
+</color-pusher>
 ```
 
 
@@ -53,6 +70,13 @@ via [angular-minicolors](http://kaihenzler.github.io/angular-minicolors/).
 
 ## History
 
+
+0.0.8 / 2013-12-01
+==================
+
+  * selectors and colors can be passed as attributes, fixes #27
+  * attaching color-pusher widget to bottom of the window
+  * added favicon, fixes #26
 
 0.0.7 / 2013-12-01
 ==================

@@ -8,7 +8,14 @@
       restrict: 'E',
       templateUrl: 'color-pusher.tpl.html',
       replace: true,
-      link: function () {
+      link: function (scope, element, attrs) {
+        if (check.unemptyString(attrs.selectors)) {
+          scope.selectors = attrs.selectors.split(',');
+        }
+        if (check.unemptyString(attrs.colors)) {
+          scope.colors = attrs.colors.split(',');
+          check.verify.colors(scope.colors);
+        }
       },
       controller: ['$scope', colorCtrl]
     };
@@ -29,7 +36,7 @@
     };
     $scope.hueSettings = angular.copy($scope.defaultSettings);
 
-    $scope.colors = ['#f5e384', '#9c846e', '#9c846e', '#6e889c', '#9c846e', '#9c4242'];
+    $scope.colors = ['#f5e384', '#9c846e', '#9c046e', '#6e889c', '#9c846e', '#9c4242'];
     $scope.textColors = ['#ffffff'];
     $scope.textColorStrategy = ['auto'];
 
