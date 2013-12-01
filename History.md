@@ -1,4 +1,12 @@
 
+0.0.5 / 2013-12-01
+==================
+
+  * created nicer angular directive
+  * removed bootstrap js min
+  * compiling into widget
+  * setting border color same as background
+
 0.0.4 / 2013-11-30
 ==================
 
