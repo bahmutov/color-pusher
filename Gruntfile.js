@@ -11,6 +11,8 @@ module.exports = function (grunt) {
   var taskConfig = {
     pkg: pkg,
 
+    clean: ['<%= destination_dir %>/bower_components'],
+
     jshint: {
       all: [
         '*.js', 'src/*.js', 'libs/check-types.color.js'
@@ -125,7 +127,7 @@ module.exports = function (grunt) {
 
   grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
 
-  grunt.registerTask('build', ['concat', 'copy']);
+  grunt.registerTask('build', ['clean', 'concat', 'copy']);
   grunt.registerTask('default', ['sync', 'jsonlint', 'nice-package', 'jshint',
     'complexity', 'readme', 'build']);
 };

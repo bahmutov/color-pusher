@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+
+  <title>color-pusher</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"
+    media="screen">
+
+  <link rel="stylesheet" href="color-pusher.css">
+
+  <script src="bower_components/jquery/jquery.min.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+
+  <script src="color-pusher.js"></script>
+</head>
+<body ng-app="color-pusher">
+  <a href="https://github.com/bahmutov/color-pusher"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 10;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"
+title="Fork color-pusher on GitHub"></a>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="well well-sm page-header">
+          <h2>color-pusher</h2>
+          <p class="lead">
+            <strong>.well</strong>
+            This is example bootstrap page. The bootstrap itself does not matter, just
+            having some selectors does.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="alert alert-info">
+          <strong>Info</strong> box. Selector .alert-info
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="alert alert-warning">
+          <strong>Warning</strong> box using .alert-warning
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-info">
+          <h4>Another info box</h4>
+          <p>This is default Bootstrap color theme</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="alert alert-success">
+          <h4>success box using .alert-success</h4>
+          <p>This is default Bootstrap color theme</p>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="alert alert-danger">
+          <h4>Snap! .alert-danger</h4>
+          <p>This is bad, this is very very bad</p>
+        </div>
+      </div>
+    </div>
+
+
+    <hr>
+    <div class="row" ng-controller="colorCtrl">
+      <div class="col-md-12">
+
+      <center>
+        <p>Change base color and watch triad colors update.
+        Change target CSS selectors.</p>
+      </center>
+
+        <form class="form-horizontal" role="form">
+
+          <div class="form-group" ng-controller="ColourLoversCtrl">
+            <label for="colourLoverPalette"
+                class="control-label col-sm-2">
+                <a href="http://www.colourlovers.com/palettes" target="_blank">ColourLover Palette</a></label>
+            <div class="col-sm-6">
+              <div class="input-group">
+                <input
+                  id="colourLoverPalette"
+                  class="form-control"
+                  type="text" size="80"
+                  placeholder="{{placeholder}}"
+                  ng-model="paletteId">
+              </div>
+            </div>
+
+            <div class="col-sm-1">
+            <button type="button" class="btn btn-primary" ng-click="fetchPalette(this.$parent)"
+              title="Pull palette colors">Fetch palette</button>
+            </div>
+          </div>
+
+          <div class="form-group" ng-repeat="color in colors track by $index + color">
+            <label for="colorPicker{{$index}}"
+              class="col-sm-1 control-label">color {{$index}}</label>
+            <div class="col-sm-2">
+              <div class="input-group">
+                <input
+                  id="colorPicker{{$index}}"
+                  class="form-control"
+                  type="text"
+                  minicolors="hueSettings"
+                  ng-model="colors[$index]">
+              </div>
+            </div>
+
+            <label for="selector{{$index}}"
+              class="col-sm-2 control-label">selector {{$index}}</label>
+            <div class="col-sm-2">
+              <input type="text" class="form-control"
+                id="selector{{$index}}"
+                placeholder=".alert-info" required
+                ng-model="selectors[$index]">
+            </div>
+
+            <label for="textColor{{$index}}"
+              class="col-sm-1 control-label">text {{$index}}</label>
+            <div class="btn-group" id="textColor{{$index}}">
+              <button type="button" class="btn btn-default"
+                ng-model="textColorStrategy[$index]" btn-radio="'white'">white</button>
+              <button type="button" class="btn btn-default"
+                ng-model="textColorStrategy[$index]" btn-radio="'black'">black</button>
+              <button type="button" class="btn btn-default"
+                ng-model="textColorStrategy[$index]" btn-radio="'auto'">auto</button>
+          </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-8 col-md-offset-2">
+
+              <button type="button" class="pull-right btn btn-primary" ng-click="applyColors()"
+                title="apply current colors to selectors">Apply colors</button>
+
+              <button type="button" class="pull-right btn btn-default" ng-click="splitcomplement()"
+                title="generate the splitcomplement complements of a base color">splitcomplement</button>
+
+              <button type="button" class="pull-right btn btn-default" ng-click="monochromatic()"
+                title="generate monochromatic colors from base color">monochromatic</button>
+
+              <button type="button" class="pull-right btn btn-default" ng-click="analogous()"
+                title="generate analogous colors from base color">Analogous</button>
+
+              <button type="button" class="pull-right btn btn-default" ng-click="tetrad()"
+                title="generate +3 colors from base color">Tetrad</button>
+
+              <button type="button" class="pull-right btn btn-default" ng-click="triad()"
+                title="generate +2 colors from base color">Triad</button>
+
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
