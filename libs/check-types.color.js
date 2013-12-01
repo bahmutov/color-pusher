@@ -1,5 +1,6 @@
 check.color = function (val) {
   if (!check.string(val)) { return false; }
+  val = val.trim();
   if (val.length === 6) {
     val = '#' + val;
   }
@@ -17,5 +18,7 @@ check.verify.color = function (val, msg) {
 
 check.verify.colors = function (list) {
   check.verify.array(list, 'expected array of colors, got ' + list);
-  list.forEach(check.verify.color);
+  list.forEach(function (color, index) {
+    check.verify.color(color, 'invalid color ' + color + ' index ' + index);
+  });
 };

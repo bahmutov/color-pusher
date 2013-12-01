@@ -8,7 +8,14 @@
       restrict: 'E',
       templateUrl: 'color-pusher.tpl.html',
       replace: true,
-      link: function () {
+      link: function (scope, element, attrs) {
+        if (check.unemptyString(attrs.selectors)) {
+          scope.selectors = attrs.selectors.split(',');
+        }
+        if (check.unemptyString(attrs.colors)) {
+          scope.colors = attrs.colors.split(',');
+          check.verify.colors(scope.colors);
+        }
       },
       controller: ['$scope', colorCtrl]
     };
