@@ -46,10 +46,13 @@ module.exports = {
       'libs/check-types.color.js',
       'bower_components/jquery-minicolors/jquery.minicolors.js',
       'bower_components/angular-minicolors/angular-minicolors.js',
-      'libs/ui-bootstrap-tpls-0.7.0.min.js'
+      'libs/ui-bootstrap-tpls-0.7.0.min.js',
+      'bower_components/alertify/alertify.min.js'
     ],
     css: [
-      'bower_components/jquery-minicolors/jquery.minicolors.css'
+      'bower_components/jquery-minicolors/jquery.minicolors.css',
+      'bower_components/alertify/themes/alertify.core.css',
+      'bower_components/alertify/themes/alertify.bootstrap.css'
     ],
     assets: [
     ],

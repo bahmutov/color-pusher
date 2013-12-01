@@ -137,9 +137,14 @@
     };
 
     $scope.fetchPalette = function (target) {
-      if (check.webUrl($scope.paletteId)) {
-        $scope.paletteId = /palette\/\d+\//.exec($scope.paletteId)[0];
-        $scope.paletteId = /\d+/.exec($scope.paletteId)[0];
+      try {
+        if (check.webUrl($scope.paletteId)) {
+          $scope.paletteId = /palette\/\d+\//.exec($scope.paletteId)[0];
+          $scope.paletteId = /\d+/.exec($scope.paletteId)[0];
+        }
+      } catch (err) {
+        alertify.error('Could not parse palette ' + $scope.paletteId);
+        return;
       }
       console.log('fetching pallette', $scope.paletteId);
 
@@ -153,12 +158,17 @@
       };
       $http.jsonp(url, options)
       .success(function (data) {
+        if (!data[0]) {
+          alertify.error('Undefined palette returned for id ' + $scope.paletteId);
+          return;
+        }
         console.log('pallete', data[0]);
-
         verifyColors(data[0].colors);
         target.setColors(data[0].colors);
       })
-      .error(console.error);
+      .error(function () {
+        alertify.error('Could not fetch palette ' + $scope.paletteId);
+      });
     };
   });
 }(angular));
