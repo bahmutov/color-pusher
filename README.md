@@ -1,4 +1,4 @@
-# color-pusher v0.0.5
+# color-pusher v0.0.7
 
 > Dynamic color swatch manipulation for changing multiple elements CSS
 
@@ -43,13 +43,28 @@ To use: requires bootstrap, jquery and angularjs.
 
 
 
-Uses [jQuery xcolor](http://www.xarg.org/project/jquery-color-plugin-xcolor/) plugin
+## Related
+
+Uses [jQuery xcolor](http://www.xarg.org/project/jquery-color-plugin-xcolor/)
+and [pusher.color.js](http://tech.pusherhq.com/libraries/color) plugins
 to manipulate colors.
 Uses [jquery-minicolors](http://labs.abeautifulsite.net/jquery-minicolors/) color picker
 via [angular-minicolors](http://kaihenzler.github.io/angular-minicolors/).
 
 ## History
 
+
+0.0.7 / 2013-12-01
+==================
+
+  * selected better default colors
+  * changed button layout
+
+0.0.6 / 2013-12-01
+==================
+
+  * added glyphs, hide and show widget
+  * added alertify, fixes #12, fixes #16
 
 0.0.5 / 2013-12-01
 ==================
