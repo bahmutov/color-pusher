@@ -1,4 +1,4 @@
-# color-pusher v0.0.6
+# color-pusher v0.0.7
 
 > Dynamic color swatch manipulation for changing multiple elements CSS
 
@@ -53,6 +53,12 @@ via [angular-minicolors](http://kaihenzler.github.io/angular-minicolors/).
 
 ## History
 
+
+0.0.7 / 2013-12-01
+==================
+
+  * selected better default colors
+  * changed button layout
 
 0.0.6 / 2013-12-01
 ==================

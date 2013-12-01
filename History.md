@@ -1,4 +1,10 @@
 
+0.0.7 / 2013-12-01
+==================
+
+  * selected better default colors
+  * changed button layout
+
 0.0.6 / 2013-12-01
 ==================
 
