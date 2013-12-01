@@ -1,3 +1,14 @@
+div.color-pusher {
+  min-width: 720px;
+  max-height: 360px;
+  overflow: auto;
+  background-color: #efefef;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: black;
+  padding: 5px;
+}
+
 button.color-pusher {
   margin-left: 5px;
 }
