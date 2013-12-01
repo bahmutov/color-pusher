@@ -4,6 +4,13 @@
 
 [demo](http://glebbahmutov.com/color-pusher/)
 
+![color-pusher screenshot](docs/color-pusher.jpg)
+
+The color-pusher widget allows anyone to quickly tweak colors on the page,
+including by theme / similarity / complementary.
+Now you can give the website to the graphic designer and let them
+explore and push colors.
+
 ### installation
 
 Requires [nodejs](http://nodejs.org/) and [bower](http://bower.io/)
