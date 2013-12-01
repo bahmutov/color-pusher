@@ -1,4 +1,4 @@
-# color-pusher v0.0.7
+# color-pusher v0.0.8
 
 > Dynamic color swatch manipulation for changing multiple elements CSS
 
@@ -70,6 +70,13 @@ via [angular-minicolors](http://kaihenzler.github.io/angular-minicolors/).
 
 ## History
 
+
+0.0.8 / 2013-12-01
+==================
+
+  * selectors and colors can be passed as attributes, fixes #27
+  * attaching color-pusher widget to bottom of the window
+  * added favicon, fixes #26
 
 0.0.7 / 2013-12-01
 ==================
