@@ -1,6 +1,6 @@
 {
   "name": "color-pusher",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Dynamic color swatch manipulation for changing multiple elements CSS",
   "main": "index.js",
   "scripts": {

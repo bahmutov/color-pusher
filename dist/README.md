@@ -1,4 +1,4 @@
-# color-pusher v0.0.8
+# color-pusher v0.0.9
 
 > Dynamic color swatch manipulation for changing multiple elements CSS
 
@@ -70,6 +70,13 @@ via [angular-minicolors](http://kaihenzler.github.io/angular-minicolors/).
 
 ## History
 
+
+0.0.9 / 2013-12-01
+==================
+
+  * addition of new colors, fixes #4
+  * added ability to remove selected color
+  * when fetching palette, button is disabled, fixes #23
 
 0.0.8 / 2013-12-01
 ==================
