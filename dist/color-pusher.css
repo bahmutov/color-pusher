@@ -531,7 +531,7 @@ div.color-pusher {
   position: fixed;
   bottom: 0;
 
-  min-width: 920px;
+  min-width: 1120px;
   max-height: 360px;
   overflow: auto;
   background-color: #efefef;
