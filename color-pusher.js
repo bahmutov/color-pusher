@@ -1385,6 +1385,7 @@
 !function(n){"use strict";function r(n,t){var e;U.object(n),U.object(t);for(e in t)if(t.hasOwnProperty(e)){if(n.hasOwnProperty(e)===!1||typeof n[e]!=typeof t[e])return!1;if(u(n[e])&&r(n[e],t[e])===!1)return!1}return!0}function t(n,r){return"undefined"==typeof n||null===n?!1:f(r)&&n instanceof r?!0:!1}function e(n){var r;if(u(n)){for(r in n)if(n.hasOwnProperty(r))return!1;return!0}return!1}function u(n){return"object"==typeof n&&null!==n&&o(n)===!1&&a(n)===!1}function i(n,r){return n&&n.length===r}function o(n){return Array.isArray?Array.isArray(n):"[object Array]"===Object.prototype.toString.call(n)}function a(n){return"[object Date]"===Object.prototype.toString.call(n)}function f(n){return"function"==typeof n}function c(n){return l(n)&&/^https?:\/\/.+/.test(n)}function l(n){return y(n)&&""!==n}function y(n){return"string"==typeof n}function p(n){return s(n)&&(1===n%2||-1===n%2)}function b(n){return s(n)&&0===n%2}function d(n){return s(n)&&n>0}function v(n){return s(n)&&0>n}function s(n){return"number"==typeof n&&isNaN(n)===!1}function m(n,r){var t,e,i={};U.object(n),U.object(r);for(t in r)r.hasOwnProperty(t)&&(e=r[t],f(e)?i[t]=n.hasOwnProperty(t)?e(n[t]):void 0:u(e)&&(i[t]=n.hasOwnProperty(t)?m(n[t],e):void 0));return i}function g(n){var r,t;U.object(n);for(r in n)if(n.hasOwnProperty(r)){if(t=n[r],u(t)&&g(t)===!1)return!1;if(t===!1)return!1}return!0}function h(n){var r,t;U.object(n);for(r in n)if(n.hasOwnProperty(r)){if(t=n[r],u(t)&&h(t))return!0;if(t===!0)return!0}return!1}function j(n,r){var t;for(t in r)r.hasOwnProperty(t)&&(n[t]=r[t]);return n}function I(n,r){return function(){var t;if(n.apply(null,arguments)===!1)throw t=arguments[arguments.length-1],new Error(l(t)?t:r)}}function w(n){return function(){return null===arguments[0]||void 0===arguments[0]?!0:n.apply(null,arguments)}}function O(n){return N(n,S)}function N(n,r){var t,e={};for(t in r)r.hasOwnProperty(t)&&(e[t]=n(r[t],A[t]));return e}function P(r){"function"==typeof define&&define.amd?define(function(){return r}):"undefined"!=typeof module&&null!==module?module.exports=r:n.check=r}var A,S,k,U,x;S={like:r,instance:t,emptyObject:e,object:u,length:i,array:o,date:a,fn:f,webUrl:c,unemptyString:l,string:y,evenNumber:b,oddNumber:p,positiveNumber:d,negativeNumber:v,number:s},A={like:"Invalid type",instance:"Invalid type",emptyObject:"Invalid object",object:"Invalid object",length:"Invalid length",array:"Invalid array",date:"Invalid date",fn:"Invalid function",webUrl:"Invalid URL",unemptyString:"Invalid string",string:"Invalid string",evenNumber:"Invalid number",oddNumber:"Invalid number",positiveNumber:"Invalid number",negativeNumber:"Invalid number",number:"Invalid number"},k={map:m,every:g,any:h},k=j(k,S),U=O(I),x=O(w),U.maybe=N(I,x),P(j(k,{verify:U,maybe:x}))}(this);
 check.color = function (val) {
   if (!check.string(val)) { return false; }
+  val = val.trim();
   if (val.length === 6) {
     val = '#' + val;
   }
@@ -1402,7 +1403,9 @@ check.verify.color = function (val, msg) {
 
 check.verify.colors = function (list) {
   check.verify.array(list, 'expected array of colors, got ' + list);
-  list.forEach(check.verify.color);
+  list.forEach(function (color, index) {
+    check.verify.color(color, 'invalid color ' + color + ' index ' + index);
+  });
 };
 
 /* ---------------------------------------------------------------------------- 
@@ -2379,7 +2382,7 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "            <div class=\"col-sm-1\">\n" +
     "            <button type=\"button\" class=\"btn btn-primary\"\n" +
     "              ng-click=\"fetchPalette(this.$parent)\"\n" +
-    "              ng-disabled=\"!isEnabled()\"\n" +
+    "              ng-disabled=\"!isValidPalette() || fetchingPalette\"\n" +
     "              title=\"Pull palette colors\">Fetch palette</button>\n" +
     "            </div>\n" +
     "          </div>\n" +
@@ -2412,6 +2415,13 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "            </div>\n" +
     "\n" +
     "          <div class=\"form-group\" ng-repeat=\"color in colors track by $index + color\">\n" +
+    "\n" +
+    "            <button type=\"button\" class=\"pull-left btn btn-default btn-sm\"\n" +
+    "              title=\"Remove this color\"\n" +
+    "              ng-click=\"removeColor($index);\">\n" +
+    "              <span class=\"glyphicon glyphicon-remove\"></span>\n" +
+    "            </button>\n" +
+    "\n" +
     "            <label for=\"colorPicker{{$index}}\"\n" +
     "              class=\"col-sm-1 control-label\">color {{$index}}</label>\n" +
     "            <div class=\"col-sm-2\">\n" +
@@ -2472,7 +2482,14 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "              <button type=\"button\" class=\"btn btn-default\"\n" +
     "                ng-model=\"textColorStrategy[$index]\" btn-radio=\"'auto'\">auto</button>\n" +
     "          </div>\n" +
+    "\n" +
     "          </div>\n" +
+    "\n" +
+    "          <button type=\"button\" class=\"pull-left btn btn-default btn-sm\"\n" +
+    "            title=\"Add new color\"\n" +
+    "            ng-click=\"addColor();\">\n" +
+    "            <span class=\"glyphicon glyphicon-plus\"></span>\n" +
+    "          </button>\n" +
     "\n" +
     "          <div class=\"form-group\">\n" +
     "            <center>\n" +
@@ -2510,8 +2527,9 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     $scope.paletteId = '';
     $scope.placeholder = '3148032 or http://www.colourlovers.com/palette/3148032/The_Sky_Opens_Up';
 
-    $scope.isEnabled = function () {
-      return check.webUrl($scope.paletteId) || check.positiveNumber(+$scope.paletteId);
+    $scope.isValidPalette = function () {
+      return check.webUrl($scope.paletteId) ||
+        check.positiveNumber(+$scope.paletteId);
     };
 
     $scope.fetchPalette = function (target) {
@@ -2525,6 +2543,7 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
         return;
       }
       console.log('fetching pallette', $scope.paletteId);
+      $scope.fetchingPalette = true;
 
       var url = 'http://www.colourlovers.com/api/palette/' + $scope.paletteId;
       var options = {
@@ -2546,6 +2565,9 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
       })
       .error(function () {
         alertify.error('Could not fetch palette ' + $scope.paletteId);
+      })
+      .finally(function () {
+        $scope.fetchingPalette = false;
       });
     };
   });
@@ -2561,7 +2583,16 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
       restrict: 'E',
       templateUrl: 'color-pusher.tpl.html',
       replace: true,
-      link: function () {
+      link: function (scope, element, attrs) {
+        if (check.unemptyString(attrs.selectors)) {
+          scope.selectors = attrs.selectors.split(',');
+        }
+        if (check.unemptyString(attrs.colors)) {
+          scope.colors = attrs.colors.split(',').map(function (str) {
+            return str.trim();
+          });
+          check.verify.colors(scope.colors);
+        }
       },
       controller: ['$scope', colorCtrl]
     };
@@ -2582,7 +2613,7 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     };
     $scope.hueSettings = angular.copy($scope.defaultSettings);
 
-    $scope.colors = ['#f5e384', '#9c846e', '#9c846e', '#6e889c', '#9c846e', '#9c4242'];
+    $scope.colors = ['#f5e384', '#9c846e', '#9c046e', '#6e889c', '#9c846e', '#9c4242'];
     $scope.textColors = ['#ffffff'];
     $scope.textColorStrategy = ['auto'];
 
@@ -2697,6 +2728,24 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
       $scope.colors[index] = hex6;
 
       $scope.applyColors();
+    };
+
+    $scope.removeColor = function (index) {
+      check.verify.number(index, 'expected color index to be a number ' + index);
+      console.assert(index >= 0 && index < $scope.colors.length,
+        'invalid color index ' + index);
+
+      $scope.colors.splice(index, 1);
+      $scope.selectors.splice(index, 1);
+      $scope.textColors.splice(index, 1);
+      $scope.textColorStrategy.splice(index, 1);
+    };
+
+    $scope.addColor = function () {
+      $scope.colors.push('#efefef');
+      $scope.selectors.push('');
+      $scope.textColors.push('#000000');
+      $scope.textColorStrategy.push('auto');
     };
   }
 
