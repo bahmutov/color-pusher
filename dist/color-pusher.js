@@ -2415,6 +2415,13 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "            </div>\n" +
     "\n" +
     "          <div class=\"form-group\" ng-repeat=\"color in colors track by $index + color\">\n" +
+    "\n" +
+    "            <button type=\"button\" class=\"pull-left btn btn-default btn-sm\"\n" +
+    "              title=\"Remove this color\"\n" +
+    "              ng-click=\"removeColor($index);\">\n" +
+    "              <span class=\"glyphicon glyphicon-remove\"></span>\n" +
+    "            </button>\n" +
+    "\n" +
     "            <label for=\"colorPicker{{$index}}\"\n" +
     "              class=\"col-sm-1 control-label\">color {{$index}}</label>\n" +
     "            <div class=\"col-sm-2\">\n" +
@@ -2714,6 +2721,17 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
       $scope.colors[index] = hex6;
 
       $scope.applyColors();
+    };
+
+    $scope.removeColor = function (index) {
+      check.verify.number(index, 'expected color index to be a number ' + index);
+      console.assert(index >= 0 && index < $scope.colors.length,
+        'invalid color index ' + index);
+
+      $scope.colors.splice(index, 1);
+      $scope.selectors.splice(index, 1);
+      $scope.textColors.splice(index, 1);
+      $scope.textColorStrategy.splice(index, 1);
     };
   }
 

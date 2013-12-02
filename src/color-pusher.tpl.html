@@ -72,6 +72,13 @@
             </div>
 
           <div class="form-group" ng-repeat="color in colors track by $index + color">
+
+            <button type="button" class="pull-left btn btn-default btn-sm"
+              title="Remove this color"
+              ng-click="removeColor($index);">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+
             <label for="colorPicker{{$index}}"
               class="col-sm-1 control-label">color {{$index}}</label>
             <div class="col-sm-2">

@@ -154,6 +154,17 @@
 
       $scope.applyColors();
     };
+
+    $scope.removeColor = function (index) {
+      check.verify.number(index, 'expected color index to be a number ' + index);
+      console.assert(index >= 0 && index < $scope.colors.length,
+        'invalid color index ' + index);
+
+      $scope.colors.splice(index, 1);
+      $scope.selectors.splice(index, 1);
+      $scope.textColors.splice(index, 1);
+      $scope.textColorStrategy.splice(index, 1);
+    };
   }
 
 }(angular));
