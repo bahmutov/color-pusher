@@ -39,7 +39,7 @@
             <div class="col-sm-1">
             <button type="button" class="btn btn-primary"
               ng-click="fetchPalette(this.$parent)"
-              ng-disabled="!isEnabled()"
+              ng-disabled="!isValidPalette() || fetchingPalette"
               title="Pull palette colors">Fetch palette</button>
             </div>
           </div>

@@ -2382,7 +2382,7 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "            <div class=\"col-sm-1\">\n" +
     "            <button type=\"button\" class=\"btn btn-primary\"\n" +
     "              ng-click=\"fetchPalette(this.$parent)\"\n" +
-    "              ng-disabled=\"!isEnabled()\"\n" +
+    "              ng-disabled=\"!isValidPalette() || fetchingPalette\"\n" +
     "              title=\"Pull palette colors\">Fetch palette</button>\n" +
     "            </div>\n" +
     "          </div>\n" +
@@ -2513,8 +2513,9 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     $scope.paletteId = '';
     $scope.placeholder = '3148032 or http://www.colourlovers.com/palette/3148032/The_Sky_Opens_Up';
 
-    $scope.isEnabled = function () {
-      return check.webUrl($scope.paletteId) || check.positiveNumber(+$scope.paletteId);
+    $scope.isValidPalette = function () {
+      return check.webUrl($scope.paletteId) ||
+        check.positiveNumber(+$scope.paletteId);
     };
 
     $scope.fetchPalette = function (target) {
@@ -2528,6 +2529,7 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
         return;
       }
       console.log('fetching pallette', $scope.paletteId);
+      $scope.fetchingPalette = true;
 
       var url = 'http://www.colourlovers.com/api/palette/' + $scope.paletteId;
       var options = {
@@ -2549,6 +2551,9 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
       })
       .error(function () {
         alertify.error('Could not fetch palette ' + $scope.paletteId);
+      })
+      .finally(function () {
+        $scope.fetchingPalette = false;
       });
     };
   });

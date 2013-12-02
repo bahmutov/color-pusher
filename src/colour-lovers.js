@@ -5,8 +5,9 @@
     $scope.paletteId = '';
     $scope.placeholder = '3148032 or http://www.colourlovers.com/palette/3148032/The_Sky_Opens_Up';
 
-    $scope.isEnabled = function () {
-      return check.webUrl($scope.paletteId) || check.positiveNumber(+$scope.paletteId);
+    $scope.isValidPalette = function () {
+      return check.webUrl($scope.paletteId) ||
+        check.positiveNumber(+$scope.paletteId);
     };
 
     $scope.fetchPalette = function (target) {
@@ -20,6 +21,7 @@
         return;
       }
       console.log('fetching pallette', $scope.paletteId);
+      $scope.fetchingPalette = true;
 
       var url = 'http://www.colourlovers.com/api/palette/' + $scope.paletteId;
       var options = {
@@ -41,6 +43,9 @@
       })
       .error(function () {
         alertify.error('Could not fetch palette ' + $scope.paletteId);
+      })
+      .finally(function () {
+        $scope.fetchingPalette = false;
       });
     };
   });
