@@ -23,6 +23,8 @@ to manipulate colors.
 Uses [jquery-minicolors](http://labs.abeautifulsite.net/jquery-minicolors/) color picker
 via [angular-minicolors](http://kaihenzler.github.io/angular-minicolors/).
 
+{%= _.doc("./docs/footer.md") %}
+
 ## History
 
 {%= _.doc("./History.md") %}
