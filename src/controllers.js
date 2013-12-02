@@ -165,6 +165,13 @@
       $scope.textColors.splice(index, 1);
       $scope.textColorStrategy.splice(index, 1);
     };
+
+    $scope.addColor = function () {
+      $scope.colors.push('#efefef');
+      $scope.selectors.push('');
+      $scope.textColors.push('#000000');
+      $scope.textColorStrategy.push('auto');
+    };
   }
 
 }(angular));

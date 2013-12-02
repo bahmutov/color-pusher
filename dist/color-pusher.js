@@ -2482,7 +2482,14 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "              <button type=\"button\" class=\"btn btn-default\"\n" +
     "                ng-model=\"textColorStrategy[$index]\" btn-radio=\"'auto'\">auto</button>\n" +
     "          </div>\n" +
+    "\n" +
     "          </div>\n" +
+    "\n" +
+    "          <button type=\"button\" class=\"pull-left btn btn-default btn-sm\"\n" +
+    "            title=\"Add new color\"\n" +
+    "            ng-click=\"addColor();\">\n" +
+    "            <span class=\"glyphicon glyphicon-plus\"></span>\n" +
+    "          </button>\n" +
     "\n" +
     "          <div class=\"form-group\">\n" +
     "            <center>\n" +
@@ -2732,6 +2739,13 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
       $scope.selectors.splice(index, 1);
       $scope.textColors.splice(index, 1);
       $scope.textColorStrategy.splice(index, 1);
+    };
+
+    $scope.addColor = function () {
+      $scope.colors.push('#efefef');
+      $scope.selectors.push('');
+      $scope.textColors.push('#000000');
+      $scope.textColorStrategy.push('auto');
     };
   }
 
