@@ -2356,13 +2356,13 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "    <div class=\"row\">\n" +
     "      <div class=\"col-md-12\">\n" +
     "\n" +
-    "      <button type=\"button\" class=\"pull-right btn btn-default\" aria-hidden=\"true\"\n" +
+    "      <button type=\"button\" id=\"closeColorPusher\" class=\"btn btn-default\" aria-hidden=\"true\"\n" +
     "        ng-click=\"showColorPusher=false;\"\n" +
     "        title=\"Hide color-pusher widget\">\n" +
     "        <span class=\"glyphicon glyphicon-chevron-down\"></span>\n" +
     "      </button>\n" +
     "\n" +
-    "      <button type=\"button\" class=\"pull-right btn btn-default\"\n" +
+    "      <button type=\"button\" id=\"shareColors\" class=\"btn btn-default\"\n" +
     "        data-toggle=\"modal\" data-target=\"#shareResultsModal\"\n" +
     "        title=\"Show current colors as text for easy export\">\n" +
     "        <span class=\"glyphicon glyphicon-share-alt\"></span>\n" +
@@ -2370,59 +2370,11 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "\n" +
     "        <form class=\"form-horizontal\" role=\"form\">\n" +
     "\n" +
-    "          <div class=\"form-group\" ng-controller=\"ColourLoversCtrl\">\n" +
-    "            <label for=\"colourLoverPalette\"\n" +
-    "                class=\"control-label col-sm-2\">\n" +
-    "                <a href=\"http://www.colourlovers.com/palettes\" target=\"_blank\">ColourLover Palette</a></label>\n" +
-    "            <div class=\"col-sm-6\">\n" +
-    "              <div class=\"input-group\">\n" +
-    "                <input\n" +
-    "                  id=\"colourLoverPalette\"\n" +
-    "                  class=\"form-control\"\n" +
-    "                  type=\"text\" size=\"80\"\n" +
-    "                  placeholder=\"{{placeholder}}\"\n" +
-    "                  ng-model=\"paletteId\">\n" +
-    "              </div>\n" +
-    "            </div>\n" +
     "\n" +
-    "            <div class=\"col-sm-1\">\n" +
-    "            <button type=\"button\" class=\"btn btn-primary\"\n" +
-    "              ng-click=\"fetchPalette(this.$parent)\"\n" +
-    "              ng-disabled=\"!isValidPalette() || fetchingPalette\"\n" +
-    "              title=\"Pull palette colors\">Fetch palette</button>\n" +
-    "            </div>\n" +
-    "          </div>\n" +
-    "\n" +
-    "            <div class=\"form-group\">\n" +
-    "              <label for=\"generateButtons\"\n" +
-    "                class=\"col-md-2 control-label\">Generate colors based on first color 0</label>\n" +
-    "\n" +
-    "              <div class=\"col-md-8 input-group\" id=\"generateButtons\">\n" +
-    "              <button type=\"button\" class=\"btn btn-default color-pusher\"\n" +
-    "                ng-click=\"splitcomplement()\"\n" +
-    "                title=\"generate the splitcomplement complements of a base color\">splitcomplement</button>\n" +
-    "\n" +
-    "              <button type=\"button\" class=\"btn btn-default color-pusher\"\n" +
-    "                ng-click=\"monochromatic()\"\n" +
-    "                title=\"generate monochromatic colors from base color\">monochromatic</button>\n" +
-    "\n" +
-    "              <button type=\"button\" class=\"btn btn-default color-pusher\"\n" +
-    "                ng-click=\"analogous()\"\n" +
-    "                title=\"generate analogous colors from base color\">Analogous</button>\n" +
-    "\n" +
-    "              <button type=\"button\" class=\"btn btn-default color-pusher\"\n" +
-    "                ng-click=\"tetrad()\"\n" +
-    "                title=\"generate +3 colors from base color\">Tetrad</button>\n" +
-    "\n" +
-    "              <button type=\"button\" class=\"btn btn-default color-pusher\"\n" +
-    "                ng-click=\"triad()\"\n" +
-    "                title=\"generate +2 colors from base color\">Triad</button>\n" +
-    "              </div>\n" +
-    "            </div>\n" +
     "\n" +
     "          <div class=\"form-group\" ng-repeat=\"color in colors track by $index + color\">\n" +
     "\n" +
-    "            <button type=\"button\" class=\"pull-left btn btn-default btn-sm\"\n" +
+    "            <button type=\"button\" class=\"pull-left margin-left-15 btn btn-default btn-sm\"\n" +
     "              title=\"Remove this color\"\n" +
     "              ng-click=\"removeColor($index);\">\n" +
     "              <span class=\"glyphicon glyphicon-remove\"></span>\n" +
@@ -2512,6 +2464,56 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "\n" +
     "            </center>\n" +
     "          </div>\n" +
+    "\n" +
+    "          <div class=\"form-group\" ng-controller=\"ColourLoversCtrl\">\n" +
+    "            <label for=\"colourLoverPalette\"\n" +
+    "                class=\"control-label col-sm-2\">\n" +
+    "                <a href=\"http://www.colourlovers.com/palettes\" target=\"_blank\">ColourLover Palette</a></label>\n" +
+    "            <div class=\"col-sm-6\">\n" +
+    "              <div class=\"input-group\">\n" +
+    "                <input\n" +
+    "                  id=\"colourLoverPalette\"\n" +
+    "                  class=\"form-control\"\n" +
+    "                  type=\"text\" size=\"80\"\n" +
+    "                  placeholder=\"{{placeholder}}\"\n" +
+    "                  ng-model=\"paletteId\">\n" +
+    "              </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"col-sm-1\">\n" +
+    "            <button type=\"button\" class=\"btn btn-primary\"\n" +
+    "              ng-click=\"fetchPalette(this.$parent)\"\n" +
+    "              ng-disabled=\"!isValidPalette() || fetchingPalette\"\n" +
+    "              title=\"Pull palette colors\">Fetch palette</button>\n" +
+    "            </div>\n" +
+    "          </div>\n" +
+    "\n" +
+    "            <div class=\"form-group\">\n" +
+    "              <label for=\"generateButtons\"\n" +
+    "                class=\"col-md-2 control-label\">Generate colors based on first color 0</label>\n" +
+    "\n" +
+    "              <div class=\"col-md-8 input-group\" id=\"generateButtons\">\n" +
+    "              <button type=\"button\" class=\"btn btn-default color-pusher\"\n" +
+    "                ng-click=\"splitcomplement()\"\n" +
+    "                title=\"generate the splitcomplement complements of a base color\">splitcomplement</button>\n" +
+    "\n" +
+    "              <button type=\"button\" class=\"btn btn-default color-pusher\"\n" +
+    "                ng-click=\"monochromatic()\"\n" +
+    "                title=\"generate monochromatic colors from base color\">monochromatic</button>\n" +
+    "\n" +
+    "              <button type=\"button\" class=\"btn btn-default color-pusher\"\n" +
+    "                ng-click=\"analogous()\"\n" +
+    "                title=\"generate analogous colors from base color\">Analogous</button>\n" +
+    "\n" +
+    "              <button type=\"button\" class=\"btn btn-default color-pusher\"\n" +
+    "                ng-click=\"tetrad()\"\n" +
+    "                title=\"generate +3 colors from base color\">Tetrad</button>\n" +
+    "\n" +
+    "              <button type=\"button\" class=\"btn btn-default color-pusher\"\n" +
+    "                ng-click=\"triad()\"\n" +
+    "                title=\"generate +2 colors from base color\">Triad</button>\n" +
+    "              </div>\n" +
+    "            </div>\n" +
     "        </form>\n" +
     "\n" +
     "      <center>\n" +

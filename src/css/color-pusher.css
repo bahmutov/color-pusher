@@ -48,3 +48,19 @@ button.tight {
   position: relative;
   top: 2.5em;
 }
+
+#closeColorPusher {
+  position: absolute;
+  top: 0;
+  right: 15px;
+}
+
+#shareColors {
+  position: absolute;
+  top: 40px;
+  right: 15px;
+}
+
+button.margin-left-15 {
+  margin-left: 15px;
+}
