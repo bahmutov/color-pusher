@@ -99,40 +99,46 @@
 
             </div>
 
-            <div class="col-sm-3">
-              <button type="button" class="btn btn-default btn-xs"
+            <div class="col-sm-2 semi-tight">
+              <button type="button" class="tight btn btn-default btn-xs"
                 title="Decrease hue" ng-click="changeColor($index, 'hue', '-2');">
                 <span class="glyphicon glyphicon-arrow-left"></span>
               </button>
-              <button type="button" class="btn btn-default btn-xs"
+              <button type="button" class="tight btn btn-default btn-xs"
                 title="Increase hue" ng-click="changeColor($index, 'hue', '+2');">
                 <span class="glyphicon glyphicon-arrow-right"></span>
               </button>
 
-              <button type="button" class="btn btn-default btn-xs"
+              <button type="button" class="tight btn btn-default btn-xs"
                 title="Decrease saturation" ng-click="changeColor($index, 'saturation', '-1');">
                 <span class="glyphicon glyphicon-chevron-down"></span>
               </button>
-              <button type="button" class="btn btn-default btn-xs"
+              <button type="button" class="tight btn btn-default btn-xs"
                 title="Increase saturation" ng-click="changeColor($index, 'saturation', '+1');">
                 <span class="glyphicon glyphicon-chevron-up"></span>
               </button>
 
-              <button type="button" class="btn btn-default btn-xs"
+              <button type="button" class="tight btn btn-default btn-xs"
                 title="Decrease value" ng-click="changeColor($index, 'value', '-1');">
                 <span class="glyphicon glyphicon-circle-arrow-down"></span>
               </button>
-              <button type="button" class="btn btn-default btn-xs"
+              <button type="button" class="tight btn btn-default btn-xs"
                 title="Increase value" ng-click="changeColor($index, 'value', '+1');">
                 <span class="glyphicon glyphicon-circle-arrow-up"></span>
               </button>
             </div>
 
-            <div class="col-sm-2">
+            <div class="col-sm-2 semi-tight">
               <input type="text" class="form-control"
                 id="selector{{$index}}"
                 placeholder=".alert-info" required
                 ng-model="selectors[$index]">
+            </div>
+            <div class="col-sm-1 semi-tight">
+              <button ng-hide="$last" type="button" class="btn btn-default btn-xs basement"
+                title="Swap selectors" ng-click="swapSelector($index)">
+                <span class="glyphicon glyphicon-sort"></span>
+              </button>
             </div>
 
             <label for="textColor{{$index}}"

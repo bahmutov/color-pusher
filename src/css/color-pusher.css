@@ -32,3 +32,19 @@ button.color-pusher {
   position: absolute;
   z-index: 100;
 }
+
+button.tight {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.semi-tight {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* try to position between lines */
+.basement {
+  position: relative;
+  top: 2.5em;
+}

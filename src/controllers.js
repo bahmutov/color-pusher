@@ -88,6 +88,23 @@
       });
     };
 
+    function swapWithNext(list, k) {
+      check.verify.array(list, 'missing array');
+      // cannot swap last item with next one
+      console.assert(k >= 0 && k < list.length - 1, 'invalid selector index ' + k);
+
+      var tmp = list[k];
+      list[k] = list[k + 1];
+      list[k + 1] = tmp;
+    }
+
+    $scope.swapSelector = function (k) {
+      // cannot swap last selector with next one
+      console.assert(k >= 0 && k < $scope.selectors.length - 1, 'invalid selector index ' + k);
+
+      swapWithNext($scope.selectors, k);
+    };
+
     function isCloserToWhiteThanBlack(color) {
       check.verify.color(color, 'expected color, got ' + color);
       return xcolor.distance(color, 'black') > xcolor.distance(color, 'white');
