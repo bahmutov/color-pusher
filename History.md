@@ -1,4 +1,10 @@
 
+0.1.0 / 2013-12-02
+==================
+
+  * allowing swapping selectors, fixes #19
+  * easy colors export, fixes #31
+
 0.0.9 / 2013-12-01
 ==================
 

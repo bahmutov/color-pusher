@@ -1,4 +1,4 @@
-# color-pusher v0.0.9
+# color-pusher v0.1.0
 
 > Dynamic color swatch manipulation for changing multiple elements CSS
 
@@ -88,6 +88,12 @@ Support: if you find any problems with this module, email / tweet / open issue o
 
 ## History
 
+
+0.1.0 / 2013-12-02
+==================
+
+  * allowing swapping selectors, fixes #19
+  * easy colors export, fixes #31
 
 0.0.9 / 2013-12-01
 ==================
