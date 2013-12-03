@@ -2362,6 +2362,12 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "        <span class=\"glyphicon glyphicon-chevron-down\"></span>\n" +
     "      </button>\n" +
     "\n" +
+    "      <button type=\"button\" class=\"pull-right btn btn-default\"\n" +
+    "        data-toggle=\"modal\" data-target=\"#shareResultsModal\"\n" +
+    "        title=\"Show current colors as text for easy export\">\n" +
+    "        <span class=\"glyphicon glyphicon-share-alt\"></span>\n" +
+    "      </button>\n" +
+    "\n" +
     "        <form class=\"form-horizontal\" role=\"form\">\n" +
     "\n" +
     "          <div class=\"form-group\" ng-controller=\"ColourLoversCtrl\">\n" +
@@ -2436,40 +2442,46 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "\n" +
     "            </div>\n" +
     "\n" +
-    "            <div class=\"col-sm-3\">\n" +
-    "              <button type=\"button\" class=\"btn btn-default btn-xs\"\n" +
+    "            <div class=\"col-sm-2 semi-tight\">\n" +
+    "              <button type=\"button\" class=\"tight btn btn-default btn-xs\"\n" +
     "                title=\"Decrease hue\" ng-click=\"changeColor($index, 'hue', '-2');\">\n" +
     "                <span class=\"glyphicon glyphicon-arrow-left\"></span>\n" +
     "              </button>\n" +
-    "              <button type=\"button\" class=\"btn btn-default btn-xs\"\n" +
+    "              <button type=\"button\" class=\"tight btn btn-default btn-xs\"\n" +
     "                title=\"Increase hue\" ng-click=\"changeColor($index, 'hue', '+2');\">\n" +
     "                <span class=\"glyphicon glyphicon-arrow-right\"></span>\n" +
     "              </button>\n" +
     "\n" +
-    "              <button type=\"button\" class=\"btn btn-default btn-xs\"\n" +
+    "              <button type=\"button\" class=\"tight btn btn-default btn-xs\"\n" +
     "                title=\"Decrease saturation\" ng-click=\"changeColor($index, 'saturation', '-1');\">\n" +
     "                <span class=\"glyphicon glyphicon-chevron-down\"></span>\n" +
     "              </button>\n" +
-    "              <button type=\"button\" class=\"btn btn-default btn-xs\"\n" +
+    "              <button type=\"button\" class=\"tight btn btn-default btn-xs\"\n" +
     "                title=\"Increase saturation\" ng-click=\"changeColor($index, 'saturation', '+1');\">\n" +
     "                <span class=\"glyphicon glyphicon-chevron-up\"></span>\n" +
     "              </button>\n" +
     "\n" +
-    "              <button type=\"button\" class=\"btn btn-default btn-xs\"\n" +
+    "              <button type=\"button\" class=\"tight btn btn-default btn-xs\"\n" +
     "                title=\"Decrease value\" ng-click=\"changeColor($index, 'value', '-1');\">\n" +
     "                <span class=\"glyphicon glyphicon-circle-arrow-down\"></span>\n" +
     "              </button>\n" +
-    "              <button type=\"button\" class=\"btn btn-default btn-xs\"\n" +
+    "              <button type=\"button\" class=\"tight btn btn-default btn-xs\"\n" +
     "                title=\"Increase value\" ng-click=\"changeColor($index, 'value', '+1');\">\n" +
     "                <span class=\"glyphicon glyphicon-circle-arrow-up\"></span>\n" +
     "              </button>\n" +
     "            </div>\n" +
     "\n" +
-    "            <div class=\"col-sm-2\">\n" +
+    "            <div class=\"col-sm-2 semi-tight\">\n" +
     "              <input type=\"text\" class=\"form-control\"\n" +
     "                id=\"selector{{$index}}\"\n" +
     "                placeholder=\".alert-info\" required\n" +
     "                ng-model=\"selectors[$index]\">\n" +
+    "            </div>\n" +
+    "            <div class=\"col-sm-1 semi-tight\">\n" +
+    "              <button ng-hide=\"$last\" type=\"button\" class=\"btn btn-default btn-xs basement\"\n" +
+    "                title=\"Swap selectors\" ng-click=\"swapSelector($index)\">\n" +
+    "                <span class=\"glyphicon glyphicon-sort\"></span>\n" +
+    "              </button>\n" +
     "            </div>\n" +
     "\n" +
     "            <label for=\"textColor{{$index}}\"\n" +
@@ -2509,6 +2521,26 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "        <a href=\"https://twitter.com/bahmutov\">@bahmutov</a>\n" +
     "      </center>\n" +
     "\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Modal -->\n" +
+    "    <div class=\"modal fade\" id=\"shareResultsModal\" tabindex=\"-1\"\n" +
+    "      role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\"\n" +
+    "      data-backdrop=\"false\">\n" +
+    "      <div class=\"modal-dialog\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "          <div class=\"modal-header\">\n" +
+    "            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
+    "            <h4 class=\"modal-title\" id=\"myModalLabel\">Current colors</h4>\n" +
+    "          </div>\n" +
+    "          <div class=\"modal-body\">\n" +
+    "            <pre><code>{{colorsToShare()|json}}</code></pre>\n" +
+    "          </div>\n" +
+    "          <div class=\"modal-footer\">\n" +
+    "            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
     "      </div>\n" +
     "    </div>\n" +
     "  </div>\n" +
@@ -2585,7 +2617,9 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
       replace: true,
       link: function (scope, element, attrs) {
         if (check.unemptyString(attrs.selectors)) {
-          scope.selectors = attrs.selectors.split(',');
+          scope.selectors = attrs.selectors.split(',').map(function (str) {
+            return str.trim();
+          });
         }
         if (check.unemptyString(attrs.colors)) {
           scope.colors = attrs.colors.split(',').map(function (str) {
@@ -2593,6 +2627,11 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
           });
           check.verify.colors(scope.colors);
         }
+        scope.generateForegroundColors();
+
+        // make sure modal dialog appears in the center of the body
+        // and not just the widget
+        $('#shareResultsModal').detach().appendTo('body');
       },
       controller: ['$scope', colorCtrl]
     };
@@ -2621,6 +2660,17 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     $scope.selectors = ['body', '.well',
       '.alert-info', '.alert-success', '.alert-warning', '.alert-danger'];
 
+    $scope.colorsToShare = function () {
+      var result = {};
+      $scope.colors.forEach(function (color, index) {
+        result[$scope.selectors[index]] = {
+          'background-color': color,
+          'color': $scope.textColors[index]
+        };
+      });
+      return result;
+    };
+
     $scope.setColors = function (list) {
       check.verify.colors(list);
       $scope.lastGeneration = null;
@@ -2643,6 +2693,23 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
           });
         }
       });
+    };
+
+    function swapWithNext(list, k) {
+      check.verify.array(list, 'missing array');
+      // cannot swap last item with next one
+      console.assert(k >= 0 && k < list.length - 1, 'invalid selector index ' + k);
+
+      var tmp = list[k];
+      list[k] = list[k + 1];
+      list[k + 1] = tmp;
+    }
+
+    $scope.swapSelector = function (k) {
+      // cannot swap last selector with next one
+      console.assert(k >= 0 && k < $scope.selectors.length - 1, 'invalid selector index ' + k);
+
+      swapWithNext($scope.selectors, k);
     };
 
     function isCloserToWhiteThanBlack(color) {
