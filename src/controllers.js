@@ -10,7 +10,9 @@
       replace: true,
       link: function (scope, element, attrs) {
         if (check.unemptyString(attrs.selectors)) {
-          scope.selectors = attrs.selectors.split(',');
+          scope.selectors = attrs.selectors.split(',').map(function (str) {
+            return str.trim();
+          });
         }
         if (check.unemptyString(attrs.colors)) {
           scope.colors = attrs.colors.split(',').map(function (str) {
@@ -18,6 +20,11 @@
           });
           check.verify.colors(scope.colors);
         }
+        scope.generateForegroundColors();
+
+        // make sure modal dialog appears in the center of the body
+        // and not just the widget
+        $('#shareResultsModal').detach().appendTo('body');
       },
       controller: ['$scope', colorCtrl]
     };
@@ -45,6 +52,17 @@
     $scope.lastGeneration = null;
     $scope.selectors = ['body', '.well',
       '.alert-info', '.alert-success', '.alert-warning', '.alert-danger'];
+
+    $scope.colorsToShare = function () {
+      var result = {};
+      $scope.colors.forEach(function (color, index) {
+        result[$scope.selectors[index]] = {
+          'background-color': color,
+          'color': $scope.textColors[index]
+        };
+      });
+      return result;
+    };
 
     $scope.setColors = function (list) {
       check.verify.colors(list);

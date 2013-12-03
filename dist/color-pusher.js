@@ -2362,6 +2362,12 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "        <span class=\"glyphicon glyphicon-chevron-down\"></span>\n" +
     "      </button>\n" +
     "\n" +
+    "      <button type=\"button\" class=\"pull-right btn btn-default\"\n" +
+    "        data-toggle=\"modal\" data-target=\"#shareResultsModal\"\n" +
+    "        title=\"Show current colors as text for easy export\">\n" +
+    "        <span class=\"glyphicon glyphicon-share-alt\"></span>\n" +
+    "      </button>\n" +
+    "\n" +
     "        <form class=\"form-horizontal\" role=\"form\">\n" +
     "\n" +
     "          <div class=\"form-group\" ng-controller=\"ColourLoversCtrl\">\n" +
@@ -2511,6 +2517,26 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "\n" +
     "      </div>\n" +
     "    </div>\n" +
+    "\n" +
+    "    <!-- Modal -->\n" +
+    "    <div class=\"modal fade\" id=\"shareResultsModal\" tabindex=\"-1\"\n" +
+    "      role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\"\n" +
+    "      data-backdrop=\"false\">\n" +
+    "      <div class=\"modal-dialog\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "          <div class=\"modal-header\">\n" +
+    "            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
+    "            <h4 class=\"modal-title\" id=\"myModalLabel\">Current colors</h4>\n" +
+    "          </div>\n" +
+    "          <div class=\"modal-body\">\n" +
+    "            <pre><code>{{colorsToShare()|json}}</code></pre>\n" +
+    "          </div>\n" +
+    "          <div class=\"modal-footer\">\n" +
+    "            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
     "  </div>\n" +
     "</div>\n" +
     "");
@@ -2585,7 +2611,9 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
       replace: true,
       link: function (scope, element, attrs) {
         if (check.unemptyString(attrs.selectors)) {
-          scope.selectors = attrs.selectors.split(',');
+          scope.selectors = attrs.selectors.split(',').map(function (str) {
+            return str.trim();
+          });
         }
         if (check.unemptyString(attrs.colors)) {
           scope.colors = attrs.colors.split(',').map(function (str) {
@@ -2593,6 +2621,11 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
           });
           check.verify.colors(scope.colors);
         }
+        scope.generateForegroundColors();
+
+        // make sure modal dialog appears in the center of the body
+        // and not just the widget
+        $('#shareResultsModal').detach().appendTo('body');
       },
       controller: ['$scope', colorCtrl]
     };
@@ -2620,6 +2653,17 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     $scope.lastGeneration = null;
     $scope.selectors = ['body', '.well',
       '.alert-info', '.alert-success', '.alert-warning', '.alert-danger'];
+
+    $scope.colorsToShare = function () {
+      var result = {};
+      $scope.colors.forEach(function (color, index) {
+        result[$scope.selectors[index]] = {
+          'background-color': color,
+          'color': $scope.textColors[index]
+        };
+      });
+      return result;
+    };
 
     $scope.setColors = function (list) {
       check.verify.colors(list);

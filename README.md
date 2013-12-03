@@ -19,7 +19,7 @@ Requires [nodejs](http://nodejs.org/) and [bower](http://bower.io/)
 bower install color-pusher
 ```
 
-To use: requires bootstrap, jquery and angularjs.
+To use: requires bootstrap CSS and JS, jquery and angularjs.
 
 
 
@@ -56,6 +56,8 @@ You can pass initial list of selectors and colors to the widget
     colors="#f5e384, #9c846e, #9c046e">
 </color-pusher>
 ```
+
+Open the widget and click "Apply colors".
 
 
 

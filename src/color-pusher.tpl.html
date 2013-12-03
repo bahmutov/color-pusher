@@ -19,6 +19,12 @@
         <span class="glyphicon glyphicon-chevron-down"></span>
       </button>
 
+      <button type="button" class="pull-right btn btn-default"
+        data-toggle="modal" data-target="#shareResultsModal"
+        title="Show current colors as text for easy export">
+        <span class="glyphicon glyphicon-share-alt"></span>
+      </button>
+
         <form class="form-horizontal" role="form">
 
           <div class="form-group" ng-controller="ColourLoversCtrl">
@@ -166,6 +172,26 @@
         <a href="https://twitter.com/bahmutov">@bahmutov</a>
       </center>
 
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="shareResultsModal" tabindex="-1"
+      role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+      data-backdrop="false">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Current colors</h4>
+          </div>
+          <div class="modal-body">
+            <pre><code>{{colorsToShare()|json}}</code></pre>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

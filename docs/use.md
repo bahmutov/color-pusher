@@ -31,3 +31,5 @@ You can pass initial list of selectors and colors to the widget
 </color-pusher>
 ```
 
+Open the widget and click "Apply colors".
+

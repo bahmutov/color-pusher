@@ -530,6 +530,7 @@ button.show-color-pusher-button {
 div.color-pusher {
   position: fixed;
   bottom: 0;
+  z-index: 10;
 
   min-width: 1120px;
   max-height: 360px;
@@ -543,4 +544,9 @@ div.color-pusher {
 
 button.color-pusher {
   margin-left: 5px;
+}
+
+#shareResultsModal {
+  position: absolute;
+  z-index: 100;
 }
