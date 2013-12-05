@@ -4,6 +4,8 @@
 
 [demo](http://glebbahmutov.com/color-pusher/)
 
+{%= _.doc("./docs/badges.md") %}
+
 ![color-pusher screenshot](docs/color-pusher.jpg)
 
 The {%= name %} widget allows anyone to quickly tweak colors on the page,
