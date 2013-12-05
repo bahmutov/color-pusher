@@ -22,7 +22,7 @@ module.exports = {
     js: [ 'src/**/*.js', '!src/**/*.spec.js' ],
 
     html: [ 'src/index.html' ],
-    css: 'src/**/*.css'
+    css: 'src/*.css'
   },
 
   /**
