@@ -2,16 +2,54 @@ module.exports = function (grunt) {
   require('time-grunt')(grunt);
 
   var pkg = grunt.file.readJSON('package.json');
+  // used for templates
+  var pkgData = {
+    data: {
+      pkg: pkg
+    }
+  };
 
   var plugins = require('matchdep').filterDev('grunt-*');
   plugins.forEach(grunt.loadNpmTasks);
 
   var userConfig = require('./build.config.js');
 
+
+  var versionTemplate =
+    '<%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %>';
+  var version = grunt.template.process(versionTemplate, pkgData);
+
+  var copyrightTemplate = 'Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>';
+  var copyright = grunt.template.process(copyrightTemplate, pkgData);
+
   var taskConfig = {
     pkg: pkg,
 
     clean: ['<%= destination_dir %>/bower_components', 'tmp'],
+
+    meta: {
+      banner:
+        '/**\n' +
+        ' * ' + version + '\n' +
+        ' * ' + copyright + '\n' +
+        ' */\n'
+    },
+
+    usebanner: {
+      compile: {
+        options: {
+          banner: '<%= meta.banner %>',
+          position: 'top',
+          linebreak: true
+        },
+        files: {
+          src: [
+            '<%= destination_dir %>/<%= pkg.name %>.js',
+            '<%= destination_dir %>/<%= pkg.name %>.css'
+          ]
+        }
+      }
+    },
 
     jshint: {
       all: [
@@ -142,7 +180,7 @@ module.exports = function (grunt) {
 
   grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
 
-  grunt.registerTask('build', ['clean', 'html2js', 'concat', 'copy']);
+  grunt.registerTask('build', ['clean', 'html2js', 'concat', 'copy', 'usebanner']);
   grunt.registerTask('default', ['sync', 'jsonlint', 'nice-package', 'jshint',
     'complexity', 'readme', 'build']);
 };

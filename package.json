@@ -42,6 +42,7 @@
     "time-grunt": "~0.2.3",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
-    "grunt-html2js": "~0.2.2"
+    "grunt-html2js": "~0.2.2",
+    "grunt-banner": "~0.2.0"
   }
 }

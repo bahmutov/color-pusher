@@ -1,4 +1,9 @@
 /**
+ * color-pusher - v0.1.0 - 2013-12-04 23:21:51
+ * Copyright (c) 2013 Gleb Bahmutov gleb.bahmutov@gmail.com
+ */
+
+/**
  * @license jQuery paging plugin v1.8 06/21/2010
  * http://www.xarg.org/project/jquery-color-plugin-xcolor/
  *

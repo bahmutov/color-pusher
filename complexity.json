@@ -1,11 +1,11 @@
 {
   "all": {
-    "src": ["*.js", "src/*.js"],
+    "src": ["*.js", "!Gruntfile.js", "src/*.js"],
     "options": {
       "errorsOnly": false,
       "cyclomatic": 7,
       "halstead": 12,
-      "maintainability": 80
+      "maintainability": 100
     }
   }
 }
