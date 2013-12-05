@@ -44,8 +44,8 @@ module.exports = function (grunt) {
         },
         files: {
           src: [
-            '<%= destination_dir %>/<%= pkg.name %>.js',
-            '<%= destination_dir %>/<%= pkg.name %>.css'
+            '<%= destination_dir %>/<%= pkg.name %>*.js',
+            '<%= destination_dir %>/<%= pkg.name %>*.css'
           ]
         }
       }
@@ -149,6 +149,28 @@ module.exports = function (grunt) {
       }
     },
 
+    uglify: {
+      options: {
+        report: 'min'
+      },
+      js: {
+        files: {
+          '<%= destination_dir %>/<%= pkg.name %>.min.js': '<%= destination_dir %>/<%= pkg.name %>.js'
+        }
+      }
+    },
+
+    cssmin: {
+      options: {
+        report: 'min'
+      },
+      css: {
+        files: {
+          '<%= destination_dir %>/<%= pkg.name %>.min.css': '<%= destination_dir %>/<%= pkg.name %>.css'
+        }
+      }
+    },
+
     // make sure index.html example works inside destination folder
     copy: {
       all: {
@@ -180,7 +202,7 @@ module.exports = function (grunt) {
 
   grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
 
-  grunt.registerTask('build', ['clean', 'html2js', 'concat', 'copy', 'usebanner']);
+  grunt.registerTask('build', ['clean', 'html2js', 'concat', 'copy', 'uglify', 'cssmin', 'usebanner']);
   grunt.registerTask('default', ['sync', 'jsonlint', 'nice-package', 'jshint',
     'complexity', 'readme', 'build']);
 };

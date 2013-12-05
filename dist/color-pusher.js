@@ -2567,7 +2567,7 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
 (function (angular) {
   var app = angular.module('color-pusher');
 
-  app.controller('ColourLoversCtrl', function ColourLoversCtrl($scope, $http) {
+  function ColourLoversCtrl($scope, $http) {
     $scope.paletteId = '';
     $scope.placeholder = '3148032 or http://www.colourlovers.com/palette/3148032/The_Sky_Opens_Up';
 
@@ -2614,7 +2614,8 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
         $scope.fetchingPalette = false;
       });
     };
-  });
+  }
+  app.controller('ColourLoversCtrl', ['$scope', '$http', ColourLoversCtrl]);
 }(angular));
 
 (function (angular) {
