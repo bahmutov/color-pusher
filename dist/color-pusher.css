@@ -542,6 +542,10 @@ div.color-pusher {
   padding: 5px;
 }
 
+div.color-pusher-spacer {
+  height: 360px;
+}
+
 button.color-pusher {
   margin-left: 5px;
 }

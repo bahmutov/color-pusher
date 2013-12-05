@@ -2352,6 +2352,11 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "    </center>\n" +
     "  </div>\n" +
     "\n" +
+    "  <!-- put large empty space at the end of the page to make sure\n" +
+    "  color-pusher does not overlay with main content -->\n" +
+    "  <div ng-show=\"showColorPusher\" class=\"color-pusher-spacer\">\n" +
+    "  </div>\n" +
+    "\n" +
     "  <div ng-show=\"showColorPusher\" class=\"color-pusher\">\n" +
     "    <div class=\"row\">\n" +
     "      <div class=\"col-md-12\">\n" +
