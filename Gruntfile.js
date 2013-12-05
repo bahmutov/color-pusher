@@ -110,8 +110,8 @@ module.exports = function (grunt) {
         'bower_components/bootstrap/dist/fonts/*',
         'bower_components/jquery/jquery.min.js',
         'bower_components/jquery/jquery.min.map',
-        'color-pusher.js',
-        'color-pusher.css',
+        'color-pusher.min.js', 'color-pusher.js',
+        'color-pusher.min.css', 'color-pusher.css',
         'jquery.minicolors.png'
       ]
     },
