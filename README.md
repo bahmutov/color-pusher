@@ -1,4 +1,4 @@
-# color-pusher v0.1.1
+# color-pusher v0.1.2
 
 > Dynamic color swatch manipulation for changing multiple elements CSS
 
@@ -119,6 +119,12 @@ Support: if you find any problems with this module, email / tweet / open issue o
 
 ## History
 
+
+0.1.2 / 2013-12-05
+==================
+
+  * added badges
+  * added travis file, fixes #34
 
 0.1.1 / 2013-12-04
 ==================
