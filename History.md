@@ -1,4 +1,11 @@
 
+0.1.1 / 2013-12-04
+==================
+
+  * minified js and css
+  * added banner to output files, fixes #21
+  * adding empty spacer to prevent widget from overlaying on top of the content
+
 0.1.0 / 2013-12-02
 ==================
 

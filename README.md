@@ -1,4 +1,4 @@
-# color-pusher v0.1.0
+# color-pusher v0.1.1
 
 > Dynamic color swatch manipulation for changing multiple elements CSS
 
@@ -98,6 +98,13 @@ Support: if you find any problems with this module, email / tweet / open issue o
 
 ## History
 
+
+0.1.1 / 2013-12-04
+==================
+
+  * minified js and css
+  * added banner to output files, fixes #21
+  * adding empty spacer to prevent widget from overlaying on top of the content
 
 0.1.0 / 2013-12-02
 ==================
