@@ -1,8 +1,29 @@
-# color-pusher v0.1.0
+# color-pusher v0.1.2
 
 > Dynamic color swatch manipulation for changing multiple elements CSS
 
 [demo](http://glebbahmutov.com/color-pusher/)
+
+[![NPM][color-pusher-icon] ][color-pusher-url]
+
+[![Build status][color-pusher-ci-image] ][color-pusher-ci-url]
+[![dependencies][color-pusher-dependencies-image] ][color-pusher-dependencies-url]
+[![devdependencies][color-pusher-devdependencies-image] ][color-pusher-devdependencies-url]
+
+[![endorse][endorse-image] ][endorse-url]
+
+[color-pusher-icon]: https://nodei.co/npm/color-pusher.png?downloads=true
+[color-pusher-url]: https://npmjs.org/package/color-pusher
+[color-pusher-ci-image]: https://travis-ci.org/bahmutov/color-pusher.png?branch=master
+[color-pusher-ci-url]: https://travis-ci.org/bahmutov/color-pusher
+[color-pusher-dependencies-image]: https://david-dm.org/bahmutov/color-pusher.png
+[color-pusher-dependencies-url]: https://david-dm.org/bahmutov/color-pusher
+[color-pusher-devdependencies-image]: https://david-dm.org/bahmutov/color-pusher/dev-status.png
+[color-pusher-devdependencies-url]: https://david-dm.org/bahmutov/color-pusher#info=devDependencies
+[endorse-image]: https://api.coderwall.com/bahmutov/endorsecount.png
+[endorse-url]: https://coderwall.com/bahmutov
+
+
 
 ![color-pusher screenshot](docs/color-pusher.jpg)
 
@@ -26,17 +47,25 @@ To use: requires bootstrap CSS and JS, jquery and angularjs.
 
 ### use
 
+include css and js in document's head
+
 ```html
-<!-- include css and js in document's head -->
 <link rel="stylesheet" href="bower_components/color-pusher/dist/color-pusher.css">
 <script src="bower_components/color-pusher/dist/color-pusher.js"></script>
+```
 
-<!--
-    Simple:
+or include minified css and js
 
-    include widget as stand alone Angular module
-    at the end of the body for example
--->
+```html
+<link rel="stylesheet" href="bower_components/color-pusher/dist/color-pusher.min.css">
+<script src="bower_components/color-pusher/dist/color-pusher.min.js"></script>
+```
+
+#### Simple
+
+> include widget as stand alone Angular module at the end of the body for example
+
+```html
 <div ng-app="color-pusher">
     <color-pusher></color-pusher>
 </div>
@@ -48,7 +77,9 @@ If you already have an Angular application, add *color-pusher* as a dependency
 var app = angular.module('my-app', ['color-pusher']);
 ```
 
-You can pass initial list of selectors and colors to the widget
+#### Intermediate
+
+> pass initial list of selectors and colors to the widget
 
 ```html
 <color-pusher
@@ -88,6 +119,19 @@ Support: if you find any problems with this module, email / tweet / open issue o
 
 ## History
 
+
+0.1.2 / 2013-12-05
+==================
+
+  * added badges
+  * added travis file, fixes #34
+
+0.1.1 / 2013-12-04
+==================
+
+  * minified js and css
+  * added banner to output files, fixes #21
+  * adding empty spacer to prevent widget from overlaying on top of the content
 
 0.1.0 / 2013-12-02
 ==================

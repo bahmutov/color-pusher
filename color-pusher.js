@@ -1,4 +1,9 @@
 /**
+ * color-pusher - v0.1.2 - 2013-12-05
+ * Copyright (c) 2013 Gleb Bahmutov gleb.bahmutov@gmail.com
+ */
+
+/**
  * @license jQuery paging plugin v1.8 06/21/2010
  * http://www.xarg.org/project/jquery-color-plugin-xcolor/
  *
@@ -2352,6 +2357,11 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "    </center>\n" +
     "  </div>\n" +
     "\n" +
+    "  <!-- put large empty space at the end of the page to make sure\n" +
+    "  color-pusher does not overlay with main content -->\n" +
+    "  <div ng-show=\"showColorPusher\" class=\"color-pusher-spacer\">\n" +
+    "  </div>\n" +
+    "\n" +
     "  <div ng-show=\"showColorPusher\" class=\"color-pusher\">\n" +
     "    <div class=\"row\">\n" +
     "      <div class=\"col-md-12\">\n" +
@@ -2557,7 +2567,7 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
 (function (angular) {
   var app = angular.module('color-pusher');
 
-  app.controller('ColourLoversCtrl', function ColourLoversCtrl($scope, $http) {
+  function ColourLoversCtrl($scope, $http) {
     $scope.paletteId = '';
     $scope.placeholder = '3148032 or http://www.colourlovers.com/palette/3148032/The_Sky_Opens_Up';
 
@@ -2604,7 +2614,8 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
         $scope.fetchingPalette = false;
       });
     };
-  });
+  }
+  app.controller('ColourLoversCtrl', ['$scope', '$http', ColourLoversCtrl]);
 }(angular));
 
 (function (angular) {
