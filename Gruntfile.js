@@ -16,7 +16,7 @@ module.exports = function (grunt) {
 
 
   var versionTemplate =
-    '<%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %>';
+    '<%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>';
   var version = grunt.template.process(versionTemplate, pkgData);
 
   var copyrightTemplate = 'Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>';
