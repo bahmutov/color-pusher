@@ -2563,7 +2563,7 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
 (function (angular) {
   console.assert(pusher, 'missing pusher.color plugin');
 
-  var app = angular.module('color-pusher-widget',
+  var widget = angular.module('color-pusher-widget',
     ['minicolors', 'ui.bootstrap', 'color-pusher-widget.templates']);
 
   function colorPusherDirective() {
@@ -2593,7 +2593,7 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     };
   }
 
-  app.directive('colorPusher', colorPusherDirective);
+  widget.directive('colorPusher', colorPusherDirective);
 
   function colorCtrl($scope) {
     console.assert($.xcolor, 'missing jquery.xcolor plugin');
@@ -2844,12 +2844,17 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
 (function colorPusher(angular) {
   var pusher = angular.module('color-pusher', ['color-pusher-widget']);
 
-  pusher.controller(['$scope', colorPusherCtrl]);
+  pusher.controller('color-pusher', ['$scope', colorPusherCtrl]);
 
   function colorPusherCtrl($scope) {
-    console.log('color pusher ctrl');
-    $scope.$on('apply-color', function onApplyColor(event, data) {
-      console.log('applying color', data);
+    $scope.$on('apply-colors', function onApplyColor(event, colors) {
+      check.verify.object(colors, 'expected colors to be an object ' +
+        JSON.stringify(colors, null, 2));
+
+      Object.keys(colors).forEach(function (selector) {
+        var css = colors[selector];
+        $(selector).css(css);
+      });
     });
   }
 }(angular));
