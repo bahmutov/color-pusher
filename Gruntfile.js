@@ -123,7 +123,7 @@ module.exports = function (grunt) {
           base: 'src',
           module: 'color-pusher-widget.templates'
         },
-        src: [ 'src/color-pusher.tpl.html' ],
+        src: [ 'src/*.tpl.html' ],
         dest: 'tmp/<%= pkg.name %>.templates.js'
       }
     },

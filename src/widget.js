@@ -7,7 +7,7 @@
   function colorPusherDirective() {
     return {
       restrict: 'E',
-      templateUrl: 'color-pusher.tpl.html',
+      templateUrl: 'widget.tpl.html',
       replace: true,
       link: function (scope, element, attrs) {
         if (check.unemptyString(attrs.selectors)) {
@@ -88,14 +88,6 @@
             borderColor: color,
             color: textColor
           };
-
-          /*
-          $(selector).css({
-            backgroundColor: color,
-            borderColor: color,
-            color: textColor
-          });
-          */
         }
       });
 
