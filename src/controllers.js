@@ -1,7 +1,8 @@
 (function (angular) {
   console.assert(pusher, 'missing pusher.color plugin');
 
-  var app = angular.module('color-pusher');
+  var app = angular.module('color-pusher-widget',
+    ['minicolors', 'ui.bootstrap', 'color-pusher-widget.templates']);
 
   function colorPusherDirective() {
     return {
@@ -74,18 +75,31 @@
     $scope.applyColors = function () {
       this.generateForegroundColors();
 
+      var css = {};
+
       $scope.colors.forEach(function (color, k) {
         var selector = $scope.selectors[k];
         if (color && check.unemptyString(selector)) {
           var textColor = $scope.textColors[k];
           check.verify.color(textColor, 'missing text color for index ' + k);
+
+          css[selector] = {
+            backgroundColor: color,
+            borderColor: color,
+            color: textColor
+          };
+
+          /*
           $(selector).css({
             backgroundColor: color,
             borderColor: color,
             color: textColor
           });
+          */
         }
       });
+
+      $scope.$emit('apply-colors', css);
     };
 
     function swapWithNext(list, k) {

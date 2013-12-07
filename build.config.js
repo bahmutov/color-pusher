@@ -19,7 +19,9 @@ module.exports = {
    * app's unit tests.
    */
   app_files: {
-    js: [ 'src/**/*.js', '!src/**/*.spec.js' ],
+    js: ['src/controllers.js',
+      'src/colour-lovers.js',
+      'src/color-pusher.js'],
 
     html: [ 'src/index.html' ],
     css: 'src/*.css'

@@ -1,5 +1,5 @@
 (function (angular) {
-  var app = angular.module('color-pusher');
+  var app = angular.module('color-pusher-widget');
 
   function ColourLoversCtrl($scope, $http) {
     $scope.paletteId = '';
