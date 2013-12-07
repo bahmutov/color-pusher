@@ -1,7 +1,7 @@
 (function (angular) {
   console.assert(pusher, 'missing pusher.color plugin');
 
-  var app = angular.module('color-pusher-widget',
+  var widget = angular.module('color-pusher-widget',
     ['minicolors', 'ui.bootstrap', 'color-pusher-widget.templates']);
 
   function colorPusherDirective() {
@@ -31,7 +31,7 @@
     };
   }
 
-  app.directive('colorPusher', colorPusherDirective);
+  widget.directive('colorPusher', colorPusherDirective);
 
   function colorCtrl($scope) {
     console.assert($.xcolor, 'missing jquery.xcolor plugin');
