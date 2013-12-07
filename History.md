@@ -1,4 +1,10 @@
 
+0.1.3 / 2013-12-07
+==================
+
+  * Merge branch 'feature/split-apply'
+  * started splitting widget from main controller
+
 0.1.2 / 2013-12-05
 ==================
 
