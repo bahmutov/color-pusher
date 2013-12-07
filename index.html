@@ -14,8 +14,8 @@
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="bower_components/angular/angular.js"></script>
 
-  <link rel="stylesheet" href="color-pusher.min.css">
-  <script src="color-pusher.min.js"></script>
+  <link rel="stylesheet" href="color-pusher.css">
+  <script src="color-pusher.js"></script>
 </head>
 <body>
   <a href="https://github.com/bahmutov/color-pusher">
@@ -74,7 +74,7 @@
 
     <p><span class="lead">Try it now<span>
     Open the <strong>color-pusher</strong> widget and click "Apply Colors"</p>
-    <div ng-app="color-pusher">
+    <div ng-app="color-pusher" ng-controller="color-pusher">
       <color-pusher
         selectors="body, .well, .alert-info, .alert-success, .alert-warning, .alert-danger"
         colors="#f5e384, #9c846e, #9c046e, #6e889c, #9c846e, #9c4242">
