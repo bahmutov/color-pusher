@@ -1,5 +1,5 @@
 /**
- * color-pusher - v0.1.3 - 2013-12-07
+ * color-pusher - v0.1.3 - 2013-12-08
  * Copyright (c) 2013 Gleb Bahmutov gleb.bahmutov@gmail.com
  */
 
@@ -2822,8 +2822,9 @@ angular.module("widget.tpl.html", []).run(["$templateCache", function($templateC
         check.verify.colors(data[0].colors);
         target.setColors(data[0].colors);
       })
-      .error(function () {
+      .error(function (err) {
         alertify.error('Could not fetch palette ' + $scope.paletteId);
+        console.error(err);
       })
       .finally(function () {
         $scope.fetchingPalette = false;
