@@ -41,8 +41,9 @@
         check.verify.colors(data[0].colors);
         target.setColors(data[0].colors);
       })
-      .error(function () {
+      .error(function (err) {
         alertify.error('Could not fetch palette ' + $scope.paletteId);
+        console.error(err);
       })
       .finally(function () {
         $scope.fetchingPalette = false;
