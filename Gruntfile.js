@@ -1,5 +1,6 @@
 module.exports = function (grunt) {
   require('time-grunt')(grunt);
+  var aged = require('aged');
 
   var pkg = grunt.file.readJSON('package.json');
   // used for templates
@@ -61,7 +62,27 @@ module.exports = function (grunt) {
       },
     },
 
-    complexity: grunt.file.readJSON('complexity.json'),
+    complexity: {
+      fresh: {
+        src: '<%= app_files.js %>',
+        options: {
+          errorsOnly: false,
+          cyclomatic: 10,
+          halstead: 20,
+          maintainability: 100
+        }
+      },
+      aged: {
+        src: '<%= app_files.js %>',
+        filter: aged(2, 'days'),
+        options: {
+          errorsOnly: false,
+          cyclomatic: 5,
+          halstead: 10,
+          maintainability: 100
+        }
+      }
+    },
 
     readme: {
       options: {
