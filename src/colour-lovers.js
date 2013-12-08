@@ -1,5 +1,20 @@
 (function (angular) {
-  var app = angular.module('color-pusher-widget');
+  var app = angular.module('colour-lovers', ['colour-lovers.tpl.html']);
+
+  function colourLoversDirective() {
+    return {
+      restrict: 'E',
+      templateUrl: 'colour-lovers.tpl.html',
+      replace: true,
+      link: function (/*scope, element, attrs*/) {
+      }/*,
+      controller: ['$scope', ColourLoversCtrl]*/
+    };
+  }
+
+  app.directive('colourLovers', colourLoversDirective);
+
+  // var app = angular.module('color-pusher-widget');
 
   function ColourLoversCtrl($scope, $http) {
     $scope.paletteId = '';

@@ -1,5 +1,6 @@
 (function colorPusher(angular) {
-  var pusher = angular.module('color-pusher', ['color-pusher-widget']);
+  var pusher = angular.module('color-pusher',
+    ['color-pusher-widget', 'colour-lovers']);
 
   pusher.controller('color-pusher', ['$scope', colorPusherCtrl]);
 

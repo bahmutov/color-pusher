@@ -9,6 +9,7 @@
       restrict: 'E',
       templateUrl: 'widget.tpl.html',
       replace: true,
+      transclude: false,
       link: function (scope, element, attrs) {
         if (check.unemptyString(attrs.selectors)) {
           scope.selectors = attrs.selectors.split(',').map(function (str) {

@@ -21,8 +21,8 @@ module.exports = {
   app_files: {
     js: ['src/widget.js',
       'src/colour-lovers.js',
-      'src/color-pusher.js'],
-
+      'src/color-pusher.js'
+    ],
     html: [ 'src/index.html' ],
     css: 'src/*.css'
   },
