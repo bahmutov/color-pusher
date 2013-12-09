@@ -1,4 +1,11 @@
 
+0.1.4 / 2013-12-08
+==================
+
+  * split colourslovers, widget and color-pusher (outer widget)
+  * printing palette fetch error to console
+  * using aged, fixes #38
+
 0.1.3 / 2013-12-07
 ==================
 

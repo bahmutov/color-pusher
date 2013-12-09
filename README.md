@@ -1,4 +1,4 @@
-# color-pusher v0.1.3
+# color-pusher v0.1.4
 
 > Dynamic color swatch manipulation for changing multiple elements CSS
 
@@ -119,6 +119,13 @@ Support: if you find any problems with this module, email / tweet / open issue o
 
 ## History
 
+
+0.1.4 / 2013-12-08
+==================
+
+  * split colourslovers, widget and color-pusher (outer widget)
+  * printing palette fetch error to console
+  * using aged, fixes #38
 
 0.1.3 / 2013-12-07
 ==================
