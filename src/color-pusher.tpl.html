@@ -1,0 +1,34 @@
+<div>
+  <div ng-hide="showColorPusher">
+    <center>
+      <button type="button" class="show-color-pusher-button btn btn-default"
+        ng-click="showColorPusher=true;"
+        title="Show color-pusher widget">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+        color-pusher</button>
+    </center>
+  </div>
+
+  <!-- put large empty space at the end of the page to make sure
+  color-pusher does not overlay with main content -->
+  <div ng-show="showColorPusher" class="color-pusher-spacer">
+  </div>
+
+  <div ng-show="showColorPusher" class="color-pusher">
+    <button type="button" id="closeColorPusher" class="btn btn-default" aria-hidden="true"
+      ng-click="showColorPusher=false;"
+      title="Hide color-pusher widget">
+      <span class="glyphicon glyphicon-chevron-down"></span>
+    </button>
+
+    <color-pusher-widget></color-pusher-widget>
+
+    <center>
+      <a href="https://github.com/bahmutov/color-pusher">
+        <strong>color-pusher</strong>
+      </a> &copy; 2013 Gleb Bahmutov
+      <a href="https://twitter.com/bahmutov">@bahmutov</a>
+    </center>
+
+  </div>
+</div>

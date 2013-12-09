@@ -1,8 +1,22 @@
 (function colorPusher(angular) {
-  var pusher = angular.module('color-pusher',
-    ['color-pusher-widget']);
+  var app = angular.module('color-pusher',
+    ['color-pusher-widget', 'color-pusher.tpl.html']);
 
-  pusher.controller('color-pusher', ['$scope', colorPusherCtrl]);
+  app.directive('colorPusher', colorPusherDirective);
+
+  function colorPusherDirective() {
+    return {
+      restrict: 'E',
+      templateUrl: 'color-pusher.tpl.html',
+      replace: true,
+      link: function (scope, element, attrs) {
+        if (attrs.selectors || attrs.colors) {
+          scope.$broadcast('selectors-colors', attrs);
+        }
+      },
+      controller: ['$scope', colorPusherCtrl]
+    };
+  }
 
   function colorPusherCtrl($scope) {
     $scope.$on('apply-colors', function onApplyColor(event, colors) {

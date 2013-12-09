@@ -1,4 +1,3 @@
-/*
 button.show-color-pusher-button {
   position: fixed;
   bottom: 0;
@@ -9,9 +8,7 @@ button.show-color-pusher-button {
   border-bottom: 0;
   font-weight: bold;
 }
-*/
 
-/*
 div.color-pusher {
   position: fixed;
   bottom: 0;
@@ -26,7 +23,6 @@ div.color-pusher {
   color: black;
   padding: 5px;
 }
-*/
 
 div.color-pusher-spacer {
   height: 360px;
@@ -36,6 +32,7 @@ button.color-pusher {
   margin-left: 5px;
 }
 
+/*
 #shareResultsModal {
   position: absolute;
   z-index: 100;
@@ -50,20 +47,22 @@ button.tight {
   padding-left: 5px;
   padding-right: 5px;
 }
+*/
 
 /* try to position between lines */
+/*
 .basement {
   position: relative;
   top: 2.5em;
 }
+*/
 
-/*
 #closeColorPusher {
   position: absolute;
-  top: 0;
-  right: 15px;
+  top: 5px;
+  right: 5px;
+  z-index: 10;
 }
-*/
 
 /*
 #shareColors {
@@ -73,6 +72,8 @@ button.tight {
 }
 */
 
+/*
 button.margin-left-15 {
   margin-left: 15px;
 }
+*/

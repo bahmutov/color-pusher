@@ -11,18 +11,7 @@
       replace: true,
       transclude: false,
       link: function (scope, element, attrs) {
-        if (check.unemptyString(attrs.selectors)) {
-          scope.selectors = attrs.selectors.split(',').map(function (str) {
-            return str.trim();
-          });
-        }
-        if (check.unemptyString(attrs.colors)) {
-          scope.colors = attrs.colors.split(',').map(function (str) {
-            return str.trim();
-          });
-          check.verify.colors(scope.colors);
-        }
-        scope.generateForegroundColors();
+        scope.setSelectorsAndColors(attrs);
 
         // make sure modal dialog appears in the center of the body
         // and not just the widget
@@ -32,7 +21,7 @@
     };
   }
 
-  widget.directive('colorPusher', colorPusherDirective);
+  widget.directive('colorPusherWidget', colorPusherDirective);
 
   function colorCtrl($scope) {
     console.assert($.xcolor, 'missing jquery.xcolor plugin');
@@ -66,6 +55,21 @@
       return result;
     };
 
+    $scope.setSelectorsAndColors = function (obj) {
+      if (check.unemptyString(obj.selectors)) {
+        $scope.selectors = obj.selectors.split(',').map(function (str) {
+          return str.trim();
+        });
+      }
+      if (check.unemptyString(obj.colors)) {
+        $scope.colors = obj.colors.split(',').map(function (str) {
+          return str.trim();
+        });
+        check.verify.colors($scope.colors);
+      }
+      $scope.generateForegroundColors();
+    };
+
     $scope.setColors = function (list) {
       check.verify.colors(list);
       $scope.lastGeneration = null;
@@ -75,6 +79,10 @@
 
     $scope.$on('set-colors', function onSetColors(event, colors) {
       $scope.setColors(colors);
+    });
+
+    $scope.$on('selectors-colors', function onSelectorsColors(event, obj) {
+      $scope.setSelectorsAndColors(obj);
     });
 
     $scope.applyColors = function () {

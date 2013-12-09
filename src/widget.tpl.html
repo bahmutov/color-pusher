@@ -1,190 +1,157 @@
 <div>
-  <div ng-hide="showColorPusher">
-    <center>
-      <button type="button" class="show-color-pusher-button btn btn-default"
-        ng-click="showColorPusher=true;"
-        title="Show color-pusher widget">
-        <span class="glyphicon glyphicon-chevron-up"></span>
-        color-pusher</button>
-    </center>
-  </div>
+  <div class="row">
+    <div class="col-md-12">
 
-  <!-- put large empty space at the end of the page to make sure
-  color-pusher does not overlay with main content -->
-  <div ng-show="showColorPusher" class="color-pusher-spacer">
-  </div>
+    <form class="form-horizontal" role="form">
+      <div class="form-group" ng-repeat="color in colors track by $index + color">
 
-  <div ng-show="showColorPusher" class="color-pusher">
-    <div class="row">
-      <div class="col-md-12">
+        <button type="button" class="pull-left margin-left-15 btn btn-default btn-sm"
+          title="Remove this color"
+          ng-click="removeColor($index);">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
 
-      <button type="button" id="closeColorPusher" class="btn btn-default" aria-hidden="true"
-        ng-click="showColorPusher=false;"
-        title="Hide color-pusher widget">
-        <span class="glyphicon glyphicon-chevron-down"></span>
-      </button>
-
-      <button type="button" id="shareColors" class="btn btn-default"
-        data-toggle="modal" data-target="#shareResultsModal"
-        title="Show current colors as text for easy export">
-        <span class="glyphicon glyphicon-share-alt"></span>
-      </button>
-
-        <form class="form-horizontal" role="form">
-
-
-
-          <div class="form-group" ng-repeat="color in colors track by $index + color">
-
-            <button type="button" class="pull-left margin-left-15 btn btn-default btn-sm"
-              title="Remove this color"
-              ng-click="removeColor($index);">
-              <span class="glyphicon glyphicon-remove"></span>
-            </button>
-
-            <label for="colorPicker{{$index}}"
-              class="col-sm-1 control-label">color {{$index}}</label>
-            <div class="col-sm-2">
-              <div class="input-group">
-                <input
-                  id="colorPicker{{$index}}"
-                  class="form-control"
-                  type="text"
-                  minicolors="hueSettings"
-                  ng-model="colors[$index]">
-              </div>
-
-            </div>
-
-            <div class="col-sm-2 semi-tight">
-              <button type="button" class="tight btn btn-default btn-xs"
-                title="Decrease hue" ng-click="changeColor($index, 'hue', '-2');">
-                <span class="glyphicon glyphicon-arrow-left"></span>
-              </button>
-              <button type="button" class="tight btn btn-default btn-xs"
-                title="Increase hue" ng-click="changeColor($index, 'hue', '+2');">
-                <span class="glyphicon glyphicon-arrow-right"></span>
-              </button>
-
-              <button type="button" class="tight btn btn-default btn-xs"
-                title="Decrease saturation" ng-click="changeColor($index, 'saturation', '-1');">
-                <span class="glyphicon glyphicon-chevron-down"></span>
-              </button>
-              <button type="button" class="tight btn btn-default btn-xs"
-                title="Increase saturation" ng-click="changeColor($index, 'saturation', '+1');">
-                <span class="glyphicon glyphicon-chevron-up"></span>
-              </button>
-
-              <button type="button" class="tight btn btn-default btn-xs"
-                title="Decrease value" ng-click="changeColor($index, 'value', '-1');">
-                <span class="glyphicon glyphicon-circle-arrow-down"></span>
-              </button>
-              <button type="button" class="tight btn btn-default btn-xs"
-                title="Increase value" ng-click="changeColor($index, 'value', '+1');">
-                <span class="glyphicon glyphicon-circle-arrow-up"></span>
-              </button>
-            </div>
-
-            <div class="col-sm-2 semi-tight">
-              <input type="text" class="form-control"
-                id="selector{{$index}}"
-                placeholder=".alert-info" required
-                ng-model="selectors[$index]">
-            </div>
-            <div class="col-sm-1 semi-tight">
-              <button ng-hide="$last" type="button" class="btn btn-default btn-xs basement"
-                title="Swap selectors" ng-click="swapSelector($index)">
-                <span class="glyphicon glyphicon-sort"></span>
-              </button>
-            </div>
-
-            <label for="textColor{{$index}}"
-              class="col-sm-1 control-label">text {{$index}}</label>
-            <div class="btn-group" id="textColor{{$index}}">
-              <button type="button" class="btn btn-default"
-                ng-model="textColorStrategy[$index]" btn-radio="'white'">white</button>
-              <button type="button" class="btn btn-default"
-                ng-model="textColorStrategy[$index]" btn-radio="'black'">black</button>
-              <button type="button" class="btn btn-default"
-                ng-model="textColorStrategy[$index]" btn-radio="'auto'">auto</button>
+        <label for="colorPicker{{$index}}"
+          class="col-sm-1 control-label">color {{$index}}</label>
+        <div class="col-sm-2">
+          <div class="input-group">
+            <input
+              id="colorPicker{{$index}}"
+              class="form-control"
+              type="text"
+              minicolors="hueSettings"
+              ng-model="colors[$index]">
           </div>
 
-          </div>
+        </div>
 
-          <button type="button" class="pull-left btn btn-default btn-sm"
-            title="Add new color"
-            ng-click="addColor();">
-            <span class="glyphicon glyphicon-plus"></span>
+        <div class="col-sm-2 semi-tight">
+          <button type="button" class="tight btn btn-default btn-xs"
+            title="Decrease hue" ng-click="changeColor($index, 'hue', '-2');">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+          </button>
+          <button type="button" class="tight btn btn-default btn-xs"
+            title="Increase hue" ng-click="changeColor($index, 'hue', '+2');">
+            <span class="glyphicon glyphicon-arrow-right"></span>
           </button>
 
-          <div class="form-group">
-            <center>
+          <button type="button" class="tight btn btn-default btn-xs"
+            title="Decrease saturation" ng-click="changeColor($index, 'saturation', '-1');">
+            <span class="glyphicon glyphicon-chevron-down"></span>
+          </button>
+          <button type="button" class="tight btn btn-default btn-xs"
+            title="Increase saturation" ng-click="changeColor($index, 'saturation', '+1');">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+          </button>
 
-              <button type="button" class="btn btn-primary color-pusher"
-                ng-click="applyColors()"
-                title="apply current colors to selectors">Apply colors</button>
+          <button type="button" class="tight btn btn-default btn-xs"
+            title="Decrease value" ng-click="changeColor($index, 'value', '-1');">
+            <span class="glyphicon glyphicon-circle-arrow-down"></span>
+          </button>
+          <button type="button" class="tight btn btn-default btn-xs"
+            title="Increase value" ng-click="changeColor($index, 'value', '+1');">
+            <span class="glyphicon glyphicon-circle-arrow-up"></span>
+          </button>
+        </div>
 
-            </center>
-          </div>
+        <div class="col-sm-2 semi-tight">
+          <input type="text" class="form-control"
+            id="selector{{$index}}"
+            placeholder=".alert-info" required
+            ng-model="selectors[$index]">
+        </div>
+        <div class="col-sm-1 semi-tight">
+          <button ng-hide="$last" type="button" class="btn btn-default btn-xs basement"
+            title="Swap selectors" ng-click="swapSelector($index)">
+            <span class="glyphicon glyphicon-sort"></span>
+          </button>
+        </div>
 
-          <div class="form-group">
-            <colour-lovers></colour-lovers>
-          </div>
-
-            <div class="form-group">
-              <label for="generateButtons"
-                class="col-md-2 control-label">Generate colors based on first color 0</label>
-
-              <div class="col-md-8 input-group" id="generateButtons">
-              <button type="button" class="btn btn-default color-pusher"
-                ng-click="splitcomplement()"
-                title="generate the splitcomplement complements of a base color">splitcomplement</button>
-
-              <button type="button" class="btn btn-default color-pusher"
-                ng-click="monochromatic()"
-                title="generate monochromatic colors from base color">monochromatic</button>
-
-              <button type="button" class="btn btn-default color-pusher"
-                ng-click="analogous()"
-                title="generate analogous colors from base color">Analogous</button>
-
-              <button type="button" class="btn btn-default color-pusher"
-                ng-click="tetrad()"
-                title="generate +3 colors from base color">Tetrad</button>
-
-              <button type="button" class="btn btn-default color-pusher"
-                ng-click="triad()"
-                title="generate +2 colors from base color">Triad</button>
-              </div>
-            </div>
-        </form>
-
-      <center>
-        <a href="https://github.com/bahmutov/color-pusher">
-          <strong>color-pusher</strong>
-        </a> &copy; 2013 Gleb Bahmutov
-        <a href="https://twitter.com/bahmutov">@bahmutov</a>
-      </center>
+        <label for="textColor{{$index}}"
+          class="col-sm-1 control-label">text {{$index}}</label>
+        <div class="btn-group" id="textColor{{$index}}">
+          <button type="button" class="btn btn-default"
+            ng-model="textColorStrategy[$index]" btn-radio="'white'">white</button>
+          <button type="button" class="btn btn-default"
+            ng-model="textColorStrategy[$index]" btn-radio="'black'">black</button>
+          <button type="button" class="btn btn-default"
+            ng-model="textColorStrategy[$index]" btn-radio="'auto'">auto</button>
+      </div>
 
       </div>
-    </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="shareResultsModal" tabindex="-1"
-      role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-      data-backdrop="false">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Current colors</h4>
+      <button type="button" class="pull-left btn btn-default btn-sm"
+        title="Add new color"
+        ng-click="addColor();">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+
+      <div class="form-group">
+        <center>
+
+          <button type="button" class="btn btn-primary color-pusher"
+            ng-click="applyColors()"
+            title="apply current colors to selectors">Apply colors</button>
+
+          <button type="button" class="btn btn-default"
+            data-toggle="modal" data-target="#shareResultsModal"
+            title="Show current colors as text for easy export">
+            <span class="glyphicon glyphicon-share-alt"></span>
+          </button>
+
+        </center>
+      </div>
+
+      <div class="form-group">
+        <colour-lovers></colour-lovers>
+      </div>
+
+        <div class="form-group">
+          <label for="generateButtons"
+            class="col-md-2 control-label">Generate colors based on first color 0</label>
+
+          <div class="col-md-8 input-group" id="generateButtons">
+          <button type="button" class="btn btn-default color-pusher"
+            ng-click="splitcomplement()"
+            title="generate the splitcomplement complements of a base color">splitcomplement</button>
+
+          <button type="button" class="btn btn-default color-pusher"
+            ng-click="monochromatic()"
+            title="generate monochromatic colors from base color">monochromatic</button>
+
+          <button type="button" class="btn btn-default color-pusher"
+            ng-click="analogous()"
+            title="generate analogous colors from base color">Analogous</button>
+
+          <button type="button" class="btn btn-default color-pusher"
+            ng-click="tetrad()"
+            title="generate +3 colors from base color">Tetrad</button>
+
+          <button type="button" class="btn btn-default color-pusher"
+            ng-click="triad()"
+            title="generate +2 colors from base color">Triad</button>
           </div>
-          <div class="modal-body">
-            <pre><code>{{colorsToShare()|json}}</code></pre>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
+        </div>
+    </form>
+
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="shareResultsModal" tabindex="-1"
+    role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+    data-backdrop="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Current colors</h4>
+        </div>
+        <div class="modal-body">
+          <pre><code>{{colorsToShare()|json}}</code></pre>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
