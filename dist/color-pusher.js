@@ -2346,7 +2346,7 @@ angular.module('color-pusher-widget.templates', ['colour-lovers.tpl.html', 'widg
 
 angular.module("colour-lovers.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("colour-lovers.tpl.html",
-    "<div ng-controller=\"ColourLoversCtrl\">\n" +
+    "<div>\n" +
     "  <label for=\"colourLoverPalette\"\n" +
     "    class=\"control-label col-sm-2\">\n" +
     "    <a href=\"http://www.colourlovers.com/palettes\" target=\"_blank\">ColourLover Palette</a>\n" +
@@ -2364,7 +2364,7 @@ angular.module("colour-lovers.tpl.html", []).run(["$templateCache", function($te
     "\n" +
     "  <div class=\"col-sm-1\">\n" +
     "    <button type=\"button\" class=\"btn btn-primary\"\n" +
-    "      ng-click=\"fetchPalette(this.$parent)\"\n" +
+    "      ng-click=\"fetchPalette()\"\n" +
     "      ng-disabled=\"!isValidPalette() || fetchingPalette\"\n" +
     "      title=\"Pull palette colors\">Fetch palette</button>\n" +
     "  </div>\n" +
@@ -2503,11 +2503,9 @@ angular.module("widget.tpl.html", []).run(["$templateCache", function($templateC
     "            </center>\n" +
     "          </div>\n" +
     "\n" +
-    "          <!--\n" +
     "          <div class=\"form-group\">\n" +
     "            <colour-lovers></colour-lovers>\n" +
     "          </div>\n" +
-    "          -->\n" +
     "\n" +
     "            <div class=\"form-group\">\n" +
     "              <label for=\"generateButtons\"\n" +
@@ -2575,7 +2573,7 @@ angular.module("widget.tpl.html", []).run(["$templateCache", function($templateC
   console.assert(pusher, 'missing pusher.color plugin');
 
   var widget = angular.module('color-pusher-widget',
-    ['minicolors', 'ui.bootstrap', 'color-pusher-widget.templates']);
+    ['colour-lovers', 'minicolors', 'ui.bootstrap', 'color-pusher-widget.templates']);
 
   function colorPusherDirective() {
     return {
@@ -2645,6 +2643,10 @@ angular.module("widget.tpl.html", []).run(["$templateCache", function($templateC
       $scope.colors = list;
       $scope.applyColors();
     };
+
+    $scope.$on('set-colors', function onSetColors(event, colors) {
+      $scope.setColors(colors);
+    });
 
     $scope.applyColors = function () {
       this.generateForegroundColors();
@@ -2794,20 +2796,18 @@ angular.module("widget.tpl.html", []).run(["$templateCache", function($templateC
 (function (angular) {
   var app = angular.module('colour-lovers', ['colour-lovers.tpl.html']);
 
+  app.directive('colourLovers', colourLoversDirective);
+
   function colourLoversDirective() {
     return {
       restrict: 'E',
       templateUrl: 'colour-lovers.tpl.html',
       replace: true,
-      link: function (/*scope, element, attrs*/) {
-      }/*,
-      controller: ['$scope', ColourLoversCtrl]*/
+      link: function () {
+      },
+      controller: ['$scope', '$http', ColourLoversCtrl]
     };
   }
-
-  app.directive('colourLovers', colourLoversDirective);
-
-  // var app = angular.module('color-pusher-widget');
 
   function ColourLoversCtrl($scope, $http) {
     $scope.paletteId = '';
@@ -2818,7 +2818,7 @@ angular.module("widget.tpl.html", []).run(["$templateCache", function($templateC
         check.positiveNumber(+$scope.paletteId);
     };
 
-    $scope.fetchPalette = function (target) {
+    $scope.fetchPalette = function () {
       try {
         if (check.webUrl($scope.paletteId)) {
           $scope.paletteId = /palette\/\d+\//.exec($scope.paletteId)[0];
@@ -2847,7 +2847,8 @@ angular.module("widget.tpl.html", []).run(["$templateCache", function($templateC
         }
         console.log('pallete', data[0]);
         check.verify.colors(data[0].colors);
-        target.setColors(data[0].colors);
+        // target.setColors(data[0].colors);
+        $scope.$emit('set-colors', data[0].colors);
       })
       .error(function (err) {
         alertify.error('Could not fetch palette ' + $scope.paletteId);
@@ -2858,12 +2859,11 @@ angular.module("widget.tpl.html", []).run(["$templateCache", function($templateC
       });
     };
   }
-  app.controller('ColourLoversCtrl', ['$scope', '$http', ColourLoversCtrl]);
 }(angular));
 
 (function colorPusher(angular) {
   var pusher = angular.module('color-pusher',
-    ['color-pusher-widget', 'colour-lovers']);
+    ['color-pusher-widget']);
 
   pusher.controller('color-pusher', ['$scope', colorPusherCtrl]);
 

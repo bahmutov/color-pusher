@@ -1,20 +1,18 @@
 (function (angular) {
   var app = angular.module('colour-lovers', ['colour-lovers.tpl.html']);
 
+  app.directive('colourLovers', colourLoversDirective);
+
   function colourLoversDirective() {
     return {
       restrict: 'E',
       templateUrl: 'colour-lovers.tpl.html',
       replace: true,
-      link: function (/*scope, element, attrs*/) {
-      }/*,
-      controller: ['$scope', ColourLoversCtrl]*/
+      link: function () {
+      },
+      controller: ['$scope', '$http', ColourLoversCtrl]
     };
   }
-
-  app.directive('colourLovers', colourLoversDirective);
-
-  // var app = angular.module('color-pusher-widget');
 
   function ColourLoversCtrl($scope, $http) {
     $scope.paletteId = '';
@@ -25,7 +23,7 @@
         check.positiveNumber(+$scope.paletteId);
     };
 
-    $scope.fetchPalette = function (target) {
+    $scope.fetchPalette = function () {
       try {
         if (check.webUrl($scope.paletteId)) {
           $scope.paletteId = /palette\/\d+\//.exec($scope.paletteId)[0];
@@ -54,7 +52,8 @@
         }
         console.log('pallete', data[0]);
         check.verify.colors(data[0].colors);
-        target.setColors(data[0].colors);
+        // target.setColors(data[0].colors);
+        $scope.$emit('set-colors', data[0].colors);
       })
       .error(function (err) {
         alertify.error('Could not fetch palette ' + $scope.paletteId);
@@ -65,5 +64,4 @@
       });
     };
   }
-  app.controller('ColourLoversCtrl', ['$scope', '$http', ColourLoversCtrl]);
 }(angular));

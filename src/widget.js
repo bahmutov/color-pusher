@@ -2,7 +2,7 @@
   console.assert(pusher, 'missing pusher.color plugin');
 
   var widget = angular.module('color-pusher-widget',
-    ['minicolors', 'ui.bootstrap', 'color-pusher-widget.templates']);
+    ['colour-lovers', 'minicolors', 'ui.bootstrap', 'color-pusher-widget.templates']);
 
   function colorPusherDirective() {
     return {
@@ -72,6 +72,10 @@
       $scope.colors = list;
       $scope.applyColors();
     };
+
+    $scope.$on('set-colors', function onSetColors(event, colors) {
+      $scope.setColors(colors);
+    });
 
     $scope.applyColors = function () {
       this.generateForegroundColors();

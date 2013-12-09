@@ -1,4 +1,4 @@
-<div ng-controller="ColourLoversCtrl">
+<div>
   <label for="colourLoverPalette"
     class="control-label col-sm-2">
     <a href="http://www.colourlovers.com/palettes" target="_blank">ColourLover Palette</a>
@@ -16,7 +16,7 @@
 
   <div class="col-sm-1">
     <button type="button" class="btn btn-primary"
-      ng-click="fetchPalette(this.$parent)"
+      ng-click="fetchPalette()"
       ng-disabled="!isValidPalette() || fetchingPalette"
       title="Pull palette colors">Fetch palette</button>
   </div>
