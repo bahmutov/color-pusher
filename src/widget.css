@@ -1,37 +1,3 @@
-/*
-button.show-color-pusher-button {
-  position: fixed;
-  bottom: 0;
-  width: 140px;
-  margin-left: -70px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom: 0;
-  font-weight: bold;
-}
-*/
-
-/*
-div.color-pusher {
-  position: fixed;
-  bottom: 0;
-  z-index: 10;
-
-  min-width: 1120px;
-  max-height: 360px;
-  overflow: auto;
-  background-color: #efefef;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  color: black;
-  padding: 5px;
-}
-*/
-
-div.color-pusher-spacer {
-  height: 360px;
-}
-
 button.color-pusher {
   margin-left: 5px;
 }
@@ -56,22 +22,6 @@ button.tight {
   position: relative;
   top: 2.5em;
 }
-
-/*
-#closeColorPusher {
-  position: absolute;
-  top: 0;
-  right: 15px;
-}
-*/
-
-/*
-#shareColors {
-  position: absolute;
-  top: 40px;
-  right: 15px;
-}
-*/
 
 button.margin-left-15 {
   margin-left: 15px;
