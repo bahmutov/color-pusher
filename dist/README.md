@@ -1,4 +1,4 @@
-# color-pusher v0.1.4
+# color-pusher v0.1.5
 
 > Dynamic color swatch manipulation for changing multiple elements CSS
 
@@ -119,6 +119,12 @@ Support: if you find any problems with this module, email / tweet / open issue o
 
 ## History
 
+
+0.1.5 / 2013-12-09
+==================
+
+  * hiding colour lovers fields using attribute, fixes #41
+  * moved show/hide logic to outer widget, fixes #40
 
 0.1.4 / 2013-12-08
 ==================
