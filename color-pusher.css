@@ -1,5 +1,5 @@
 /**
- * color-pusher - v0.1.2 - 2013-12-05
+ * color-pusher - v0.1.5 - 2013-12-09
  * Copyright (c) 2013 Gleb Bahmutov gleb.bahmutov@gmail.com
  */
 
@@ -551,6 +551,13 @@ div.color-pusher-spacer {
   height: 360px;
 }
 
+#closeColorPusher {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 10;
+}
+
 button.color-pusher {
   margin-left: 5px;
 }
@@ -574,18 +581,6 @@ button.tight {
 .basement {
   position: relative;
   top: 2.5em;
-}
-
-#closeColorPusher {
-  position: absolute;
-  top: 0;
-  right: 15px;
-}
-
-#shareColors {
-  position: absolute;
-  top: 40px;
-  right: 15px;
 }
 
 button.margin-left-15 {
