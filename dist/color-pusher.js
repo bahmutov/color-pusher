@@ -1,5 +1,5 @@
 /**
- * color-pusher - v0.1.4 - 2013-12-08
+ * color-pusher - v0.1.4 - 2013-12-09
  * Copyright (c) 2013 Gleb Bahmutov gleb.bahmutov@gmail.com
  */
 
@@ -2604,8 +2604,6 @@ angular.module("widget.tpl.html", []).run(["$templateCache", function($templateC
     console.assert($.xcolor, 'missing jquery.xcolor plugin');
     var xcolor = $.xcolor;
 
-    $scope.showColorPusher = false;
-
     $scope.defaultSettings = {
       control: 'hue',
       position: 'bottom left',
@@ -2896,6 +2894,8 @@ angular.module("widget.tpl.html", []).run(["$templateCache", function($templateC
   }
 
   function colorPusherCtrl($scope) {
+    $scope.showColorPusher = false;
+
     $scope.$on('apply-colors', function onApplyColor(event, colors) {
       check.verify.object(colors, 'expected colors to be an object ' +
         JSON.stringify(colors, null, 2));

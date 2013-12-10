@@ -19,6 +19,8 @@
   }
 
   function colorPusherCtrl($scope) {
+    $scope.showColorPusher = false;
+
     $scope.$on('apply-colors', function onApplyColor(event, colors) {
       check.verify.object(colors, 'expected colors to be an object ' +
         JSON.stringify(colors, null, 2));
