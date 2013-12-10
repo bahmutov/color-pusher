@@ -13,6 +13,10 @@
       link: function (scope, element, attrs) {
         scope.setSelectorsAndColors(attrs);
 
+        if (typeof attrs.showColourLovers !== 'undefined') {
+          scope.showColourLovers = (attrs.showColourLovers === 'true');
+        }
+
         // make sure modal dialog appears in the center of the body
         // and not just the widget
         $('#shareResultsModal').detach().appendTo('body');
@@ -27,6 +31,7 @@
     console.assert($.xcolor, 'missing jquery.xcolor plugin');
     var xcolor = $.xcolor;
 
+    $scope.showColourLovers = true;
     $scope.defaultSettings = {
       control: 'hue',
       position: 'bottom left',

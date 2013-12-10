@@ -2369,7 +2369,7 @@ angular.module("color-pusher.tpl.html", []).run(["$templateCache", function($tem
     "      <span class=\"glyphicon glyphicon-chevron-down\"></span>\n" +
     "    </button>\n" +
     "\n" +
-    "    <color-pusher-widget></color-pusher-widget>\n" +
+    "    <color-pusher-widget show-colour-lovers=\"true\"></color-pusher-widget>\n" +
     "\n" +
     "    <center>\n" +
     "      <a href=\"https://github.com/bahmutov/color-pusher\">\n" +
@@ -2517,7 +2517,7 @@ angular.module("widget.tpl.html", []).run(["$templateCache", function($templateC
     "        </center>\n" +
     "      </div>\n" +
     "\n" +
-    "      <div class=\"form-group\">\n" +
+    "      <div class=\"form-group\" ng-show=\"showColourLovers\">\n" +
     "        <colour-lovers></colour-lovers>\n" +
     "      </div>\n" +
     "\n" +
@@ -2590,6 +2590,10 @@ angular.module("widget.tpl.html", []).run(["$templateCache", function($templateC
       link: function (scope, element, attrs) {
         scope.setSelectorsAndColors(attrs);
 
+        if (typeof attrs.showColourLovers !== 'undefined') {
+          scope.showColourLovers = (attrs.showColourLovers === 'true');
+        }
+
         // make sure modal dialog appears in the center of the body
         // and not just the widget
         $('#shareResultsModal').detach().appendTo('body');
@@ -2604,6 +2608,7 @@ angular.module("widget.tpl.html", []).run(["$templateCache", function($templateC
     console.assert($.xcolor, 'missing jquery.xcolor plugin');
     var xcolor = $.xcolor;
 
+    $scope.showColourLovers = true;
     $scope.defaultSettings = {
       control: 'hue',
       position: 'bottom left',
