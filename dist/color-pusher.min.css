@@ -1,5 +1,5 @@
 /**
- * color-pusher - v0.1.5 - 2013-12-09
+ * color-pusher - v0.1.5 - 2013-12-19
  * Copyright (c) 2013 Gleb Bahmutov gleb.bahmutov@gmail.com
  */
 

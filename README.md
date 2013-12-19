@@ -95,6 +95,9 @@ Open the widget and click "Apply colors".
 
 ## Related
 
+Read this great short [tutorial](http://www.rocket-design.fr/color-template/)
+on picking the right color template for your website for background information.
+
 Uses [jQuery xcolor](http://www.xarg.org/project/jquery-color-plugin-xcolor/)
 and [pusher.color.js](http://tech.pusherhq.com/libraries/color) plugins
 to manipulate colors.
