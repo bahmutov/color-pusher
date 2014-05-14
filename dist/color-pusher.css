@@ -1,6 +1,6 @@
 /**
- * color-pusher - v0.1.5 - 2013-12-26
- * Copyright (c) 2013 Gleb Bahmutov gleb.bahmutov@gmail.com
+ * color-pusher - v0.1.5 - 2014-05-14
+ * Copyright (c) 2014 Gleb Bahmutov gleb.bahmutov@gmail.com
  */
 
 .minicolors {
@@ -208,7 +208,7 @@
 	top: 5px;
 	left: 5px;
 	width: 18px;
-	height: 18px;	
+	height: 18px;
 }
 .minicolors-theme-default.minicolors-position-right .minicolors-swatch {
 	left: auto;
@@ -237,6 +237,9 @@
 	height: 28px;
 	border-radius: 3px;
 }
+.minicolors-theme-bootstrap .minicolors-swatch-color {
+	border-radius: inherit;
+}
 .minicolors-theme-bootstrap.minicolors-position-right .minicolors-swatch {
 	left: auto;
 	right: 3px;
@@ -248,6 +251,18 @@
 	padding-right: 44px;
 	padding-left: 12px;
 }
+.minicolors-theme-bootstrap .minicolors-input.input-lg + .minicolors-swatch {
+	top: 4px;
+	left: 4px;
+	width: 37px;
+	height: 37px;
+	border-radius: 5px;
+}
+.minicolors-theme-bootstrap .minicolors-input.input-sm + .minicolors-swatch {
+	width: 24px;
+	height: 24px;
+}
+
 .alertify,
 .alertify-show,
 .alertify-log {
