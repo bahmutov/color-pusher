@@ -2508,9 +2508,7 @@ angular.module("color-pusher.jade", []).run(["$templateCache", function($templat
     "<div>\n" +
     "  <div ng-hide=\"showColorPusher\">\n" +
     "    <center>\n" +
-    "      <button type=\"button\" ng-click=\"showColorPusher=true;\" title=\"Show color-pusher widget\" class=\"show-color-pusher-button btn btn-default\"><span class=\"glyphicon glyphicon-chevron-up\"></span>\n" +
-    "        <color-pusher></color-pusher>\n" +
-    "      </button>\n" +
+    "      <button type=\"button\" ng-click=\"showColorPusher=true;\" title=\"Show color-pusher widget\" class=\"show-color-pusher-button btn btn-default\"><span class=\"glyphicon glyphicon-chevron-up\"></span>&nbsp;color-pusher</button>\n" +
     "    </center>\n" +
     "  </div>\n" +
     "  <!-- put large empty space at the end of the page to make sure-->\n" +
@@ -2519,7 +2517,7 @@ angular.module("color-pusher.jade", []).run(["$templateCache", function($templat
     "  <div ng-show=\"showColorPusher\" class=\"color-pusher\">\n" +
     "    <button id=\"closeColorPusher\" type=\"button\" aria-hidden=\"true\" ng-click=\"showColorPusher=false;\" title=\"Hide color-pusher widget\" class=\"btn btn-default\"><span class=\"glyphicon glyphicon-chevron-down\"></span></button>\n" +
     "    <color-pusher-widget show-colour-lovers=\"true\"></color-pusher-widget>\n" +
-    "    <center><a href=\"https://github.com/bahmutov/color-pusher\"><strong>color-pusher</strong>&copy; 2013 Gleb Bahmutov</a><a href=\"https://twitter.com/bahmutov\">@bahmutov</a></center>\n" +
+    "    <center><a href=\"https://github.com/bahmutov/color-pusher\"><strong>color-pusher&nbsp;</strong>&copy; 2013 Gleb Bahmutov</a>&nbsp;<a href=\"https://twitter.com/bahmutov\">@bahmutov</a></center>\n" +
     "  </div>\n" +
     "</div>");
 }]);
