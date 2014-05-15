@@ -1,13 +1,13 @@
 (function colorPusher(angular) {
   var app = angular.module('color-pusher',
-    ['color-pusher-widget', 'color-pusher.tpl.html']);
+    ['color-pusher-widget', 'color-pusher.jade']);
 
   app.directive('colorPusher', colorPusherDirective);
 
   function colorPusherDirective() {
     return {
       restrict: 'E',
-      templateUrl: 'color-pusher.tpl.html',
+      templateUrl: 'color-pusher.jade',
       replace: true,
       link: function (scope, element, attrs) {
         if (attrs.selectors || attrs.colors) {
