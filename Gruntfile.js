@@ -144,7 +144,7 @@ module.exports = function (grunt) {
           base: 'src',
           module: 'color-pusher-widget.templates'
         },
-        src: ['src/*.jade'],
+        src: ['src/*.tpl.html', 'src/*.jade'],
         dest: 'tmp/<%= pkg.name %>.templates.js'
       }
     },
