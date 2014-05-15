@@ -1,0 +1,17 @@
+div
+  label.control-label.col-sm-2(for="colourLoverPalette")
+    a(href="http://www.colourlovers.com/palettes" target="_blank") ColourLover Palette
+
+  .col-sm-6
+    .input-group
+      input#colourLoverPalette.form-control(
+        type="text" size="80",
+        placeholder="{{placeholder}}",
+        ng-model="paletteId")
+
+  .col-sm-1
+    button.btn.btn-primary(
+      type="button",
+      ng-click="fetchPalette()",
+      ng-disabled="!isValidPalette() || fetchingPalette",
+      title="Pull palette colors") Fetch palette

@@ -1,12 +1,12 @@
 (function (angular) {
-  var app = angular.module('colour-lovers', ['colour-lovers.tpl.html']);
+  var app = angular.module('colour-lovers', ['colour-lovers.jade']);
 
   app.directive('colourLovers', colourLoversDirective);
 
   function colourLoversDirective() {
     return {
       restrict: 'E',
-      templateUrl: 'colour-lovers.tpl.html',
+      templateUrl: 'colour-lovers.jade',
       replace: true,
       link: function () {
       },
