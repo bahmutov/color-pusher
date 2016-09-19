@@ -224,6 +224,5 @@ module.exports = function (grunt) {
   grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
 
   grunt.registerTask('build', ['clean', 'html2js', 'concat', 'copy', 'uglify', 'cssmin', 'usebanner']);
-  grunt.registerTask('default', ['sync', 'jsonlint', 'nice-package', 'jshint',
-    'complexity', 'readme', 'build']);
+  grunt.registerTask('default', ['sync', 'readme', 'build']);
 };
